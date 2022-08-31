@@ -1,0 +1,100 @@
+2022-08-31 21:16:39,974 - root - INFO - 
+
+
+
+.\analyze.py -c .\configs\analyze\CNewSum_v2\config.ini
+2022-08-31 21:16:39,974 - data_analysis.initialize - INFO - Start to initialize.
+2022-08-31 21:16:39,975 - data_analysis.initialize - WARNING - The path of output results/data_analysis/CNewSum_v2 does not exist.
+2022-08-31 21:16:39,975 - data_analysis.initialize - INFO - Make the directory automatically.
+2022-08-31 21:16:39,976 - data_analysis.initialize - INFO - Initialize successfully.
+2022-08-31 21:16:39,977 - root - INFO - Start to analyze data.
+2022-08-31 21:16:39,977 - data_analysis.utils - INFO - Start to analyze all files.
+2022-08-31 21:16:41,549 - data_analysis.utils - INFO - Start to generate the concepts.
+2022-08-31 21:16:41,550 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:16:42,949 - data_analysis.utils - INFO - Start to generate the concepts.
+2022-08-31 21:16:42,949 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:16:43,298 - data_analysis.utils - INFO - Start to generate the concepts.
+2022-08-31 21:16:43,298 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:16:43,513 - data_analysis.utils - INFO - Start to generate the concepts.
+2022-08-31 21:16:43,513 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:04,313 - data_analysis.utils - INFO - Start to generate the concepts.
+2022-08-31 21:17:04,317 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:04,455 - data_analysis.utils - INFO - Analyze all files successfully.
+2022-08-31 21:17:04,455 - data_analysis.utils - INFO - Start to write results.
+2022-08-31 21:17:04,456 - data_analysis.utils - INFO - Write results successfully.
+2022-08-31 21:17:04,456 - data_analysis.utils - INFO - Start to analyze whole dataset.
+2022-08-31 21:17:04,457 - data_analysis.utils - INFO - Start to traversal and save the architecture of this data.
+2022-08-31 21:17:04,457 - data_analysis.utils - INFO - Traversal the architecture of this data successfully.
+2022-08-31 21:17:04,457 - data_analysis.utils - INFO - Start to generate the concepts.
+2022-08-31 21:17:04,464 - data_analysis.utils - INFO - Generate the concepts.
+2022-08-31 21:17:04,465 - data_analysis.utils - INFO - Start to write results.
+2022-08-31 21:17:04,542 - data_analysis.utils - INFO - Write results successfully.
+2022-08-31 21:17:04,543 - data_analysis.utils - INFO - Analyze whole dataset successfully.
+2022-08-31 21:17:04,563 - root - INFO - Analyze data successfully.
+2022-08-31 21:17:13,068 - root - INFO - 
+
+
+
+.\analyze.py -c .\configs\analyze\taiwan_indictments\one_label\config.ini
+2022-08-31 21:17:13,068 - data_analysis.initialize - INFO - Start to initialize.
+2022-08-31 21:17:13,068 - data_analysis.initialize - WARNING - The path of output results/data_analysis/taiwan_indictments/one_label does not exist.
+2022-08-31 21:17:13,068 - data_analysis.initialize - INFO - Make the directory automatically.
+2022-08-31 21:17:13,069 - data_analysis.initialize - INFO - Initialize successfully.
+2022-08-31 21:17:13,069 - root - INFO - Start to analyze data.
+2022-08-31 21:17:13,069 - data_analysis.utils - INFO - Start to analyze all files.
+2022-08-31 21:17:13,657 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:13,657 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:14,168 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:14,169 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:14,552 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:14,552 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:15,167 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:15,167 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:15,366 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:15,366 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:15,996 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:15,997 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:16,823 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:16,824 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:18,603 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:18,604 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:19,128 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:19,128 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:21,000 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:21,001 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:21,871 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:21,872 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:22,027 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:22,027 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:24,987 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:24,988 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:26,134 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:26,190 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:27,166 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:27,168 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:27,587 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:27,588 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:27,993 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:27,994 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:28,486 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:28,487 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:28,546 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:28,547 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:28,601 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:28,601 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:28,967 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:28,967 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:30,139 - data_analysis.utils - INFO - Start to generate the concepts
+2022-08-31 21:17:30,141 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:30,158 - data_analysis.utils - INFO - Analyze all files successfully.
+2022-08-31 21:17:30,158 - data_analysis.utils - INFO - Start to write results.
+2022-08-31 21:17:30,264 - data_analysis.utils - INFO - Write results successfully.
+2022-08-31 21:17:30,265 - data_analysis.utils - INFO - Start to analyze whole dataset.
+2022-08-31 21:17:30,266 - data_analysis.utils - INFO - Start to traversal and save the architecture of this data.
+2022-08-31 21:17:30,266 - data_analysis.utils - INFO - Traversal the architecture of this data successfully.
+2022-08-31 21:17:30,266 - data_analysis.utils - INFO - Start to generate the concepts.
+2022-08-31 21:17:30,273 - data_analysis.utils - INFO - Generate the concepts successfully.
+2022-08-31 21:17:30,273 - data_analysis.utils - INFO - Start to write results.
+2022-08-31 21:17:30,275 - data_analysis.utils - INFO - Write results successfully.
+2022-08-31 21:17:30,275 - data_analysis.utils - INFO - Analyze whole dataset successfully.
+2022-08-31 21:17:30,294 - root - INFO - Analyze data successfully.

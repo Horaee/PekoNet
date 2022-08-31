@@ -1,0 +1,12 @@
+# For Linux Ubuntu
+# torch
+
+# For Windows
+# torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu116
+
+transformers
+pytorch-pretrained-bert
+tqdm
+scikit-learn
+tabulate
+OpenCC

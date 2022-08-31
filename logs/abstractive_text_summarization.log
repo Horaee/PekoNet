@@ -1,0 +1,134 @@
+2022-09-01 03:10:26,547 - root - INFO - 
+
+
+
+.\summarize.py -c .\configs\summarize\CNewSum_v2\config.ini -m train -g 0 -bs 1
+2022-09-01 03:10:26,547 - abstractive_text_summarization.initialize - INFO - Start to initialize.
+2022-09-01 03:10:26,960 - utils - INFO - CUDA is available.
+2022-09-01 03:10:26,960 - utils - INFO - Initialize GPUs successfully.
+2022-09-01 03:10:26,961 - abstractive_text_summarization.model.initialize - INFO - Start to initialize model.
+2022-09-01 03:10:28,922 - abstractive_text_summarization.model.initialize - INFO - Initialize model successfully.
+2022-09-01 03:10:29,217 - abstractive_text_summarization.initialize - INFO - Start to initialize multiple gpus.
+2022-09-01 03:10:29,221 - abstractive_text_summarization.initialize - INFO - Initialize multiple gpus successfully.
+2022-09-01 03:10:29,221 - abstractive_text_summarization.model.initialize - INFO - Start to initialize optimizer.
+2022-09-01 03:10:29,222 - abstractive_text_summarization.model.initialize - INFO - Initialize optimizer successfully.
+2022-09-01 03:10:29,223 - abstractive_text_summarization.initialize - WARNING - The path of checkpoint is none.
+2022-09-01 03:10:29,223 - abstractive_text_summarization.dataset.initialize - INFO - Start to initialize train dataloader.
+2022-09-01 03:10:29,224 - abstractive_text_summarization.formatter.initialize - INFO - Start to initialize formatter.
+2022-09-01 03:10:29,248 - abstractive_text_summarization.formatter.initialize - INFO - Initialize formatter successfully.
+2022-09-01 03:10:29,248 - abstractive_text_summarization.dataset.initialize - INFO - Initialize train dataloader successfully.
+2022-09-01 03:10:29,249 - abstractive_text_summarization.dataset.initialize - INFO - Start to initialize valid dataloader.
+2022-09-01 03:10:29,249 - abstractive_text_summarization.formatter.initialize - INFO - Start to initialize formatter.
+2022-09-01 03:10:29,291 - abstractive_text_summarization.formatter.initialize - INFO - Initialize formatter successfully.
+2022-09-01 03:10:29,292 - abstractive_text_summarization.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2022-09-01 03:10:29,293 - abstractive_text_summarization.output.initialize - INFO - Start to initialize output function.
+2022-09-01 03:10:29,293 - abstractive_text_summarization.output.initialize - INFO - Initialize output function successfully.
+2022-09-01 03:10:29,293 - abstractive_text_summarization.initialize - WARNING - The path of output results/checkpoints/abstractive_text_summarization/CNewSum_v2 does not exist.
+2022-09-01 03:10:29,294 - abstractive_text_summarization.initialize - INFO - Make the directory automatically.
+2022-09-01 03:10:29,338 - abstractive_text_summarization.initialize - INFO - Initialize successfully.
+2022-09-01 03:10:29,338 - abstractive_text_summarization.train - INFO - Start to train model.
+2022-09-01 03:10:35,522 - utils - INFO - 
++-------+-------+------------+------------+--------------------+---------------+
+| epoch | stage | iterations |    time    |        loss        | learning_rate |
++-------+-------+------------+------------+--------------------+---------------+
+|   0   | train |    1/20    | 0:06/ 1:57 | 13.900409698486328 |    0.0001     |
++-------+-------+------------+------------+--------------------+---------------+
+
+2022-09-01 03:12:33,371 - utils - INFO - 
++-------+-------+------------+------------+-------------------+---------------+
+| epoch | stage | iterations |    time    |       loss        | learning_rate |
++-------+-------+------------+------------+-------------------+---------------+
+|   0   | train |   20/20    | 2:04/ 0:00 | 2.977977919578552 |    0.0001     |
++-------+-------+------------+------------+-------------------+---------------+
+
+2022-09-01 03:12:48,347 - utils - INFO - 
++-------+-------+------------+------------+--------------------+
+| epoch | stage | iterations |    time    |        loss        |
++-------+-------+------------+------------+--------------------+
+|   0   | valid |    1/10    | 0:00/ 0:07 | 0.2571636140346527 |
++-------+-------+------------+------------+--------------------+
+
+2022-09-01 03:13:36,551 - utils - INFO - 
++-------+-------+------------+------------+---------------------+
+| epoch | stage | iterations |    time    |        loss         |
++-------+-------+------------+------------+---------------------+
+|   0   | valid |   10/10    | 0:49/ 0:00 | 0.29860890135169027 |
++-------+-------+------------+------------+---------------------+
+
+2022-09-01 03:13:37,758 - utils - INFO - 
++-------+-------+------------+------------+---------------------+---------------+
+| epoch | stage | iterations |    time    |        loss         | learning_rate |
++-------+-------+------------+------------+---------------------+---------------+
+|   1   | train |    1/20    | 0:01/ 0:21 | 0.14645984768867493 |    0.0001     |
++-------+-------+------------+------------+---------------------+---------------+
+
+2022-09-01 03:14:15,112 - utils - INFO - 
++-------+-------+------------+------------+---------------------+---------------+
+| epoch | stage | iterations |    time    |        loss         | learning_rate |
++-------+-------+------------+------------+---------------------+---------------+
+|   1   | train |   20/20    | 0:38/ 0:00 | 0.26573408767580986 |    0.0001     |
++-------+-------+------------+------------+---------------------+---------------+
+
+2022-09-01 03:14:35,069 - utils - INFO - 
++-------+-------+------------+------------+---------------------+
+| epoch | stage | iterations |    time    |        loss         |
++-------+-------+------------+------------+---------------------+
+|   1   | valid |    1/10    | 0:01/ 0:11 | 0.23356598615646362 |
++-------+-------+------------+------------+---------------------+
+
+2022-09-01 03:14:43,674 - utils - INFO - 
++-------+-------+------------+------------+---------------------+
+| epoch | stage | iterations |    time    |        loss         |
++-------+-------+------------+------------+---------------------+
+|   1   | valid |   10/10    | 0:09/ 0:00 | 0.22836526930332185 |
++-------+-------+------------+------------+---------------------+
+
+2022-09-01 03:14:44,788 - utils - INFO - 
++-------+-------+------------+------------+--------------------+---------------+
+| epoch | stage | iterations |    time    |        loss        | learning_rate |
++-------+-------+------------+------------+--------------------+---------------+
+|   2   | train |    1/20    | 0:01/ 0:19 | 0.0810878649353981 |     1e-05     |
++-------+-------+------------+------------+--------------------+---------------+
+
+2022-09-01 03:15:10,106 - utils - INFO - 
++-------+-------+------------+------------+---------------------+---------------+
+| epoch | stage | iterations |    time    |        loss         | learning_rate |
++-------+-------+------------+------------+---------------------+---------------+
+|   2   | train |   20/20    | 0:26/ 0:00 | 0.18120358362793923 |     1e-05     |
++-------+-------+------------+------------+---------------------+---------------+
+
+2022-09-01 03:15:26,022 - utils - INFO - 
++-------+-------+------------+------------+---------------------+
+| epoch | stage | iterations |    time    |        loss         |
++-------+-------+------------+------------+---------------------+
+|   2   | valid |    1/10    | 0:01/ 0:12 | 0.23070640861988068 |
++-------+-------+------------+------------+---------------------+
+
+2022-09-01 03:15:35,034 - utils - INFO - 
++-------+-------+------------+------------+---------------------+
+| epoch | stage | iterations |    time    |        loss         |
++-------+-------+------------+------------+---------------------+
+|   2   | valid |   10/10    | 0:10/ 0:00 | 0.22570351064205169 |
++-------+-------+------------+------------+---------------------+
+
+2022-09-01 03:15:35,108 - abstractive_text_summarization.train - INFO - Train model successfully.
+2022-09-01 03:19:17,878 - root - INFO - 
+
+
+
+.\summarize.py -c .\configs\summarize\CNewSum_v2\config.ini -m serve -g 0 -cp .\results\checkpoints\abstractive_text_summarization\CNewSum_v2\checkpoint_2.pkl -bs 1
+2022-09-01 03:19:17,878 - abstractive_text_summarization.initialize - INFO - Start to initialize.
+2022-09-01 03:19:18,816 - utils - INFO - CUDA is available.
+2022-09-01 03:19:18,816 - utils - INFO - Initialize GPUs successfully.
+2022-09-01 03:19:18,817 - abstractive_text_summarization.model.initialize - INFO - Start to initialize model.
+2022-09-01 03:19:24,300 - abstractive_text_summarization.model.initialize - INFO - Initialize model successfully.
+2022-09-01 03:19:24,565 - abstractive_text_summarization.initialize - INFO - Start to initialize multiple gpus.
+2022-09-01 03:19:24,571 - abstractive_text_summarization.initialize - INFO - Initialize multiple gpus successfully.
+2022-09-01 03:19:27,157 - abstractive_text_summarization.formatter.initialize - INFO - Start to initialize formatter.
+2022-09-01 03:19:27,175 - abstractive_text_summarization.formatter.initialize - INFO - Initialize formatter successfully.
+2022-09-01 03:19:27,175 - abstractive_text_summarization.initialize - INFO - Initialize successfully.
+2022-09-01 03:19:27,176 - abstractive_text_summarization.serve - INFO - Start to serve.
+2022-09-01 03:19:40,926 - abstractive_text_summarization.serve - INFO - The input text: 一、陈叶丽香于民国107年5月10日15时10分许，驾驶车牌号码0000-○○号自小客车，沿台南市北区开元路由东向西行驶，行经该路与开元路63巷之之交岔路口欲右转时，原应注意转弯车应让直行车先行，且依当时情形应无不能注意之情事，却疏未注意，适有陈吉兴骑乘车牌号码○○○-000号普通重型机车，沿开元路由东向西骑乘于陈叶丽香所驾驶之自用小客车右方，陈叶丽香因有上述疏失，乃擦撞陈吉兴之机车，致陈吉兴人车倒地，并受有右侧肩膀擦伤、右侧手肘擦伤、右侧膝部擦伤、右侧大脚趾挫伤及指甲损伤等之伤害。二、案经陈吉兴诉由台南市政府警察局第五分局移送侦办。
+2022-09-01 03:19:48,548 - abstractive_text_summarization.serve - INFO - The summary of this text: 一 、 陈 叶 丽 香 于 民 国 107 年 5 月 10 日 15 时 10 分 左 右 ， 驾 驶 车 牌 号 码 0000 - ○○ 号 自 小 客 车 ， 沿 台 南 市 北 区 开 元 路 由 东 向 西 行 驶 ， 行 经 该 路 与 开 元 街 63 巷 之 交 岔 路 口 发 生 右 转 时 ， 原 应 注 意 转 弯 车 应 让 直 行 车 先 行 ， 且 依 当 时 情 形 应 无 不 能 注 意 之 情 事 ， 否 则 疏 未 注 意 ， 并 受 有 陈 吉 兴 骑 乘 车 辆 号 码 ○○ 拱 蹊 蟄 恢 蹼 堙 334 仨 梭 冕 4066 反 獗 戬 邸 london balance 蠔 蚵 谌 418 龕 网 鮪 闌 錶 灝 鞘 2765 枰 鬢 5s 埸 421 2756 璨 412 畦pods 疥 氾 336 credit 瞇 倍 甕 1024 恬 閾 氦 唁 殞 摁 lifestyle 峴 幡 磲 511 碴 ssl 恪 朮 哋 楸 免 sso weibo 睏 14k 表 撚 茵 諳 塘73 剋 miller999 錨 瀞 ｎ 饗 諗 騨 魘 sgs 隼 gaga 卵 1908 乂 pokemon 成 謄 判 轆 さんも ‰ 繚plus bank 遍 踢 嬴 遣 錘ata 舟 堀 奐 teddy 荃 堂 騁 濛db ads 穗 鹊 1a 猎 熠mail 413 犸 圃 輟
+2022-09-01 03:20:00,214 - abstractive_text_summarization.serve - INFO - The input text: shutdown
+2022-09-01 03:20:00,214 - abstractive_text_summarization.serve - INFO - Stop to serve.

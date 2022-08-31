@@ -1,0 +1,17 @@
+2022-09-01 04:42:13,070 - root - INFO - 
+
+
+
+.\convert.py -sdp .\results\SC\ -ddp .\results\TC\ -c s2t.json
+2022-09-01 04:42:13,070 - text_conversion.initialize - INFO - Start to initialize.
+2022-09-01 04:42:18,163 - text_conversion.initialize - INFO - Initialize successfully.
+2022-09-01 04:42:18,163 - text_conversion.utils - INFO - Start to convert text with s2t.json config.
+2022-09-01 04:42:18,164 - text_conversion.utils - INFO - Start to process 0_human_sum.json.
+2022-09-01 04:42:18,312 - text_conversion.utils - INFO - Process 0_human_sum.json successfully.
+2022-09-01 04:42:18,312 - text_conversion.utils - INFO - Start to process 1_human_sum.json.
+2022-09-01 04:42:18,515 - text_conversion.utils - INFO - Process 1_human_sum.json successfully.
+2022-09-01 04:42:18,558 - text_conversion.utils - INFO - Start to process 2_human_sum.json.
+2022-09-01 04:42:18,883 - text_conversion.utils - INFO - Process 2_human_sum.json successfully.
+2022-09-01 04:42:18,883 - text_conversion.utils - INFO - Start to process 3_human_sum.json.
+2022-09-01 04:42:19,038 - text_conversion.utils - INFO - Process 3_human_sum.json successfully.
+2022-09-01 04:42:19,038 - text_conversion.utils - INFO - Convert text with s2t.json config successfully.

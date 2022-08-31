@@ -1,0 +1,13 @@
+**/__pycache__/
+
+data/*
+!data/README.md
+
+models/bart-base-chinese/pytorch_model.bin
+models/bert-base-chinese/pytorch_model.bin
+
+results/*
+
+venv/
+
+PekoNet.code-workspace
