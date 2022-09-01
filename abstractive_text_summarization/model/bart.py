@@ -11,7 +11,7 @@ class LJSBart(nn.Module):
 
         self.bart = BartModel(config=config)
         self.tokenizer = BertTokenizer.from_pretrained(
-                pretrained_model_name_or_path=config.get('model', 'bart_path'))
+                pretrained_model_name_or_path=config.get('model', 'model_path'))
 
 
     def initialize_multiple_gpus(self, gpus, *args, **kwargs):

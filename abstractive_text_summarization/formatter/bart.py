@@ -8,7 +8,7 @@ from abstractive_text_summarization.formatter.utils import set_special_tokens
 class BartFormatter:
     def __init__(self, config, *args, **kwargs):
         self.tokenizer = BertTokenizer.from_pretrained(
-            pretrained_model_name_or_path=config.get('model', 'bart_path'))
+            pretrained_model_name_or_path=config.get('model', 'model_path'))
         self.add_tokens_at_beginning = \
             config.getboolean('data', 'add_tokens_at_beginning')
         self.max_len = config.getint('data', 'max_len')

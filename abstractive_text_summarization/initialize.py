@@ -45,7 +45,7 @@ def initialize_all(
 
     if mode == 'train':
         batch_size = initialize_batch_size(batch_size_str=batch_size_str)
-        optimizer = initialize_optimizer(config, model)
+        optimizer = initialize_optimizer(config=config, model=model)
 
         milestones_str_list = config.get(mode, 'milestones').split(',')
         milestones = [int(milestone) for milestone in milestones_str_list]
@@ -121,7 +121,7 @@ def initialize_all(
         model.load_state_dict(parameters['model'])
 
         results['model'] = model.eval()
-        results['formatter'] = initialize_formatter(config)
+        results['formatter'] = initialize_formatter(config=config)
 
     logger.info('Initialize successfully.')
 

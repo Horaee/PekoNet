@@ -21,7 +21,7 @@ def initialize_dataloader(config, task, mode, batch_size, *args, **kwargs):
         batch_size = batch_size
         shuffle = config.getboolean(mode, 'shuffle')
         num_workers = config.getint(mode, 'num_workers')
-        collate_fn = initialize_formatter(config, task)
+        collate_fn = initialize_formatter(config=config, task=task)
         drop_last = False
 
         dataloader = DataLoader(
