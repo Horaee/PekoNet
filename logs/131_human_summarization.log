@@ -1,0 +1,222 @@
+2022-09-01 15:19:24,510 - root - INFO - 
+
+
+
+main.py -c configs/experiments/131_human_summarization/config.ini -m eval -g 0 -cp results/checkpoints/legal_judgment_prediction/bert/none/one_label/checkpoint_3.pkl -bs 7
+2022-09-01 15:19:24,510 - legal_judgment_prediction.initialize - INFO - Start to initialize.
+2022-09-01 15:19:24,520 - utils - INFO - CUDA is available.
+2022-09-01 15:19:24,521 - utils - INFO - Initialize GPUs successfully.
+2022-09-01 15:19:24,521 - legal_judgment_prediction.model.initialize - INFO - Start to initialize model.
+2022-09-01 15:19:24,521 - pytorch_pretrained_bert.modeling - INFO - loading archive file models/bert-base-chinese
+2022-09-01 15:19:24,521 - pytorch_pretrained_bert.modeling - INFO - Model config {
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2022-09-01 15:19:25,506 - legal_judgment_prediction.model.initialize - INFO - Initialize model successfully.
+2022-09-01 15:19:26,777 - legal_judgment_prediction.initialize - INFO - Start to initialize multiple gpus.
+2022-09-01 15:19:26,779 - legal_judgment_prediction.initialize - INFO - Initialize multiple gpus successfully.
+2022-09-01 15:19:27,378 - legal_judgment_prediction.dataset.initialize - INFO - Start to initialize test dataloader.
+2022-09-01 15:19:27,381 - legal_judgment_prediction.formatter.initialize - INFO - Start to initialize formatter.
+2022-09-01 15:19:27,396 - legal_judgment_prediction.formatter.initialize - INFO - Initialize formatter successfully.
+2022-09-01 15:19:27,396 - legal_judgment_prediction.dataset.initialize - INFO - Initialize test dataloader successfully.
+2022-09-01 15:19:27,396 - legal_judgment_prediction.output.initialize - INFO - Start to initialize output function.
+2022-09-01 15:19:27,396 - legal_judgment_prediction.output.initialize - INFO - Initialize output function successfully.
+2022-09-01 15:19:27,397 - legal_judgment_prediction.initialize - INFO - Initialize successfully.
+2022-09-01 15:19:27,712 - utils - INFO - 
++-------+-------+------------+------------+--------------------+
+| epoch | stage | iterations |    time    |        loss        |
++-------+-------+------------+------------+--------------------+
+|   0   | test  |    1/19    | 0:00/ 0:05 | 2.2051045894622803 |
++-------+-------+------------+------------+--------------------+
++----------------+-------+-------+-------+-------+------+-------+
+|      Type      |  MiP  |  MiR  |  MiF  |  MaP  | MaR  |  MiF  |
++----------------+-------+-------+-------+-------+------+-------+
+|    article     | 0.875 |  1.0  | 0.933 | 0.994 | 1.0  | 0.996 |
+| article_source |  1.0  |  1.0  |  1.0  |  1.0  | 1.0  |  1.0  |
+|   accusation   |  0.8  | 0.571 | 0.667 | 0.976 | 0.98 | 0.977 |
++----------------+-------+-------+-------+-------+------+-------+
+
+2022-09-01 15:19:31,643 - utils - INFO - 
++-------+-------+------------+------------+-------------------+
+| epoch | stage | iterations |    time    |       loss        |
++-------+-------+------------+------------+-------------------+
+|   0   | test  |   19/19    | 0:04/ 0:00 | 2.456181403837706 |
++-------+-------+------------+------------+-------------------+
++----------------+-------+-------+-------+-------+-------+-------+
+|      Type      |  MiP  |  MiR  |  MiF  |  MaP  |  MaR  |  MiF  |
++----------------+-------+-------+-------+-------+-------+-------+
+|    article     | 0.902 | 0.84  | 0.87  | 0.884 | 0.875 | 0.877 |
+| article_source | 0.984 | 0.969 | 0.977 | 0.951 | 0.903 | 0.919 |
+|   accusation   | 0.885 | 0.763 | 0.82  | 0.922 | 0.914 | 0.916 |
++----------------+-------+-------+-------+-------+-------+-------+
+
+2022-09-01 15:21:51,663 - root - INFO - 
+
+
+
+main.py -c configs/experiments/131_human_summarization/config.ini -m eval -g 0 -cp results/checkpoints/legal_judgment_prediction/bert/lead_3/one_label/checkpoint_3.pkl -bs 7
+2022-09-01 15:21:51,663 - legal_judgment_prediction.initialize - INFO - Start to initialize.
+2022-09-01 15:21:51,673 - utils - INFO - CUDA is available.
+2022-09-01 15:21:51,673 - utils - INFO - Initialize GPUs successfully.
+2022-09-01 15:21:51,673 - legal_judgment_prediction.model.initialize - INFO - Start to initialize model.
+2022-09-01 15:21:51,674 - pytorch_pretrained_bert.modeling - INFO - loading archive file models/bert-base-chinese
+2022-09-01 15:21:51,674 - pytorch_pretrained_bert.modeling - INFO - Model config {
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2022-09-01 15:21:52,658 - legal_judgment_prediction.model.initialize - INFO - Initialize model successfully.
+2022-09-01 15:21:53,919 - legal_judgment_prediction.initialize - INFO - Start to initialize multiple gpus.
+2022-09-01 15:21:53,921 - legal_judgment_prediction.initialize - INFO - Initialize multiple gpus successfully.
+2022-09-01 15:21:54,515 - legal_judgment_prediction.dataset.initialize - INFO - Start to initialize test dataloader.
+2022-09-01 15:21:54,516 - legal_judgment_prediction.formatter.initialize - INFO - Start to initialize formatter.
+2022-09-01 15:21:54,531 - legal_judgment_prediction.formatter.initialize - INFO - Initialize formatter successfully.
+2022-09-01 15:21:54,531 - legal_judgment_prediction.dataset.initialize - INFO - Initialize test dataloader successfully.
+2022-09-01 15:21:54,531 - legal_judgment_prediction.output.initialize - INFO - Start to initialize output function.
+2022-09-01 15:21:54,531 - legal_judgment_prediction.output.initialize - INFO - Initialize output function successfully.
+2022-09-01 15:21:54,532 - legal_judgment_prediction.initialize - INFO - Initialize successfully.
+2022-09-01 15:21:54,848 - utils - INFO - 
++-------+-------+------------+------------+------------------+
+| epoch | stage | iterations |    time    |       loss       |
++-------+-------+------------+------------+------------------+
+|   3   | test  |    1/19    | 0:00/ 0:05 | 4.08259916305542 |
++-------+-------+------------+------------+------------------+
++----------------+-----+-------+-------+-------+-------+-------+
+|      Type      | MiP |  MiR  |  MiF  |  MaP  |  MaR  |  MiF  |
++----------------+-----+-------+-------+-------+-------+-------+
+|    article     | 1.0 | 0.714 | 0.833 | 0.978 | 0.978 | 0.978 |
+| article_source | 1.0 |  1.0  |  1.0  |  1.0  |  1.0  |  1.0  |
+|   accusation   | 0.8 | 0.571 | 0.667 | 0.976 | 0.98  | 0.977 |
++----------------+-----+-------+-------+-------+-------+-------+
+
+2022-09-01 15:21:58,795 - utils - INFO - 
++-------+-------+------------+------------+--------------------+
+| epoch | stage | iterations |    time    |        loss        |
++-------+-------+------------+------------+--------------------+
+|   3   | test  |   19/19    | 0:04/ 0:00 | 3.4829599355396472 |
++-------+-------+------------+------------+--------------------+
++----------------+-------+-------+-------+-------+-------+-------+
+|      Type      |  MiP  |  MiR  |  MiF  |  MaP  |  MaR  |  MiF  |
++----------------+-------+-------+-------+-------+-------+-------+
+|    article     | 0.902 | 0.634 | 0.744 | 0.796 | 0.78  | 0.785 |
+| article_source | 0.954 | 0.954 | 0.954 | 0.901 | 0.878 | 0.885 |
+|   accusation   | 0.856 | 0.634 | 0.728 | 0.88  | 0.878 | 0.878 |
++----------------+-------+-------+-------+-------+-------+-------+
+
+2022-09-01 15:23:35,871 - root - INFO - 
+
+
+
+main.py -c configs/experiments/131_human_summarization/config.ini -m eval -g 0 -cp results/checkpoints/legal_judgment_prediction/bert/bart/one_label/checkpoint_3.pkl -bs 7
+2022-09-01 15:23:35,871 - legal_judgment_prediction.initialize - INFO - Start to initialize.
+2022-09-01 15:23:35,881 - utils - INFO - CUDA is available.
+2022-09-01 15:23:35,881 - utils - INFO - Initialize GPUs successfully.
+2022-09-01 15:23:35,881 - legal_judgment_prediction.model.initialize - INFO - Start to initialize model.
+2022-09-01 15:23:35,882 - pytorch_pretrained_bert.modeling - INFO - loading archive file models/bert-base-chinese
+2022-09-01 15:23:35,882 - pytorch_pretrained_bert.modeling - INFO - Model config {
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2022-09-01 15:23:36,866 - legal_judgment_prediction.model.initialize - INFO - Initialize model successfully.
+2022-09-01 15:23:38,131 - legal_judgment_prediction.initialize - INFO - Start to initialize multiple gpus.
+2022-09-01 15:23:38,133 - legal_judgment_prediction.initialize - INFO - Initialize multiple gpus successfully.
+2022-09-01 15:23:38,723 - legal_judgment_prediction.dataset.initialize - INFO - Start to initialize test dataloader.
+2022-09-01 15:23:38,725 - legal_judgment_prediction.formatter.initialize - INFO - Start to initialize formatter.
+2022-09-01 15:23:38,739 - legal_judgment_prediction.formatter.initialize - INFO - Initialize formatter successfully.
+2022-09-01 15:23:38,740 - legal_judgment_prediction.dataset.initialize - INFO - Initialize test dataloader successfully.
+2022-09-01 15:23:38,740 - legal_judgment_prediction.output.initialize - INFO - Start to initialize output function.
+2022-09-01 15:23:38,740 - legal_judgment_prediction.output.initialize - INFO - Initialize output function successfully.
+2022-09-01 15:23:38,741 - legal_judgment_prediction.initialize - INFO - Initialize successfully.
+2022-09-01 15:23:39,054 - utils - INFO - 
++-------+-------+------------+------------+--------------------+
+| epoch | stage | iterations |    time    |        loss        |
++-------+-------+------------+------------+--------------------+
+|   3   | test  |    1/19    | 0:00/ 0:05 | 1.2790576219558716 |
++-------+-------+------------+------------+--------------------+
++----------------+-------+-------+-------+-------+------+-------+
+|      Type      |  MiP  |  MiR  |  MiF  |  MaP  | MaR  |  MiF  |
++----------------+-------+-------+-------+-------+------+-------+
+|    article     |  1.0  |  1.0  |  1.0  |  1.0  | 1.0  |  1.0  |
+| article_source |  1.0  |  1.0  |  1.0  |  1.0  | 1.0  |  1.0  |
+|   accusation   | 0.714 | 0.714 | 0.714 | 0.976 | 0.98 | 0.977 |
++----------------+-------+-------+-------+-------+------+-------+
+
+2022-09-01 15:23:43,005 - utils - INFO - 
++-------+-------+------------+------------+-------------------+
+| epoch | stage | iterations |    time    |       loss        |
++-------+-------+------------+------------+-------------------+
+|   3   | test  |   19/19    | 0:04/ 0:00 | 1.394157706906921 |
++-------+-------+------------+------------+-------------------+
++----------------+-------+-------+-------+-------+-------+-------+
+|      Type      |  MiP  |  MiR  |  MiF  |  MaP  |  MaR  |  MiF  |
++----------------+-------+-------+-------+-------+-------+-------+
+|    article     | 0.953 | 0.939 | 0.946 | 0.938 | 0.937 | 0.936 |
+| article_source | 0.985 | 0.992 | 0.989 | 0.976 | 0.976 | 0.968 |
+|   accusation   | 0.859 | 0.84  | 0.849 | 0.949 | 0.948 | 0.946 |
++----------------+-------+-------+-------+-------+-------+-------+
+
