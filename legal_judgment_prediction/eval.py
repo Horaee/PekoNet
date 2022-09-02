@@ -20,7 +20,8 @@ def eval(parameters, *args, **kwargs):
     eval_one(
         model=model
         , dataset=test_dataloader
-        , output_time=1
+        # "output_time=1000" is for "batch_size=7".
+        , output_time=1000
         , output_function=output_function
         , current_epoch=trained_epoch
         , task='test'
