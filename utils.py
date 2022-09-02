@@ -139,7 +139,7 @@ def get_fact(string):
     # Use 'Regular Expression' to remove the contents that are not fact.
     for index, sentence in enumerate(iterable=all_sentences):
         if re.match(
-                pattern=r'讵[^，:;?!()]*[不未][^，:;?!()]*[悔戒]'
+                pattern=r'讵[^，:;?!()]*[不未][^，:;?!()]*[悔惕戒]'
                 , string=sentence) != None:
             if (index + 1) >= len(all_sentences):
                 continue
