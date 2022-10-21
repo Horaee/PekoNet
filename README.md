@@ -9,7 +9,7 @@ This architecture is composed of two sub-models: Abstractive Text Summarization 
 
 In experiments, we prepared two datasets (30K Testing Set, 235 Testing Set) to compare the performance of the models (Orig. Model, Lead-3 Model, PekoNet) on the two prediction tasks (crime, article).
 
-There are the concepts of datasets and models:
+There are the details of datasets and models:
 - datasets
   - 30K Testing Set: A dataset there are 300,000 data in
     - `30K Testing Set` (Orig. Fact): Taiwan criminal case facts
