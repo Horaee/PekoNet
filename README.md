@@ -2,6 +2,24 @@
 
 This repository is the source code of [通過生成式文本摘要改進口語法律案件預測效能之研究](https://drive.google.com/file/d/1eMYV--ye4o_-wb2ceqcq46qZE4GN8fn9/view?usp=sharing).
 
+- [PekoNet](#pekonet)
+  - [Introduction](#introduction)
+  - [Environment and Requirements](#environment-and-requirements)
+  - [Pretrain Language Models, Data and Checkpoints](#pretrain-language-models-data-and-checkpoints)
+    - [Pretrained Language Models](#pretrained-language-models)
+    - [Data](#data)
+      - [Processed Data (Recommend)](#processed-data-recommend)
+      - [Source Data](#source-data)
+    - [Checkpoints](#checkpoints)
+  - [Usage](#usage)
+    - [main.py](#mainpy)
+    - [summarize.py](#summarizepy)
+    - [generate.py](#generatepy)
+    - [convert.py](#convertpy)
+    - [analyze.py](#analyzepy)
+  - [Contact](#contact)
+  - [Citation](#citation)
+
 ## Introduction
 PEople-Kindly Oriented legal judgment prediction Network (PekoNet) is a legal judgment prediction architecture based on abstractive text summarization. The goal of this architecture is to improve the performance of legal judgment prediction on vernacular case facts and the experience of ordinary people who use legal judgment prediction services.
 
@@ -33,7 +51,6 @@ Pic. 1. and 2. are the results of the experiments. We can see that PekoNet can i
 ## Environment and Requirements
 - Ubuntu 18.04.6 LTS
 - Python 3.7.8
----
 - numpy 1.21.6
 - OpenCC 1.1.4
 - pytorch-pretrained-bert 0.6.2
@@ -47,19 +64,12 @@ Pic. 1. and 2. are the results of the experiments. We can see that PekoNet can i
 The architecture of files may be:
 ```
 root
-|
 | - models
-|
 | - results
-|   |
 |   | - tvt_dataset
-|   |
 |   | - checkpoints
-|   |
 |   ...
-|
 | - data
-|
 ...
 ```
 
@@ -68,7 +78,7 @@ You should download and put `models` folder in the root directory of this reposi
 - [models](https://drive.google.com/drive/folders/1ggGjpeRzIX1C9DD6tlXMOa8mVsXE0bm0?usp=sharing)
 
 ### Data
-#### Processed Data (Recommand)
+#### Processed Data (Recommend)
 These are the data we processed and used to train model, do experiments.
 You should create `results` folder in the root directory of this repository.
 Then, download and put `tvt_dataset` folder in `results`.
