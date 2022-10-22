@@ -15,7 +15,10 @@ def initialize_all(config, device_str, checkpoint_path):
     logger.info('Start to initialize.')
 
     check_table = {
-        'tasks': ['legal_judgment_prediction', 'abstractive_text_summarization']
+        'tasks': [
+            'legal_judgment_prediction'
+            , 'abstractive_text_summarization'
+            , 'integration']
         , 'summarizations': ['none', 'bart', 'lead_3']
         , 'model_names': ['LJSBart']
         , 'types': ['one_label', 'CNewSum_v2']
@@ -23,8 +26,6 @@ def initialize_all(config, device_str, checkpoint_path):
 
     results = {
         'task': config.get('common', 'task')
-        , 'type': config.get('common', 'type')
-        , 'data_path': config.get('common', 'data_path')
         , 'output_path': config.get('common', 'output_path')
         , 'train_size': config.getfloat('common', 'train_size')
         , 'valid_size': config.getfloat('common', 'valid_size')
@@ -94,15 +95,31 @@ def initialize_all(config, device_str, checkpoint_path):
         elif results['summarization'] == 'lead_3':
             results['output_time'] = config.getint('output', 'output_time')
 
-    if results['type'] not in check_table['types']:
-        logger.error(f'There is no type called {results["type"]}.')
-        raise Exception(f'There is no type called {results["type"]}.')
+    if results['task'] != 'integration':
+        results['type'] = config.get('common', 'type')
 
-    if not os.path.exists(path=results['data_path']):
-        logger.error(
-            f'The path of data_path {results["data_path"]} does not exist.')
-        raise Exception(
-            f'The path of data_path {results["data_path"]} does not exist.')
+        if results['type'] not in check_table['types']:
+            logger.error(f'There is no type called {results["type"]}.')
+            raise Exception(f'There is no type called {results["type"]}.')
+
+        results['data_path'] = config.get('common', 'data_path')
+
+        if not os.path.exists(path=results['data_path']):
+            logger.error(
+                f'The path of data_path {results["data_path"]} does not exist.')
+            raise Exception(
+                f'The path of data_path {results["data_path"]} does not exist.')
+    else:
+        results['cns_data_path'] = config.get('common', 'cns_data_path')
+        results['tci_data_path'] = config.get('common', 'tci_data_path')
+
+        if not os.path.exists(path=results['cns_data_path']):
+            logger.error(f'The path of cns_data_path does not exist.')
+            raise Exception(f'The path of cns_data_path does not exist.')
+
+        if not os.path.exists(path=results['tci_data_path']):
+            logger.error(f'The path of tci_data_path does not exist.')
+            raise Exception(f'The path of tci_data_path does not exist.')
 
     if not os.path.exists(path=results['output_path']):
         logger.warn(

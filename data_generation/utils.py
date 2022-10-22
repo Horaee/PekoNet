@@ -310,14 +310,78 @@ def get_ats_model_data(parameters):
     logger.info('Get ATS model data successfully.')
 
 
+def get_integration_data(parameters):
+    logger.info('Start to get integration data.')
+
+    results = []
+    templete = {
+        'text': ''
+        , 'summary': ''
+        , 'relevant_articles': []
+        , 'accusation': ''
+        , 'type': -1
+    }
+
+    cns_data = load_data(data_path=parameters['cns_data_path'])
+
+    for one_data in cns_data:
+        one_data = json.loads(one_data)
+
+        result = templete
+        result['text'] = process_string(
+            string=one_data['text']
+            , adjust_chars=True)
+        result['summary'] = process_string(
+            string=one_data['summary']
+            , adjust_chars=True)
+        result['type'] = 0
+
+        results.append(json.dumps(result, ensure_ascii=False) + '\n')
+
+    logger.info('Start to copy 3A files from source to destination.')
+
+    aaa_files = ['articles.txt', 'article_sources.txt', 'accusations.txt']
+    for file in aaa_files:
+        src = os.path.join(parameters['tci_data_path'], file)
+        dst = os.path.join(parameters['output_path'], file)
+        shutil.copyfile(src=src, dst=dst)
+
+    logger.info('Copy 3A files from source to destination successfully.')
+
+    tci_data = load_data(
+        data_path=parameters['tci_data_path']
+        , except_files=aaa_files)
+
+    for one_data in tci_data:
+        try:
+            one_data = json.loads(one_data)
+        except:
+            print(one_data)
+
+        result = templete
+        result['text'] = process_string(
+            string=one_data['fact']
+            , adjust_chars=True
+            , process_fact=True)
+        result['relevant_articles'] = one_data['meta']['relevant_articles']
+        result['accusation'] = one_data['meta']['accusation']
+        result['type'] = 1
+
+        results.append(json.dumps(result, ensure_ascii=False) + '\n')
+
+    write_back_results(parameters, data=results)
+
+    logger.info('Get integration data successfully.')
+
+
 # Load all data from all files in given path.
-def load_data(data_path):
+def load_data(data_path, except_files=[]):
     logger.info('Start to load data.')
 
     data = []
 
     for file_name in os.listdir(data_path):
-        if file_name == 'README.md':
+        if file_name == 'README.md' or file_name in except_files:
             continue
 
         logger.info(f'Start to process {file_name}.')

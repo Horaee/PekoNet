@@ -8,7 +8,8 @@ from data_generation.utils import \
     get_common_data \
     , get_bart_summary \
     , get_lead_3_summary \
-    , get_ats_model_data
+    , get_ats_model_data \
+    , get_integration_data
 
 
 information = ' '.join(sys.argv)
@@ -55,6 +56,8 @@ def main(*args, **kwargs):
             get_lead_3_summary(parameters)
     elif parameters['task'] == 'abstractive_text_summarization':
         get_ats_model_data(parameters)
+    elif parameters['task'] == 'integration':
+        get_integration_data(parameters)
 
     logger.info('Generate data successfully.')
 
