@@ -8,7 +8,7 @@ class BartModel(nn.Module):
         super(BartModel, self).__init__()
 
         self.bart = BartForConditionalGeneration.from_pretrained(
-            pretrained_model_name_or_path=config.get('model', 'bart_path'))
+            pretrained_model_name_or_path=config.get('model', 'model_path'))
         self.max_len = config.getint('data', 'max_len')
 
 
