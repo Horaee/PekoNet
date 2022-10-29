@@ -21,7 +21,7 @@ This repository is the source code of [通過生成式文本摘要改進口語�
   - [Citation](#citation)
 
 ## Introduction
-PEople-Kindly Oriented legal judgment prediction Network (PekoNet) is a legal judgment prediction architecture based on abstractive text summarization. The goal of this architecture is to improve the performance of legal judgment prediction on vernacular case facts and the experience of ordinary people who use legal judgment prediction services.
+PEople-Kindly Oriented legal judgment prediction NETwork (PekoNet) is a legal judgment prediction architecture based on abstractive text summarization. The goal of this architecture is to improve the performance of legal judgment prediction on vernacular case facts and the experience of ordinary people who use legal judgment prediction services.
 
 This architecture is composed of two sub-models: Abstractive Text Summarization Model (ATSM) and Legal Judgment Prediction Model (LJPM). We first used a news summary dataset (CNewSum) to train ATSM. Then, we used ATSM to convert Taiwan criminal case facts to vernacular case facts. Last, we used vernacular case facts as the dataset to train LJPM.
 
