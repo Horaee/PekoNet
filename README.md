@@ -174,7 +174,7 @@ If you have any problems, raise an issue or contact [yuxiang.hong.tw@gmail.com](
 @conference{hong2022pekonet,
     author={洪裕翔、簡國峻、張嘉惠},
     title={通過生成式文本摘要改進口語法律案件預測效能之研究}, 
-    booktitle={第27屆人工智慧與應用研討會}
+    booktitle={第二十七屆人工智慧技術與應用國際會議}
     year={2022}
     organization={中華民國人工智慧學會}
 }
