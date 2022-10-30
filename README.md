@@ -1,6 +1,6 @@
 # PekoNet
 
-This repository is the source code of [通過生成式文本摘要改進口語法律案件預測效能之研究](https://drive.google.com/file/d/1eMYV--ye4o_-wb2ceqcq46qZE4GN8fn9/view?usp=sharing).
+This repository is the source code of [通過生成式文本摘要改進口語法律案件預測效能之研究](https://drive.google.com/file/d/15gQRn6R_midDiPAhmFr7OvOOJIiKvE6s/view?usp=sharing).
 
 - [PekoNet](#pekonet)
   - [Introduction](#introduction)
