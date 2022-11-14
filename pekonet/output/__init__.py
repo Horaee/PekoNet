@@ -1,0 +1,1 @@
+from pekonet.output.initialize import initialize_output_function
