@@ -157,15 +157,14 @@ def get_fact(string):
     return fact
 
 
-# Get article, article_sources and accusations table for LJP task (BERT model).
+# Get article and accusations table.
 def get_tables(config, formatter, *args, **kwargs):
-    names = ['article', 'article_source', 'accusation']
+    names = ['article', 'accusation']
     paths = {
         'article': config.get('data', 'articles_path')
-        , 'article_source': config.get('data', 'article_sources_path')
         , 'accusation': config.get('data', 'accusations_path')
     }
-    tables = {'article': {}, 'article_source': {}, 'accusation': {}}
+    tables = {'article': {}, 'accusation': {}}
 
     for name in names:
         items = []
@@ -186,7 +185,7 @@ def get_tables(config, formatter, *args, **kwargs):
         for item in items:
             tables[name][item] = formatter({name: item})
     
-    return tables['article'], tables['article_source'], tables['accusation']
+    return tables['article'], tables['accusation']
 
 
 # Get the time string with 'minute:second' format.
@@ -240,15 +239,6 @@ def log_results(
                 , results['article']['map']
                 , results['article']['mar']
                 , results['article']['maf']
-            ]
-            , [
-                'article_source'
-                , results['article_source']['mip']
-                , results['article_source']['mir']
-                , results['article_source']['mif']
-                , results['article_source']['map']
-                , results['article_source']['mar']
-                , results['article_source']['maf']
             ]
             , [
                 'accusation'

@@ -1,7 +1,7 @@
 import logging
 
 from pekonet.output.functions import \
-    empty_output_function, three_a_output_function
+    empty_output_function, aa_output_function
 
 
 logger = logging.getLogger(__name__)
@@ -12,7 +12,7 @@ def initialize_output_function(config, *args, **kwargs):
 
     output_function_types = {
         'empty': empty_output_function
-        , '3a': three_a_output_function
+        , 'aa': aa_output_function
     }
 
     function_name = config.get('output', 'output_function')

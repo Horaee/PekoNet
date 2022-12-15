@@ -3,6 +3,7 @@ import os
 import json
 import shutil
 import re
+import copy
 
 from timeit import default_timer as timer
 from tqdm import tqdm
@@ -319,7 +320,7 @@ def get_integration_data(parameters):
         , 'summary': ''
         , 'relevant_articles': []
         , 'accusation': ''
-        , 'type': -1
+        # , 'type': -1
     }
 
     cns_data = load_data(data_path=parameters['cns_data_path'])
@@ -327,14 +328,14 @@ def get_integration_data(parameters):
     for one_data in cns_data:
         one_data = json.loads(one_data)
 
-        result = templete
+        result = copy.deepcopy(templete)
         result['text'] = process_string(
             string=one_data['text']
             , adjust_chars=True)
         result['summary'] = process_string(
             string=one_data['summary']
             , adjust_chars=True)
-        result['type'] = 0
+        # result['type'] = 3
 
         results.append(json.dumps(result, ensure_ascii=False) + '\n')
 
@@ -348,9 +349,12 @@ def get_integration_data(parameters):
 
     logger.info('Copy 3A files from source to destination successfully.')
 
+    except_files = aaa_files
+    except_files.append('test.json')
+
     tci_data = load_data(
         data_path=parameters['tci_data_path']
-        , except_files=aaa_files)
+        , except_files=except_files)
 
     for one_data in tci_data:
         try:
@@ -358,16 +362,19 @@ def get_integration_data(parameters):
         except:
             print(one_data)
 
-        result = templete
+        result = copy.deepcopy(templete)
         result['text'] = process_string(
             string=one_data['fact']
             , adjust_chars=True
             , process_fact=True)
         result['relevant_articles'] = one_data['meta']['relevant_articles']
         result['accusation'] = one_data['meta']['accusation']
-        result['type'] = 1
+        # result['type'] = 1
 
         results.append(json.dumps(result, ensure_ascii=False) + '\n')
+
+        # result['type'] = 2
+        # results.append(json.dumps(result, ensure_ascii=False) + '\n')
 
     write_back_results(parameters, data=results)
 
@@ -463,8 +470,13 @@ def write_aaa_data(
 def write_tvt_data(
         parameters
         , data):
-    train_data, valid_data = train_test_split(
+    unused_data, all_data = train_test_split(
         data
+        , train_size=0.5
+        , random_state=parameters['random_seed'])
+    train_data, valid_data = train_test_split(
+        # data
+        all_data
         , train_size=parameters['train_size']
         , random_state=parameters['random_seed'])
 

@@ -19,8 +19,8 @@ def initialize_formatter(config, mode, task=None, *args, **kwargs):
 
     if formatter_name in formatters:
         formatter = formatters[formatter_name](
-            config=config
-            , mode=mode)
+            config=config)
+            # , mode=mode)
     else:
         logger.error(f'There is no formatter called {formatter_name}.')
         raise Exception(f'There is no formatter called {formatter_name}.')
