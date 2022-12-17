@@ -63,7 +63,7 @@ def train(parameters, *args, **kwargs):
 
             optimizer.step()
 
-            if step+1 % output_time == 0:
+            if step % output_time == 0:
                 mima_prf_results = output_function(
                     total_loss=total_loss
                     , step=step

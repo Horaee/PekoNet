@@ -470,13 +470,13 @@ def write_aaa_data(
 def write_tvt_data(
         parameters
         , data):
-    unused_data, all_data = train_test_split(
-        data
-        , train_size=0.5
-        , random_state=parameters['random_seed'])
+    # unused_data, all_data = train_test_split(
+    #     data
+    #     , train_size=0.5
+    #     , random_state=parameters['random_seed'])
     train_data, valid_data = train_test_split(
-        # data
-        all_data
+        data
+        # all_data
         , train_size=parameters['train_size']
         , random_state=parameters['random_seed'])
 
