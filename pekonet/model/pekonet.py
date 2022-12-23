@@ -53,6 +53,7 @@ class PekoNet(nn.Module):
 
             for index in range(len(data['text'])):
                 # No summary -> TCI
+                # TODO: Use text_embedding, summary_embedding with DANN to set the special design of non-text data.
                 if torch.count_nonzero(data['summary'][index]).item() == 0:
                     summary_embedding = \
                         outputs.decoder_hidden_states[-1][index][0]

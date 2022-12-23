@@ -78,6 +78,25 @@ def initialize_all(
 
             exp_lr_scheduler.load_state_dict(parameters['exp_lr_scheduler'])
 
+            # Temp Part
+            # epoch 0 and 1:
+            #     optimizer.param_groups[0]['lr'] = 1e-05
+            #     exp_lr_scheduler.milestone = Counter({1: 1, 3: 1})
+            #     exp_lr_scheduler.gamma = 1.0
+            #     exp_lr_scheduler._last_lr = [1e-05]
+            # -----
+            # epoch 2, 3 and 4:
+            #     optimizer.param_groups[0]['lr'] = 1e-06
+            #     exp_lr_scheduler.milestone = Counter({2: 1, 4: 1})
+            #     exp_lr_scheduler.gamma = 0.1
+            #     exp_lr_scheduler._last_lr = [1e-06]
+            # -----
+            # optimizer.param_groups[0]['lr'] = 1e-06
+            # from collections import Counter
+            # exp_lr_scheduler.milestones = Counter({2: 1, 4: 1})
+            # exp_lr_scheduler.gamma = gamma
+            # exp_lr_scheduler._last_lr = [1e-06]
+
             trained_epoch = parameters['trained_epoch']
         else:
             logger.warn('The path of checkpoint is none.')
