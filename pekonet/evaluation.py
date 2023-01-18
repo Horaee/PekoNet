@@ -1,8 +1,4 @@
-import logging
-import torch
-
-
-logger = logging.Logger(__name__)
+import torch.nn as nn
 
 
 def get_prf(data, *args, **kwargs):
@@ -67,53 +63,50 @@ def get_micro_macro_prf(data, *args, **kwargs):
     }
 
 
-# TODO
-# need review and understand what this part do
-def multi_label_accuracy(outputs, label, result=None, *args, **kwargs):
-    if len(label[0]) != len(outputs[0]):
-    # if outputs.size() != label.size()
-        logger.error('The dimension of predictions and labels does not match.')
-        raise Exception(
-            'The dimension of predictions and labels does not match.')
+class ConfusionMatrix(nn.Module):
+    def __init__(self, *args, **kwargs):
+        super(ConfusionMatrix, self).__init__()
 
-    if len(outputs.size()) > 2:
-        outputs = outputs.view(outputs.size()[0], -1, 2)
-        outputs = torch.nn.Softmax(dim=2)(outputs)
-        outputs = outputs[:, :, 1]
+        self.softmax = nn.Softmax(dim=2)
 
-    # outputs = outputs.view(outputs.size()[0], -1, 2)
-    # outputs = torch.nn.Softmax(dim=2)(outputs)
-    # outputs = outputs[:, :, 1]
 
-    # According to https://blog.csdn.net/DreamHome_S/article/details/85259533
-    # , using .detach() to instead of .data
-    outputs = outputs.data
-    labels = label.data
-    # outputs = outputs.detach()
-    # labels = label.detach()
-    # labels = label
+    # Size of `preds` = [batch_size, task_number, 2].
+    # Size of `labels` = [batch_size, task_number].
+    def forward(self, preds, labels, cm_result, *args, **kwargs):
+        preds = self.softmax(preds)
 
-    if result is None:
-        result = []
+        # Get the value in index 1 of dim 2 in `preds`.
+        # Size of `preds[:, :, 1]` = [batch_size, task_number].
+        preds = preds[:, :, 1]
 
-    total = 0
-    nr_classes = outputs.size(1)
+        # According to \
+        # https://blog.csdn.net/DreamHome_S/article/details/85259533
+        # , using `.detach()` to instead of `.data`.
+        preds = preds.detach()
+        labels = labels.detach()
 
-    while len(result) < nr_classes:
-        result.append({'TP': 0, 'FN': 0, 'FP': 0, 'TN': 0})
+        if cm_result == None:
+            cm_result = []
 
-    for i in range(nr_classes):
-        outputs1 = (outputs[:, i] >= 0.5).long()
-        labels1 = (labels[:, i].float() >= 0.5).long()
-        total += int((labels1 * outputs1).sum())
-        total += int(((1 - labels1) * (1 - outputs1)).sum())
+        task_number = preds.size(1)
 
-        if result is None:
-            continue
+        while len(cm_result) < task_number:
+            cm_result.append({'TP': 0, 'FN': 0, 'FP': 0, 'TN': 0})
 
-        result[i]['TP'] += int((labels1 * outputs1).sum())
-        result[i]['FN'] += int((labels1 * (1 - outputs1)).sum())
-        result[i]['FP'] += int(((1 - labels1) * outputs1).sum())
-        result[i]['TN'] += int(((1 - labels1) * (1 - outputs1)).sum())
+        for index in range(task_number):
+            # If value >= 0.5, set value = 1 else 0.
+            part_outputs = (preds[:, index] >= 0.5).long()
+            part_labels = labels[:, index]
 
-    return result
+            # `tensor1 * tensor2` equals to `torch.mul(tensor1, tensor2)`.
+            # `tensor.sum()` equals to `torch.sum(tensor)`.
+            # `1 - tensor` will change 0 to 1 or 1 to 0.
+            cm_result[index]['TP'] += int((part_labels * part_outputs).sum())
+            cm_result[index]['FN'] += int(
+                (part_labels * (1 - part_outputs)).sum())
+            cm_result[index]['FP'] += int(
+                ((1 - part_labels) * part_outputs).sum())
+            cm_result[index]['TN'] += int(
+                ((1 - part_labels) * (1 - part_outputs)).sum())
+
+        return cm_result

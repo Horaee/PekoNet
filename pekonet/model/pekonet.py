@@ -1,4 +1,4 @@
-import torch
+# import torch
 import torch.nn as nn
 
 from pekonet.model.bart import BART
@@ -38,7 +38,7 @@ class PekoNet(nn.Module):
         #     , device_ids=gpus)
 
 
-    def forward(self, data, mode, acc_result=None):
+    def forward(self, data, mode, cm_result=None):
         if mode == 'serve':
             print('Hello World')
             # tensor = self.bart(data, mode)
@@ -47,40 +47,74 @@ class PekoNet(nn.Module):
             # return output
         # mode == 'train' or 'eval'
         else:
-            loss = 0
-
             outputs = self.bart(data=data, mode=mode)
 
-            for index in range(len(data['text'])):
-                # No summary -> TCI
-                # TODO: Use text_embedding, summary_embedding with DANN to set the special design of non-text data.
-                if torch.count_nonzero(data['summary'][index]).item() == 0:
-                    summary_embedding = \
-                        outputs.decoder_hidden_states[-1][index][0]
+            cns_tci_data_number = outputs['cns_tci_data_number']
+            sum_loss, cls_loss = outputs['loss'], None
 
-                    summary_embedding = summary_embedding.view(1, 1, -1)
+            if outputs['summary_ids'] != None:
+                # Size of `outputs['summary_ids']` = \
+                #     [batch_size, sequence_length].
+                # Size of `cls_embeddings` = [batch_size, hidden_size].
+                cls_embeddings = self.bart.module.get_clses_embedding(
+                    summary_ids=outputs['summary_ids'])
 
-                    encodings = {
-                        'article': data['article'][index]
-                        , 'accusation': data['accusation'][index]
-                    }
+                labels = {
+                    'article': outputs['tci_data']['article']
+                    , 'accusation': outputs['tci_data']['accusation']
+                }
 
-                    results = self.ljpm(
-                        mode=mode
-                        , summary_embedding=summary_embedding
-                        , encodings=encodings
-                        , acc_result=acc_result)
+                outputs = self.ljpm(
+                    mode=mode
+                    , cls_embeddings=cls_embeddings
+                    , labels=labels
+                    , cm_result=cm_result)
 
-                    loss += results['loss']
-                    acc_result = results['acc_result']
-                # Have summary -> CNS
-                else:
-                    loss += outputs.loss
+                cls_loss = outputs['loss']
+                cm_result = outputs['cm_result']
 
             return {
-                'loss': loss
-                , 'acc_result': acc_result
+                'cns_tci_data_number': cns_tci_data_number
+                , 'sum_loss': sum_loss
+                , 'cls_loss': cls_loss
+                , 'cm_result': cm_result
             }
+
+            # for index in range(len(data['text'])):
+            #     # No summary -> TCI
+            #     # TODO: Use text_embedding, summary_embedding with DANN to set the special design of non-text data.
+
+            #     # print(data['summary'][index])
+            #     # print(torch.count_nonzero(data['summary'][index]))
+            #     # input()
+
+            #     if torch.count_nonzero(data['summary'][index]).item() == 0:
+            #         summary_embedding = \
+            #             outputs.decoder_hidden_states[-1][index][0]
+
+            #         summary_embedding = summary_embedding.view(1, 1, -1)
+
+            #         encodings = {
+            #             'article': data['article'][index]
+            #             , 'accusation': data['accusation'][index]
+            #         }
+
+            #         results = self.ljpm(
+            #             mode=mode
+            #             , summary_embedding=summary_embedding
+            #             , encodings=encodings
+            #             , acc_result=acc_result)
+
+            #         loss += results['loss']
+            #         acc_result = results['acc_result']
+            #     # Have summary -> CNS
+            #     else:
+            #         loss += outputs.loss
+
+            # return {
+            #     'loss': loss
+            #     , 'acc_result': acc_result
+            # }
 
             # for one_data in data:
             #     print(one_data)

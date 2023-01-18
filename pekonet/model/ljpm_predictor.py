@@ -19,15 +19,15 @@ class LJPMPredictor(nn.Module):
             , out_features=accusations_number*2)
 
 
-    def forward(self, tensor):
-        article = self.article_fc(input=tensor)
-        accusation = self.accusation_fc(input=tensor)
+    def forward(self, tensors):
+        articles = self.article_fc(input=tensors)
+        accusations = self.accusation_fc(input=tensors)
         
-        batch = tensor.size()[0]
-        article = article.view(batch, -1, 2)
-        accusation = accusation.view(batch, -1, 2)
+        batch = tensors.size()[0]
+        articles = articles.view(batch, -1, 2)
+        accusations = accusations.view(batch, -1, 2)
 
         return {
-            'article': article
-            , 'accusation': accusation
+            'article': articles
+            , 'accusation': accusations
         }

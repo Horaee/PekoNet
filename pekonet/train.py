@@ -38,7 +38,9 @@ def train(parameters, *args, **kwargs):
     for current_epoch in range(trained_epoch, total_epoch):
         start_time = timer()
         total_loss = 0
-        acc_result = None
+        sum_loss, cls_loss = None, None
+        sum_counter, cls_counter = 0, 0
+        cm_result = None
         mima_prf_results = ''
         step = -1
         learning_rate = -1
@@ -53,23 +55,48 @@ def train(parameters, *args, **kwargs):
 
             optimizer.zero_grad()
 
-            results = model(data=data, mode='train', acc_result=acc_result)
+            results = model(data=data, mode='train', cm_result=cm_result)
 
-            loss = results['loss']
-            total_loss += float(loss)
-            loss.backward()
+            if results['sum_loss'] != None:
+                if sum_loss == None:
+                    sum_loss = float(results['sum_loss'])
+                else:
+                    sum_loss += float(results['sum_loss'])
 
-            acc_result = results['acc_result']
+                sum_counter += results['cns_tci_data_number'][0]
+                results['sum_loss'].backward()
+
+            if results['cls_loss'] != None:
+                if cls_loss == None:
+                    cls_loss = float(results['cls_loss'])
+                else:
+                    cls_loss += float(results['cls_loss'])
+
+                cls_counter += results['cns_tci_data_number'][1]
+                results['cls_loss'].backward()
+
+            # loss = results['loss']
+            # total_loss += float(loss)
+            # loss.backward()
+
+            cm_result = results['cm_result']
 
             optimizer.step()
 
             if step % output_time == 0:
-                mima_prf_results = output_function(
-                    total_loss=total_loss
-                    , step=step
-                    , data=acc_result)
+                if cm_result != None:
+                    mima_prf_results = output_function(
+                        # total_loss=total_loss
+                        # , step=step
+                        data=cm_result)
+                else:
+                    mima_prf_results = None
 
                 delta_time = (timer() - start_time)
+                sum_loss_log = float(sum_loss / sum_counter) \
+                    if sum_loss != None else None
+                cls_loss_log = float(cls_loss / cls_counter) \
+                    if cls_loss != None else None
 
                 log_results(
                     epoch=current_epoch
@@ -77,19 +104,28 @@ def train(parameters, *args, **kwargs):
                     , iterations=f'{(step+1)}/{total_len}'
                     , time=f'{get_time_str(delta_time)}/\
 {get_time_str(delta_time*(total_len-step-1)/(step+1))}'
-                    , loss=f'{(total_loss/(step+1))}'
+                    , sum_loss=str(sum_loss_log)
+                    , cls_loss=str(cls_loss_log)
+                    # , loss=f'{(total_loss/(step+1))}'
                     , learning_rate=learning_rate
                     , results=mima_prf_results
                 )
 
         exp_lr_scheduler.step()
 
-        mima_prf_results = output_function(
-            total_loss=total_loss
-            , step=step
-            , data=acc_result)
+        if cm_result != None:
+            mima_prf_results = output_function(
+                # total_loss=total_loss
+                # , step=step
+                data=cm_result)
+        else:
+            mima_prf_results = None
 
         delta_time = (timer() - start_time)
+        sum_loss_log = float(sum_loss / sum_counter) \
+            if sum_loss != None else None
+        cls_loss_log = float(cls_loss / cls_counter) \
+            if cls_loss != None else None
 
         log_results(
             epoch=current_epoch
@@ -97,7 +133,9 @@ def train(parameters, *args, **kwargs):
             , iterations=f'{(step+1)}/{total_len}'
             , time=f'{get_time_str(delta_time)}/\
 {get_time_str(delta_time*(total_len-step-1)/(step+1))}'
-            , loss=f'{(total_loss/(step+1))}'
+            , sum_loss=str(sum_loss_log)
+            , cls_loss=str(cls_loss_log)
+            # , loss=f'{(total_loss/(step+1))}'
             , learning_rate=learning_rate
             , results=mima_prf_results
         )

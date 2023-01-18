@@ -1,10 +1,12 @@
 import torch.nn as nn
 import torch
 
-from pekonet.model.ljpm_encoder import LJPMEncoder
+# from pekonet.model.ljpm_encoder import LJPMEncoder
 from pekonet.model.ljpm_predictor import LJPMPredictor
-from legal_judgment_prediction.utils import MultiLabelSoftmaxLoss
-from legal_judgment_prediction.evaluation import multi_label_accuracy
+from pekonet.utils import MultiLabelSoftmaxLoss
+from pekonet.evaluation import ConfusionMatrix
+# from legal_judgment_prediction.utils import MultiLabelSoftmaxLoss
+# from legal_judgment_prediction.evaluation import multi_label_accuracy
 
 
 class LJPM(nn.Module):
@@ -28,19 +30,18 @@ class LJPM(nn.Module):
             , 'accusation': MultiLabelSoftmaxLoss(
                 task_number=accusations_number)
         }
-        self.accuracy_function = {
-            'article': multi_label_accuracy,
-            'accusation': multi_label_accuracy
-        }
+        self.evaluation = ConfusionMatrix()
 
 
     # TODO
     def forward(
             self
             , mode
-            , summary_embedding
-            , encodings
-            , acc_result=None):
+            , cls_embeddings
+            , labels
+            # , summary_embedding
+            # , encodings
+            , cm_result=None):
         if mode == 'serve':
             # fact_ids = torch.unsqueeze(input=fact_ids, dim=0)
             # fact_embedding = self.bert(input=fact_ids)
@@ -50,28 +51,30 @@ class LJPM(nn.Module):
             print('Hello World')
         # mode == 'train' or 'eval'
         else:
-            summary_feature = self.fc(tensor=summary_embedding)
+            aa_results = self.fc(tensors=cls_embeddings)
 
             loss = 0
             for name in ['article', 'accusation']:
-                encodings[name] = torch.unsqueeze(encodings[name], dim=0)
-                loss += self.criterion[name](
-                    outputs=summary_feature[name]
-                    , labels=encodings[name])
+                # aa_results[name] = torch.argmax(input=aa_results[name], dim=2)
 
-            if acc_result == None:
-                acc_result = {
+                loss += self.criterion[name](
+                    preds=aa_results[name]
+                    , labels=labels[name])
+
+            if cm_result == None:
+                cm_result = {
                     'article': None
                     , 'accusation': None
                 }
 
             for name in ['article', 'accusation']:
-                acc_result[name] = self.accuracy_function[name](
-                    outputs=summary_feature[name]
-                    , label=encodings[name]
-                    , result=acc_result[name])
+                cm_result[name] = self.evaluation(
+                    preds=aa_results[name]
+                    , labels=labels[name]
+                    , cm_result=cm_result[name])
 
-            return {'loss': loss, 'acc_result': acc_result}
+            return {'loss': loss, 'cm_result': cm_result}
+
 
     # def forward(self, mode, fact_ids, data=None, acc_result=None):
     #     if mode == 'serve':

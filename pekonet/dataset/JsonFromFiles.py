@@ -13,8 +13,8 @@ class JsonFromFiles(Dataset):
             for line in json_file:
                 self.data.append(json.loads(line))
 
-        if task == 'train':
-            random.shuffle(x=self.data)
+        # if task == 'train':
+        #     random.shuffle(x=self.data)
 
 
     def __getitem__(self, index):

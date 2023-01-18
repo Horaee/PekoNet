@@ -203,7 +203,9 @@ def log_results(
         , stage=None
         , iterations=None
         , time=None
-        , loss=None
+        , sum_loss = None
+        , cls_loss = None
+        # , loss=None
         , learning_rate=None
         , results=None):
 
@@ -212,7 +214,9 @@ def log_results(
         , 'stage': stage
         , 'iterations': iterations
         , 'time': time
-        , 'loss': loss
+        , 'sum_loss': sum_loss
+        , 'cls_loss': cls_loss
+        # , 'loss': loss
         , 'learning_rate': learning_rate
     }
 
@@ -228,7 +232,7 @@ def log_results(
         results_headers = [
             'Type'
             , 'MiP', 'MiR', 'MiF'
-            , 'MaP', 'MaR', 'MiF'
+            , 'MaP', 'MaR', 'MaF'
         ]
         results_table = [
             [
