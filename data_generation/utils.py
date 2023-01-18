@@ -4,6 +4,7 @@ import json
 import shutil
 import re
 import copy
+import random
 
 from timeit import default_timer as timer
 from tqdm import tqdm
@@ -314,13 +315,12 @@ def get_ats_model_data(parameters):
 def get_integration_data(parameters):
     logger.info('Start to get integration data.')
 
-    results = []
+    cns_results, tci_results = [], []
     templete = {
         'text': ''
         , 'summary': ''
         , 'relevant_articles': []
         , 'accusation': ''
-        # , 'type': -1
     }
 
     cns_data = load_data(data_path=parameters['cns_data_path'])
@@ -335,9 +335,8 @@ def get_integration_data(parameters):
         result['summary'] = process_string(
             string=one_data['summary']
             , adjust_chars=True)
-        # result['type'] = 3
 
-        results.append(json.dumps(result, ensure_ascii=False) + '\n')
+        cns_results.append(json.dumps(result, ensure_ascii=False) + '\n')
 
     logger.info('Start to copy 3A files from source to destination.')
 
@@ -369,14 +368,10 @@ def get_integration_data(parameters):
             , process_fact=True)
         result['relevant_articles'] = one_data['meta']['relevant_articles']
         result['accusation'] = one_data['meta']['accusation']
-        # result['type'] = 1
 
-        results.append(json.dumps(result, ensure_ascii=False) + '\n')
+        tci_results.append(json.dumps(result, ensure_ascii=False) + '\n')
 
-        # result['type'] = 2
-        # results.append(json.dumps(result, ensure_ascii=False) + '\n')
-
-    write_back_results(parameters, data=results)
+    write_back_results(parameters, data={'cns_results': cns_results, 'tci_results': tci_results}, from_integration=True)
 
     logger.info('Get integration data successfully.')
 
@@ -417,23 +412,32 @@ def write_back_results(
         , data
         , articles_list=None
         , article_sources_list=None
-        , accusations_list=None):
+        , accusations_list=None
+        , from_integration=False):
     logger.info('Start to write back results.')
 
-    # This part will run if the method of summarization is none.
-    # Write back the tables of articles, article_sources and accusations.
-    if articles_list != None or article_sources_list != None or accusations_list != None:
-        write_aaa_data(
+    if not from_integration:
+        # This part will run if the method of summarization is none.
+        # Write back the tables of articles, article_sources and accusations.
+        if articles_list != None or article_sources_list != None or accusations_list != None:
+            write_aaa_data(
+                parameters=parameters
+                , articles_list=articles_list
+                , article_sources_list=article_sources_list
+                , accusations_list=accusations_list
+            )
+
+        write_tvt_data(
             parameters=parameters
-            , articles_list=articles_list
-            , article_sources_list=article_sources_list
-            , accusations_list=accusations_list
+            , data=data
+        )
+    else:
+        write_tvt_data(
+            parameters=parameters
+            , data=data
+            , from_integration=from_integration
         )
 
-    write_tvt_data(
-        parameters=parameters
-        , data=data
-    )
 
     logger.info('Write back results successfully.')
 
@@ -469,38 +473,77 @@ def write_aaa_data(
 # Split train, valid and test data and write them back.
 def write_tvt_data(
         parameters
-        , data):
+        , data
+        , from_integration=False):
     # unused_data, all_data = train_test_split(
     #     data
     #     , train_size=0.5
     #     , random_state=parameters['random_seed'])
-    train_data, valid_data = train_test_split(
-        data
-        # all_data
-        , train_size=parameters['train_size']
-        , random_state=parameters['random_seed'])
-
-    file_name_to_data = {'train.json': train_data, 'valid.json': valid_data}
-
-    if parameters['generate_test_data'] is True:
-        valid_data, test_data = train_test_split(
-            valid_data
-            , train_size=parameters['valid_size']
+    if not from_integration:
+        train_data, valid_data = train_test_split(
+            data
+            # all_data
+            , train_size=parameters['train_size']
             , random_state=parameters['random_seed'])
 
-        file_name_to_data['valid.json'] = valid_data
-        file_name_to_data['test.json'] = test_data
+        file_name_to_data = {'train.json': train_data, 'valid.json': valid_data}
 
-    for file_name in file_name_to_data:
-        logger.info(f'Start to write {file_name}.')
+        if parameters['generate_test_data'] is True:
+            valid_data, test_data = train_test_split(
+                valid_data
+                , train_size=parameters['valid_size']
+                , random_state=parameters['random_seed'])
 
-        with open(
-                file=os.path.join(parameters['output_path'], file_name)
-                , mode='w'
-                , encoding='UTF-8') as json_file:
-            for data in file_name_to_data[file_name]:
-                json_file.write(f'{data}')
+            file_name_to_data['valid.json'] = valid_data
+            file_name_to_data['test.json'] = test_data
 
-            json_file.close()
+        for file_name in file_name_to_data:
+            logger.info(f'Start to write {file_name}.')
+
+            with open(
+                    file=os.path.join(parameters['output_path'], file_name)
+                    , mode='w'
+                    , encoding='UTF-8') as json_file:
+                for data in file_name_to_data[file_name]:
+                    json_file.write(f'{data}')
+
+                json_file.close()
+    else:
+        cns_results = data['cns_results']
+        tci_results = data['tci_results']
+
+        random.seed(48763)
+        random.shuffle(cns_results)
+        random.shuffle(tci_results)
+
+        train_data, valid_data = train_test_split(
+            tci_results
+            , train_size=parameters['train_size']
+            , random_state=parameters['random_seed'])
+
+        # train_data = cns_results + train_data
+
+        file_name_to_data = {'train.json': train_data, 'valid.json': valid_data}
+
+        if parameters['generate_test_data'] is True:
+            valid_data, test_data = train_test_split(
+                valid_data
+                , train_size=parameters['valid_size']
+                , random_state=parameters['random_seed'])
+
+            file_name_to_data['valid.json'] = valid_data
+            file_name_to_data['test.json'] = test_data
+
+        for file_name in file_name_to_data:
+            logger.info(f'Start to write {file_name}.')
+
+            with open(
+                    file=os.path.join(parameters['output_path'], file_name)
+                    , mode='w'
+                    , encoding='UTF-8') as json_file:
+                for data in file_name_to_data[file_name]:
+                    json_file.write(f'{data}')
+
+                json_file.close()
 
         logger.info(f'Write {file_name} successfully.')
