@@ -48,7 +48,7 @@ def main(*args, **kwargs):
     config.read(args.config)
 
     logger = initialize_logger(log_name=config.get('log', 'name'))
-    logger.info(f'\n\n\n\n{information}')
+    logger.info(f'{information}')
 
     parameters = initialize_all(
         config=config
@@ -65,6 +65,8 @@ def main(*args, **kwargs):
     #     eval(parameters=parameters)
     # elif args.mode == 'serve':
     #     serve(parameters=parameters)
+
+    logger.info('\n\n')
 
 
 if __name__ == '__main__':
