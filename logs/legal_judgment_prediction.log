@@ -1940,3 +1940,204 @@
 
 2022-09-01 04:21:32,034 - legal_judgment_prediction.serve.serve - INFO - The input fact: shutdown
 2022-09-01 04:21:32,034 - legal_judgment_prediction.serve.serve - INFO - Stop to serve.
+2023-01-08 15:15:00,150 - root - INFO - 
+
+
+
+main.py -c configs/main/bart/one_label/config.ini -m train -g 0 -bs 1
+2023-01-08 15:15:00,150 - legal_judgment_prediction.initialize - INFO - Start to initialize.
+2023-01-08 15:15:00,154 - utils - INFO - CUDA is available.
+2023-01-08 15:15:00,155 - utils - INFO - Initialize GPUs successfully.
+2023-01-08 15:15:00,155 - legal_judgment_prediction.model.initialize - INFO - Start to initialize model.
+2023-01-08 15:15:00,155 - pytorch_pretrained_bert.modeling - INFO - loading archive file models/bert-base-chinese
+2023-01-08 15:15:00,155 - pytorch_pretrained_bert.modeling - INFO - Model config {
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2023-01-08 15:15:02,074 - legal_judgment_prediction.model.initialize - INFO - Initialize model successfully.
+2023-01-08 15:15:03,489 - legal_judgment_prediction.initialize - INFO - Start to initialize multiple gpus.
+2023-01-08 15:15:03,491 - legal_judgment_prediction.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-08 15:15:03,491 - legal_judgment_prediction.model.initialize - INFO - Start to initialize optimizer.
+2023-01-08 15:15:03,491 - pytorch_pretrained_bert.optimization - WARNING - t_total value of -1 results in schedule not being applied
+2023-01-08 15:15:03,492 - legal_judgment_prediction.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-08 15:15:03,492 - legal_judgment_prediction.initialize - WARNING - The path of checkpoint is none.
+2023-01-08 15:15:03,492 - legal_judgment_prediction.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-08 15:15:06,792 - legal_judgment_prediction.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-08 15:15:06,808 - legal_judgment_prediction.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-08 15:15:06,808 - legal_judgment_prediction.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-08 15:15:06,808 - legal_judgment_prediction.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-08 15:15:07,805 - legal_judgment_prediction.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-08 15:15:07,820 - legal_judgment_prediction.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-08 15:15:07,821 - legal_judgment_prediction.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-08 15:15:07,821 - legal_judgment_prediction.output.initialize - INFO - Start to initialize output function.
+2023-01-08 15:15:07,821 - legal_judgment_prediction.output.initialize - INFO - Initialize output function successfully.
+2023-01-08 15:15:07,822 - legal_judgment_prediction.initialize - INFO - Initialize successfully.
+2023-01-08 15:15:07,822 - legal_judgment_prediction.train - INFO - Start to train model.
+2023-01-08 15:15:34,989 - root - INFO - 
+
+
+
+main.py -c configs/main/bart/one_label/config.ini -m train -g 0 -bs 1
+2023-01-08 15:15:34,989 - legal_judgment_prediction.initialize - INFO - Start to initialize.
+2023-01-08 15:15:34,993 - utils - INFO - CUDA is available.
+2023-01-08 15:15:34,993 - utils - INFO - Initialize GPUs successfully.
+2023-01-08 15:15:34,993 - legal_judgment_prediction.model.initialize - INFO - Start to initialize model.
+2023-01-08 15:15:34,994 - pytorch_pretrained_bert.modeling - INFO - loading archive file models/bert-base-chinese
+2023-01-08 15:15:34,994 - pytorch_pretrained_bert.modeling - INFO - Model config {
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2023-01-08 15:15:36,552 - legal_judgment_prediction.model.initialize - INFO - Initialize model successfully.
+2023-01-08 15:15:37,954 - legal_judgment_prediction.initialize - INFO - Start to initialize multiple gpus.
+2023-01-08 15:15:37,956 - legal_judgment_prediction.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-08 15:15:37,956 - legal_judgment_prediction.model.initialize - INFO - Start to initialize optimizer.
+2023-01-08 15:15:37,956 - pytorch_pretrained_bert.optimization - WARNING - t_total value of -1 results in schedule not being applied
+2023-01-08 15:15:37,957 - legal_judgment_prediction.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-08 15:15:37,957 - legal_judgment_prediction.initialize - WARNING - The path of checkpoint is none.
+2023-01-08 15:15:37,957 - legal_judgment_prediction.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-08 15:15:41,274 - legal_judgment_prediction.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-08 15:15:41,291 - legal_judgment_prediction.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-08 15:15:41,291 - legal_judgment_prediction.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-08 15:15:41,292 - legal_judgment_prediction.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-08 15:15:42,286 - legal_judgment_prediction.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-08 15:15:42,307 - legal_judgment_prediction.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-08 15:15:42,307 - legal_judgment_prediction.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-08 15:15:42,307 - legal_judgment_prediction.output.initialize - INFO - Start to initialize output function.
+2023-01-08 15:15:42,307 - legal_judgment_prediction.output.initialize - INFO - Initialize output function successfully.
+2023-01-08 15:15:42,308 - legal_judgment_prediction.initialize - INFO - Initialize successfully.
+2023-01-08 15:15:42,308 - legal_judgment_prediction.train - INFO - Start to train model.
+2023-01-08 15:16:17,548 - root - INFO - 
+
+
+
+main.py -c configs/main/bart/one_label/config.ini -m train -g 0 -bs 1
+2023-01-08 15:16:17,548 - legal_judgment_prediction.initialize - INFO - Start to initialize.
+2023-01-08 15:16:17,552 - utils - INFO - CUDA is available.
+2023-01-08 15:16:17,552 - utils - INFO - Initialize GPUs successfully.
+2023-01-08 15:16:17,553 - legal_judgment_prediction.model.initialize - INFO - Start to initialize model.
+2023-01-08 15:16:17,553 - pytorch_pretrained_bert.modeling - INFO - loading archive file models/bert-base-chinese
+2023-01-08 15:16:17,553 - pytorch_pretrained_bert.modeling - INFO - Model config {
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+
+2023-01-08 15:16:19,278 - legal_judgment_prediction.model.initialize - INFO - Initialize model successfully.
+2023-01-08 15:16:20,779 - legal_judgment_prediction.initialize - INFO - Start to initialize multiple gpus.
+2023-01-08 15:16:20,781 - legal_judgment_prediction.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-08 15:16:20,781 - legal_judgment_prediction.model.initialize - INFO - Start to initialize optimizer.
+2023-01-08 15:16:20,782 - pytorch_pretrained_bert.optimization - WARNING - t_total value of -1 results in schedule not being applied
+2023-01-08 15:16:20,782 - legal_judgment_prediction.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-08 15:16:20,783 - legal_judgment_prediction.initialize - WARNING - The path of checkpoint is none.
+2023-01-08 15:16:20,783 - legal_judgment_prediction.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-08 15:16:24,080 - legal_judgment_prediction.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-08 15:16:24,095 - legal_judgment_prediction.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-08 15:16:24,096 - legal_judgment_prediction.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-08 15:16:24,096 - legal_judgment_prediction.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-08 15:16:25,112 - legal_judgment_prediction.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-08 15:16:25,127 - legal_judgment_prediction.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-08 15:16:25,127 - legal_judgment_prediction.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-08 15:16:25,127 - legal_judgment_prediction.output.initialize - INFO - Start to initialize output function.
+2023-01-08 15:16:25,127 - legal_judgment_prediction.output.initialize - INFO - Initialize output function successfully.
+2023-01-08 15:16:25,128 - legal_judgment_prediction.initialize - INFO - Initialize successfully.
+2023-01-08 15:16:25,128 - legal_judgment_prediction.train - INFO - Start to train model.
+2023-01-08 15:42:37,092 - root - INFO - 
+
+
+
+main.py -c configs/main/bart/one_label/config.ini -m train -g 0 -bs 1
+2023-01-08 15:42:37,092 - legal_judgment_prediction.initialize - INFO - Start to initialize.
+2023-01-08 15:42:37,097 - utils - INFO - CUDA is available.
+2023-01-08 15:42:37,097 - utils - INFO - Initialize GPUs successfully.
+2023-01-08 15:42:37,097 - legal_judgment_prediction.model.initialize - INFO - Start to initialize model.
+2023-01-08 15:42:37,097 - pytorch_pretrained_bert.modeling - INFO - loading archive file models/bert-base-chinese
+2023-01-08 15:42:37,097 - pytorch_pretrained_bert.modeling - INFO - Model config {
+  "architectures": [
+    "BertForMaskedLM"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "directionality": "bidi",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "layer_norm_eps": 1e-12,
+  "max_position_embeddings": 512,
+  "model_type": "bert",
+  "num_attention_heads": 12,
+  "num_hidden_layers": 12,
+  "pad_token_id": 0,
+  "pooler_fc_size": 768,
+  "pooler_num_attention_heads": 12,
+  "pooler_num_fc_layers": 3,
+  "pooler_size_per_head": 128,
+  "pooler_type": "first_token_transform",
+  "type_vocab_size": 2,
+  "vocab_size": 21128
+}
+

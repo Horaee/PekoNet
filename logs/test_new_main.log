@@ -1,0 +1,423 @@
+2023-01-16 17:41:58,884 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 6
+2023-01-16 17:41:58,884 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 17:41:58,896 - utils - INFO - CUDA is available.
+2023-01-16 17:41:58,897 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 17:41:58,897 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 17:42:02,310 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 17:42:03,840 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 17:42:03,842 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 17:42:03,843 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 17:42:03,843 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 17:42:03,844 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 17:42:03,844 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 17:42:05,865 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 17:42:05,883 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 17:42:05,883 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 17:42:05,883 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 17:42:06,443 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 17:42:06,461 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 17:42:06,461 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 17:42:06,461 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 17:42:06,461 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 17:42:06,461 - pekonet.initialize - WARNING - The path of output results/checkpoints/test_pekonet does not exist.
+2023-01-16 17:42:06,461 - pekonet.initialize - INFO - Make the directory automatically.
+2023-01-16 17:42:06,462 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 17:42:06,462 - pekonet.train - INFO - Start to train model.
+2023-01-16 17:43:25,089 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 6
+2023-01-16 17:43:25,089 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 17:43:25,095 - utils - INFO - CUDA is available.
+2023-01-16 17:43:25,095 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 17:43:25,095 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 17:43:28,524 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 17:43:30,039 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 17:43:30,041 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 17:43:30,041 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 17:43:30,042 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 17:43:30,042 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 17:43:30,043 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 17:43:32,060 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 17:43:32,076 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 17:43:32,077 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 17:43:32,077 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 17:43:32,482 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 17:43:32,498 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 17:43:32,498 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 17:43:32,498 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 17:43:32,499 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 17:43:32,499 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 17:43:32,500 - pekonet.train - INFO - Start to train model.
+2023-01-16 17:46:15,935 - utils - INFO - 
++-------+-------+------------+----------------+-------------------+---------------+
+| epoch | stage | iterations |      time      |       loss        | learning_rate |
++-------+-------+------------+----------------+-------------------+---------------+
+|   0   | train |  1/41208   | 2:43/112244:16 | 165.2581329345703 |     1e-05     |
++-------+-------+------------+----------------+-------------------+---------------+
++------------+-------+-------+-------+-------+-------+-------+
+|    Type    |  MiP  |  MiR  |  MiF  |  MaP  |  MaR  |  MaF  |
++------------+-------+-------+-------+-------+-------+-------+
+|  article   | 0.014 | 0.667 | 0.028 | 0.331 | 0.361 | 0.335 |
+| accusation | 0.009 | 0.667 | 0.018 | 0.323 | 0.338 | 0.326 |
++------------+-------+-------+-------+-------+-------+-------+
+
+2023-01-16 18:23:17,185 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 6
+2023-01-16 18:23:17,185 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 18:23:17,197 - utils - INFO - CUDA is available.
+2023-01-16 18:23:17,197 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 18:23:17,197 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 18:23:18,386 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 18:23:19,862 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 18:23:19,864 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 18:23:19,864 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 18:23:19,865 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 18:23:19,865 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 18:23:19,865 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 18:23:21,805 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:23:21,821 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:23:21,821 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 18:23:21,821 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 18:23:22,213 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:23:22,229 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:23:22,229 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 18:23:22,229 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 18:23:22,229 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 18:23:22,230 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 18:23:22,230 - pekonet.train - INFO - Start to train model.
+2023-01-16 18:24:16,364 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 6
+2023-01-16 18:24:16,364 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 18:24:16,380 - utils - INFO - CUDA is available.
+2023-01-16 18:24:16,380 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 18:24:16,380 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 18:24:17,573 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 18:24:19,032 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 18:24:19,035 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 18:24:19,035 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 18:24:19,036 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 18:24:19,036 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 18:24:19,036 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 18:24:20,978 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:24:20,994 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:24:20,994 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 18:24:20,994 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 18:24:21,385 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:24:21,401 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:24:21,401 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 18:24:21,401 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 18:24:21,401 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 18:24:21,402 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 18:24:21,402 - pekonet.train - INFO - Start to train model.
+2023-01-16 18:24:36,764 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 1
+2023-01-16 18:24:36,764 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 18:24:36,777 - utils - INFO - CUDA is available.
+2023-01-16 18:24:36,777 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 18:24:36,777 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 18:24:37,963 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 18:24:39,434 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 18:24:39,436 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 18:24:39,436 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 18:24:39,437 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 18:24:39,438 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 18:24:39,438 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 18:24:41,385 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:24:41,401 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:24:41,402 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 18:24:41,402 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 18:24:41,796 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:24:41,812 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:24:41,813 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 18:24:41,813 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 18:24:41,813 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 18:24:41,814 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 18:24:41,814 - pekonet.train - INFO - Start to train model.
+2023-01-16 18:29:52,352 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 1
+2023-01-16 18:29:52,352 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 18:29:52,365 - utils - INFO - CUDA is available.
+2023-01-16 18:29:52,365 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 18:29:52,365 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 18:29:53,552 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 18:29:55,034 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 18:29:55,036 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 18:29:55,036 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 18:29:55,037 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 18:29:55,038 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 18:29:55,038 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 18:29:56,981 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:29:56,997 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:29:56,997 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 18:29:56,997 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 18:29:57,389 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:29:57,405 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:29:57,405 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 18:29:57,405 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 18:29:57,405 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 18:29:57,406 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 18:29:57,406 - pekonet.train - INFO - Start to train model.
+2023-01-16 18:30:07,883 - utils - INFO - 
++-------+-------+------------+---------------+-------------------+---------------+
+| epoch | stage | iterations |     time      |       loss        | learning_rate |
++-------+-------+------------+---------------+-------------------+---------------+
+|   0   | train |  1/247244  | 0:10/43169:46 | 165.4606170654297 |     1e-05     |
++-------+-------+------------+---------------+-------------------+---------------+
++------------+-------+-----+-------+-------+-------+-------+
+|    Type    |  MiP  | MiR |  MiF  |  MaP  |  MaR  |  MaF  |
++------------+-------+-----+-------+-------+-------+-------+
+|  article   | 0.022 | 1.0 | 0.043 | 0.511 | 0.511 | 0.511 |
+| accusation |  0.0  | 0.0 |  0.0  | 0.486 | 0.486 | 0.486 |
++------------+-------+-----+-------+-------+-------+-------+
+
+2023-01-16 18:37:25,042 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 1
+2023-01-16 18:37:25,043 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 18:37:25,055 - utils - INFO - CUDA is available.
+2023-01-16 18:37:25,055 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 18:37:25,055 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 18:37:26,246 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 18:37:27,719 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 18:37:27,721 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 18:37:27,721 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 18:37:27,722 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 18:37:27,722 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 18:37:27,722 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 18:37:29,658 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:37:29,674 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:37:29,674 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 18:37:29,674 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 18:37:30,066 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:37:30,082 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:37:30,082 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 18:37:30,082 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 18:37:30,082 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 18:37:30,083 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 18:37:30,083 - pekonet.train - INFO - Start to train model.
+2023-01-16 18:37:41,200 - utils - INFO - 
++-------+-------+------------+---------------+-------------------+---------------+
+| epoch | stage | iterations |     time      |       loss        | learning_rate |
++-------+-------+------------+---------------+-------------------+---------------+
+|   0   | train |  1/247244  | 0:11/45807:04 | 165.5268096923828 |     1e-05     |
++-------+-------+------------+---------------+-------------------+---------------+
++------------+-------+-----+-------+-------+-------+-------+
+|    Type    |  MiP  | MiR |  MiF  |  MaP  |  MaR  |  MaF  |
++------------+-------+-----+-------+-------+-------+-------+
+|  article   | 0.021 | 1.0 | 0.041 | 0.478 | 0.478 | 0.478 |
+| accusation |  0.0  | 0.0 |  0.0  | 0.466 | 0.466 | 0.466 |
++------------+-------+-----+-------+-------+-------+-------+
+
+2023-01-16 18:38:40,647 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 1
+2023-01-16 18:38:40,648 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 18:38:40,662 - utils - INFO - CUDA is available.
+2023-01-16 18:38:40,662 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 18:38:40,662 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 18:38:41,851 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 18:38:43,327 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 18:38:43,329 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 18:38:43,329 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 18:38:43,330 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 18:38:43,330 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 18:38:43,330 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 18:38:45,263 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:38:45,279 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:38:45,279 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 18:38:45,280 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 18:38:45,671 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 18:38:45,687 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 18:38:45,687 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 18:38:45,687 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 18:38:45,687 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 18:38:45,688 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 18:38:45,688 - pekonet.train - INFO - Start to train model.
+2023-01-16 18:39:05,272 - utils - INFO - 
++-------+-------+------------+---------------+-------------------+---------------+
+| epoch | stage | iterations |     time      |       loss        | learning_rate |
++-------+-------+------------+---------------+-------------------+---------------+
+|   0   | train |  1/247244  | 0:19/80694:22 | 165.4606170654297 |     1e-05     |
++-------+-------+------------+---------------+-------------------+---------------+
++------------+-------+-----+-------+-------+-------+-------+
+|    Type    |  MiP  | MiR |  MiF  |  MaP  |  MaR  |  MaF  |
++------------+-------+-----+-------+-------+-------+-------+
+|  article   | 0.022 | 1.0 | 0.043 | 0.511 | 0.511 | 0.511 |
+| accusation |  0.0  | 0.0 |  0.0  | 0.486 | 0.486 | 0.486 |
++------------+-------+-----+-------+-------+-------+-------+
+
+2023-01-16 20:25:43,788 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 6
+2023-01-16 20:25:43,788 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 20:25:43,807 - utils - INFO - CUDA is available.
+2023-01-16 20:25:43,807 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 20:25:43,807 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 20:25:44,993 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 20:25:46,468 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 20:25:46,470 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 20:25:46,470 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 20:25:46,471 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 20:25:46,472 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 20:25:46,472 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 20:25:48,418 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 20:25:48,435 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 20:25:48,435 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 20:25:48,435 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 20:25:48,826 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 20:25:48,842 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 20:25:48,842 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 20:25:48,842 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 20:25:48,842 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 20:25:48,842 - pekonet.initialize - WARNING - The path of output results/checkpoints/test_pekonet does not exist.
+2023-01-16 20:25:48,842 - pekonet.initialize - INFO - Make the directory automatically.
+2023-01-16 20:25:48,843 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 20:25:48,843 - pekonet.train - INFO - Start to train model.
+2023-01-16 20:26:36,021 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 6
+2023-01-16 20:26:36,021 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 20:26:36,041 - utils - INFO - CUDA is available.
+2023-01-16 20:26:36,042 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 20:26:36,042 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 20:26:37,230 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 20:26:38,721 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 20:26:38,723 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 20:26:38,723 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 20:26:38,724 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 20:26:38,725 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 20:26:38,725 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 20:26:40,663 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 20:26:40,679 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 20:26:40,680 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 20:26:40,680 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 20:26:41,069 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 20:26:41,085 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 20:26:41,085 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 20:26:41,085 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 20:26:41,086 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 20:26:41,086 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 20:26:41,087 - pekonet.train - INFO - Start to train model.
+2023-01-16 20:27:32,397 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 6
+2023-01-16 20:27:32,397 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 20:27:32,409 - utils - INFO - CUDA is available.
+2023-01-16 20:27:32,409 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 20:27:32,409 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 20:27:33,598 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 20:27:35,060 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 20:27:35,062 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 20:27:35,062 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 20:27:35,063 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 20:27:35,063 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 20:27:35,063 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 20:27:36,989 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 20:27:37,005 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 20:27:37,005 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 20:27:37,006 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 20:27:37,394 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 20:27:37,410 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 20:27:37,410 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 20:27:37,411 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 20:27:37,411 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 20:27:37,412 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 20:27:37,412 - pekonet.train - INFO - Start to train model.
+2023-01-16 20:27:38,392 - utils - INFO - 
++-------+-------+------------+-------------+----------+-------------------+---------------+
+| epoch | stage | iterations |    time     | sum_loss |     cls_loss      | learning_rate |
++-------+-------+------------+-------------+----------+-------------------+---------------+
+|   0   | train |  1/41208   | 0:00/672:47 |   None   | 27.57257843017578 |     1e-05     |
++-------+-------+------------+-------------+----------+-------------------+---------------+
++------------+-------+-------+-------+-------+-------+-------+
+|    Type    |  MiP  |  MiR  |  MiF  |  MaP  |  MaR  |  MaF  |
++------------+-------+-------+-------+-------+-------+-------+
+|  article   | 0.015 | 0.667 | 0.028 | 0.33  | 0.361 | 0.335 |
+| accusation | 0.007 |  0.5  | 0.014 | 0.328 | 0.341 | 0.331 |
++------------+-------+-------+-------+-------+-------+-------+
+
+2023-01-16 20:27:59,878 - root - INFO - new_main.py -c configs/new_main/test_config.ini -m train -g 0 -bs 6
+2023-01-16 20:27:59,878 - pekonet.initialize - INFO - Start to initialize.
+2023-01-16 20:27:59,894 - utils - INFO - CUDA is available.
+2023-01-16 20:27:59,894 - utils - INFO - Initialize GPUs successfully.
+2023-01-16 20:27:59,894 - pekonet.model.initialize - INFO - Start to initialize model.
+2023-01-16 20:28:01,081 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-16 20:28:02,534 - pekonet.initialize - INFO - Start to initialize multiple gpus.
+2023-01-16 20:28:02,536 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-16 20:28:02,536 - pekonet.model.initialize - INFO - Start to initialize optimizer.
+2023-01-16 20:28:02,537 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-16 20:28:02,537 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-16 20:28:02,537 - pekonet.dataset.initialize - INFO - Start to initialize train dataloader.
+2023-01-16 20:28:04,478 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 20:28:04,494 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 20:28:04,494 - pekonet.dataset.initialize - INFO - Initialize train dataloader successfully.
+2023-01-16 20:28:04,495 - pekonet.dataset.initialize - INFO - Start to initialize valid dataloader.
+2023-01-16 20:28:04,885 - pekonet.formatter.initialize - INFO - Start to initialize formatter.
+2023-01-16 20:28:04,901 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2023-01-16 20:28:04,902 - pekonet.dataset.initialize - INFO - Initialize valid dataloader successfully.
+2023-01-16 20:28:04,902 - pekonet.output.initialize - INFO - Start to initialize output function.
+2023-01-16 20:28:04,902 - pekonet.output.initialize - INFO - Initialize output function successfully.
+2023-01-16 20:28:04,903 - pekonet.initialize - INFO - Initialize successfully.
+2023-01-16 20:28:04,903 - pekonet.train - INFO - Start to train model.
+2023-01-16 20:28:05,875 - utils - INFO - 
++-------+-------+------------+-------------+----------+-------------------+---------------+
+| epoch | stage | iterations |    time     | sum_loss |     cls_loss      | learning_rate |
++-------+-------+------------+-------------+----------+-------------------+---------------+
+|   0   | train |  1/41208   | 0:00/666:54 |   None   | 27.57257843017578 |     1e-05     |
++-------+-------+------------+-------------+----------+-------------------+---------------+
++------------+-------+-------+-------+-------+-------+-------+
+|    Type    |  MiP  |  MiR  |  MiF  |  MaP  |  MaR  |  MaF  |
++------------+-------+-------+-------+-------+-------+-------+
+|  article   | 0.015 | 0.667 | 0.028 | 0.33  | 0.361 | 0.335 |
+| accusation | 0.007 |  0.5  | 0.014 | 0.328 | 0.341 | 0.331 |
++------------+-------+-------+-------+-------+-------+-------+
+
+2023-01-16 20:28:14,345 - utils - INFO - 
++-------+-------+------------+-------------+----------+-------------------+---------------+
+| epoch | stage | iterations |    time     | sum_loss |     cls_loss      | learning_rate |
++-------+-------+------------+-------------+----------+-------------------+---------------+
+|   0   | train |  11/41208  | 0:09/589:20 |   None   | 27.10646658232718 |     1e-05     |
++-------+-------+------------+-------------+----------+-------------------+---------------+
++------------+-------+-------+-------+-------+-------+-------+
+|    Type    |  MiP  |  MiR  |  MiF  |  MaP  |  MaR  |  MaF  |
++------------+-------+-------+-------+-------+-------+-------+
+|  article   | 0.011 | 0.455 | 0.022 | 0.087 | 0.206 | 0.094 |
+| accusation | 0.005 | 0.318 | 0.01  | 0.069 | 0.101 | 0.069 |
++------------+-------+-------+-------+-------+-------+-------+
+
+2023-01-16 20:28:22,852 - utils - INFO - 
++-------+-------+------------+-------------+----------+--------------------+---------------+
+| epoch | stage | iterations |    time     | sum_loss |      cls_loss      | learning_rate |
++-------+-------+------------+-------------+----------+--------------------+---------------+
+|   0   | train |  21/41208  | 0:17/586:42 |   None   | 25.860844082302517 |     1e-05     |
++-------+-------+------------+-------------+----------+--------------------+---------------+
++------------+-------+-------+-------+-------+-------+-------+
+|    Type    |  MiP  |  MiR  |  MiF  |  MaP  |  MaR  |  MaF  |
++------------+-------+-------+-------+-------+-------+-------+
+|  article   | 0.011 | 0.349 | 0.022 | 0.053 | 0.166 | 0.059 |
+| accusation | 0.005 | 0.262 | 0.011 | 0.046 | 0.087 | 0.048 |
++------------+-------+-------+-------+-------+-------+-------+
+
+2023-01-16 20:28:31,385 - utils - INFO - 
++-------+-------+------------+-------------+----------+--------------------+---------------+
+| epoch | stage | iterations |    time     | sum_loss |      cls_loss      | learning_rate |
++-------+-------+------------+-------------+----------+--------------------+---------------+
+|   0   | train |  31/41208  | 0:26/586:15 |   None   | 24.533600345734627 |     1e-05     |
++-------+-------+------------+-------------+----------+--------------------+---------------+
++------------+-------+-------+-------+-------+-------+-------+
+|    Type    |  MiP  |  MiR  |  MiF  |  MaP  |  MaR  |  MaF  |
++------------+-------+-------+-------+-------+-------+-------+
+|  article   | 0.011 | 0.253 | 0.021 | 0.031 | 0.132 | 0.036 |
+| accusation | 0.008 | 0.312 | 0.016 | 0.04  | 0.079 | 0.042 |
++------------+-------+-------+-------+-------+-------+-------+
+
+2023-01-16 20:28:39,929 - utils - INFO - 
++-------+-------+------------+-------------+----------+-------------------+---------------+
+| epoch | stage | iterations |    time     | sum_loss |     cls_loss      | learning_rate |
++-------+-------+------------+-------------+----------+-------------------+---------------+
+|   0   | train |  41/41208  | 0:35/586:07 |   None   | 23.35469293982033 |     1e-05     |
++-------+-------+------------+-------------+----------+-------------------+---------------+
++------------+-------+-------+------+-------+-------+-------+
+|    Type    |  MiP  |  MiR  | MiF  |  MaP  |  MaR  |  MaF  |
++------------+-------+-------+------+-------+-------+-------+
+|  article   | 0.01  | 0.191 | 0.02 | 0.031 | 0.121 | 0.036 |
+| accusation | 0.011 | 0.329 | 0.02 | 0.04  | 0.074 | 0.042 |
++------------+-------+-------+------+-------+-------+-------+
+
+2023-01-16 20:28:48,458 - utils - INFO - 
++-------+-------+------------+-------------+----------+--------------------+---------------+
+| epoch | stage | iterations |    time     | sum_loss |      cls_loss      | learning_rate |
++-------+-------+------------+-------------+----------+--------------------+---------------+
+|   0   | train |  51/41208  | 0:43/585:48 |   None   | 22.280470056471483 |     1e-05     |
++-------+-------+------------+-------------+----------+--------------------+---------------+
++------------+-------+-------+-------+-------+-------+-------+
+|    Type    |  MiP  |  MiR  |  MiF  |  MaP  |  MaR  |  MaF  |
++------------+-------+-------+-------+-------+-------+-------+
+|  article   | 0.01  | 0.154 | 0.019 | 0.031 | 0.107 | 0.036 |
+| accusation | 0.012 | 0.324 | 0.024 | 0.04  | 0.069 | 0.041 |
++------------+-------+-------+-------+-------+-------+-------+
+
