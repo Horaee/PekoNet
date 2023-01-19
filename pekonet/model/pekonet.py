@@ -39,6 +39,35 @@ class PekoNet(nn.Module):
 
 
     def forward(self, data, mode, cm_result=None):
+        if mode == 'train':
+            print('123')
+        elif mode == 'validate':
+            print('123')
+        elif mode == 'test':
+            # Size of `outputs['summary_ids']` = \
+            #     [batch_size, sequence_length].
+            # Size of `cls_embeddings` = [batch_size, hidden_size].
+            cls_embeddings = self.bart.module.get_clses_embedding(
+                ids=data['text'])
+
+            labels = {
+                'article': data['article']
+                , 'accusation': data['accusation']
+            }
+
+            outputs = self.ljpm(
+                mode=mode
+                , cls_embeddings=cls_embeddings
+                , labels=labels
+                , cm_result=cm_result)
+
+            cls_loss = outputs['loss']
+            cm_result = outputs['cm_result']
+
+            return {
+                'cls_loss': outputs['loss']
+                , 'cm_result': outputs['cm_result']
+            }
         if mode == 'serve':
             print('Hello World')
             # tensor = self.bart(data, mode)

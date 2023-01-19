@@ -137,10 +137,10 @@ class BART(nn.Module):
 
 
     # Size of `summary_ids` = [batch_size, sequence_length]
-    def get_clses_embedding(self, summary_ids):
+    def get_clses_embedding(self, ids):
         # Size of `hidden_states` = [batch_size, sequence_length, hidden_size]
         hidden_states = \
-            self.bart(input_ids=summary_ids)['encoder_last_hidden_state']
+            self.bart(input_ids=ids)['encoder_last_hidden_state']
 
         # Size of returning value = [batch_size, hidden_size]
         return self.pooler(hidden_states)

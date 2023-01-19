@@ -13,8 +13,7 @@ from legal_judgment_prediction.eval import eval_one
 logger = logging.getLogger(__name__)
 
 
-# def train(parameters, do_test, *args, **kwargs):
-def train(parameters, *args, **kwargs):
+def train(parameters, do_test, *args, **kwargs):
     model = parameters['model']
     optimizer = parameters['optimizer']
     exp_lr_scheduler = parameters['exp_lr_scheduler']
@@ -28,8 +27,8 @@ def train(parameters, *args, **kwargs):
     output_time = parameters['output_time']
     test_time = parameters['test_time']
 
-    # if do_test == True:
-    #     test_dataloader = parameters['test_dataloader']
+    if do_test == True:
+        test_dataloader = parameters['test_dataloader']
 
     logger.info('Start to train model.')
 
@@ -37,7 +36,6 @@ def train(parameters, *args, **kwargs):
 
     for current_epoch in range(trained_epoch, total_epoch):
         start_time = timer()
-        total_loss = 0
         sum_loss, cls_loss = None, None
         sum_counter, cls_counter = 0, 0
         cm_result = None
@@ -75,20 +73,13 @@ def train(parameters, *args, **kwargs):
                 cls_counter += results['cns_tci_data_number'][1]
                 results['cls_loss'].backward()
 
-            # loss = results['loss']
-            # total_loss += float(loss)
-            # loss.backward()
-
             cm_result = results['cm_result']
 
             optimizer.step()
 
             if step % output_time == 0:
                 if cm_result != None:
-                    mima_prf_results = output_function(
-                        # total_loss=total_loss
-                        # , step=step
-                        data=cm_result)
+                    mima_prf_results = output_function(data=cm_result)
                 else:
                     mima_prf_results = None
 
@@ -106,18 +97,18 @@ def train(parameters, *args, **kwargs):
 {get_time_str(delta_time*(total_len-step-1)/(step+1))}'
                     , sum_loss=str(sum_loss_log)
                     , cls_loss=str(cls_loss_log)
-                    # , loss=f'{(total_loss/(step+1))}'
                     , learning_rate=learning_rate
                     , results=mima_prf_results
                 )
 
+        if step == -1:
+            logger.error('There is no data in this dataset.')
+            raise Exception('There is no data in this dataset.')
+
         exp_lr_scheduler.step()
 
         if cm_result != None:
-            mima_prf_results = output_function(
-                # total_loss=total_loss
-                # , step=step
-                data=cm_result)
+            mima_prf_results = output_function(data=cm_result)
         else:
             mima_prf_results = None
 
@@ -135,14 +126,9 @@ def train(parameters, *args, **kwargs):
 {get_time_str(delta_time*(total_len-step-1)/(step+1))}'
             , sum_loss=str(sum_loss_log)
             , cls_loss=str(cls_loss_log)
-            # , loss=f'{(total_loss/(step+1))}'
             , learning_rate=learning_rate
             , results=mima_prf_results
         )
-
-        if step == -1:
-            logger.error('There is no data in this dataset.')
-            raise Exception('There is no data in this dataset.')
 
         save_checkpoint(
             model=model
@@ -153,28 +139,28 @@ def train(parameters, *args, **kwargs):
             , file=os.path.join(output_path, f'checkpoint_{current_epoch}.pkl')
         )
 
-        # if current_epoch % test_time == 0:
-        #     with torch.no_grad():
-        #         eval_one(
-        #             model=model
-        #             , dataset=valid_dataloader
-        #             , output_time=output_time
-        #             , output_function=output_function
-        #             , current_epoch=current_epoch
-        #             , task='valid'
-        #             , from_train=True
-        #         )
+        if current_epoch % test_time == 0:
+            with torch.no_grad():
+                eval_one(
+                    model=model
+                    , dataset=valid_dataloader
+                    , output_time=output_time
+                    , output_function=output_function
+                    , current_epoch=current_epoch
+                    , task='valid'
+                    , from_train=True
+                )
 
-                # if do_test:
-                #     eval_one(
-                #         model=model
-                #         , dataset=test_dataloader
-                #         , output_time=output_time
-                #         , output_function=output_function
-                #         , current_epoch=current_epoch
-                #         , task='test'
-                #         , from_train=True
-                #     )
+                if do_test:
+                    eval_one(
+                        model=model
+                        , dataset=test_dataloader
+                        , output_time=output_time
+                        , output_function=output_function
+                        , current_epoch=current_epoch
+                        , task='test'
+                        , from_train=True
+                    )
 
         gc.collect()
         torch.cuda.empty_cache()
