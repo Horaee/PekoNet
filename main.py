@@ -3,10 +3,10 @@ import argparse
 import configparser
 
 from utils import initialize_logger
-from legal_judgment_prediction.initialize import initialize_all
-from legal_judgment_prediction.train import train
-from legal_judgment_prediction.eval import eval
-from legal_judgment_prediction.serve import serve
+from pekonet.initialize import initialize_all
+from pekonet.train import train
+# from pekonet.serve import serve
+from pekonet.vot import vot
 
 
 information = ' '.join(sys.argv)
@@ -48,7 +48,7 @@ def main(*args, **kwargs):
     config.read(args.config)
 
     logger = initialize_logger(log_name=config.get('log', 'name'))
-    logger.info(f'\n\n\n\n{information}')
+    logger.info(f'{information}')
 
     parameters = initialize_all(
         config=config
@@ -60,10 +60,10 @@ def main(*args, **kwargs):
 
     if args.mode == 'train':
         train(parameters=parameters, do_test=args.do_test)
-    elif args.mode == 'eval':  
-        eval(parameters=parameters)
-    elif args.mode == 'serve':
-        serve(parameters=parameters)
+    # elif args.mode == 'serve':
+    #     serve(parameters=parameters)
+    else:
+        vot(parameters=parameters, mode=args.mode)
 
 
 if __name__ == '__main__':

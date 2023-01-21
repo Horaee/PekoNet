@@ -49,7 +49,7 @@ class LJPM(nn.Module):
 
             # return feature
             print('Hello World')
-        # mode == 'train' or 'eval'
+        # mode == 'train', validate' or 'test'
         else:
             aa_results = self.fc(tensors=cls_embeddings)
 

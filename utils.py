@@ -205,7 +205,6 @@ def log_results(
         , time=None
         , sum_loss = None
         , cls_loss = None
-        # , loss=None
         , learning_rate=None
         , results=None):
 

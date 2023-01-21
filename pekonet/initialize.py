@@ -22,7 +22,7 @@ def initialize_all(
         , device_str
         , checkpoint_path
         , batch_size_str
-        # , do_test
+        , do_test
         , *args
         , **kwargs):
     logger.info('Start to initialize.')
@@ -78,28 +78,24 @@ def initialize_all(
 
             exp_lr_scheduler.load_state_dict(parameters['exp_lr_scheduler'])
 
-            # Temp Part
-            # epoch 0 and 1:
-            #     optimizer.param_groups[0]['lr'] = 1e-05
-            #     exp_lr_scheduler.milestone = Counter({1: 1, 3: 1})
-            #     exp_lr_scheduler.gamma = 1.0
-            #     exp_lr_scheduler._last_lr = [1e-05]
-            # -----
-            # epoch 2, 3 and 4:
-            #     optimizer.param_groups[0]['lr'] = 1e-06
-            #     exp_lr_scheduler.milestone = Counter({2: 1, 4: 1})
-            #     exp_lr_scheduler.gamma = 0.1
-            #     exp_lr_scheduler._last_lr = [1e-06]
+            # Change hyperparameters of optimizer and scheduler.
             # -----
             # optimizer.param_groups[0]['lr'] = 1e-06
+            # 
             # from collections import Counter
             # exp_lr_scheduler.milestones = Counter({2: 1, 4: 1})
             # exp_lr_scheduler.gamma = gamma
             # exp_lr_scheduler._last_lr = [1e-06]
+            # -----
 
             trained_epoch = parameters['trained_epoch']
         else:
             logger.warn('The path of checkpoint is none.')
+
+        results['model'] = model.train()
+        results['optimizer'] = optimizer
+        results['exp_lr_scheduler'] = exp_lr_scheduler
+        results['trained_epoch'] = trained_epoch
 
         batch_size = initialize_batch_size(batch_size_str=batch_size_str)
 
@@ -108,15 +104,27 @@ def initialize_all(
             , task='train'
             , mode='train'
             , batch_size=batch_size)
-        valid_dataloader = initialize_dataloader(
+        validate_dataloader = initialize_dataloader(
             config=config
-            , task='valid'
-            , mode='eval'
+            , task='validate'
+            , mode='train'
             , batch_size=batch_size)
+        results['train_dataloader'] = train_dataloader
+        results['validate_dataloader'] = validate_dataloader
+
+        if do_test:
+            test_dataloader = initialize_dataloader(
+                config=config
+                , task='test'
+                , mode='train'
+                , batch_size=batch_size)
+            results['test_dataloader'] = test_dataloader
 
         output_function = initialize_output_function(config=config)
+        results['output_function'] = output_function
 
         output_path = config.get('output', 'output_path')
+        results['output_path'] = output_path
 
         if not os.path.exists(path=output_path):
             logger.warn(
@@ -125,52 +133,11 @@ def initialize_all(
 
             os.makedirs(name=output_path)
 
-        results['model'] = model.train()
-        results['optimizer'] = optimizer
-        results['exp_lr_scheduler'] = exp_lr_scheduler
-        results['optimizer_name'] = config.get('train', 'optimizer')
-        results['trained_epoch'] = trained_epoch
-        results['train_dataloader'] = train_dataloader
-        results['valid_dataloader'] = valid_dataloader
-        results['output_function'] = output_function
-        results['output_path'] = output_path
         results['model_name'] = config.get('model', 'model_name')
+        results['optimizer_name'] = config.get('train', 'optimizer')
         results['total_epoch'] = config.getint('train', 'total_epoch')
         results['output_time'] = config.getint('output', 'output_time')
         results['test_time'] = config.getint('output', 'test_time')
-    # elif mode == 'eval':
-    #     trained_epoch = -1
-
-    #     if checkpoint_path != None:
-    #         if not os.path.exists(path=checkpoint_path):
-    #             logger.error(
-    #                 'The path of checkpoint is not none but it does not exixt.')
-    #             raise Exception(
-    #                 'The path of checkpoint is not none but it does not exixt.')
-
-    #         parameters = torch.load(f=checkpoint_path)
-    #         model.load_state_dict(parameters['model'])
-    #         trained_epoch = parameters['trained_epoch']
-    #     else:
-    #         logger.warn('The path of checkpoint is none.')
-
-    #     batch_size = initialize_batch_size(batch_size_str=batch_size_str)
-
-    #     test_dataloader = initialize_dataloader(
-    #         config=config
-    #         , task='test'
-    #         , mode='eval'
-    #         , batch_size=batch_size)
-
-    #     output_function = initialize_output_function(config=config)
-
-    #     results['model'] = model.eval()
-    #     results['trained_epoch'] = trained_epoch
-    #     results['test_dataloader'] = test_dataloader
-    #     results['output_function'] = output_function
-    #     results['model_path'] = config.get('model', 'model_path')
-    #     results['output_function_name'] = \
-    #         config.get('output', 'output_function')
     # elif mode == 'serve':
     #     if checkpoint_path == None:
     #         logger.error('The path of checkpoint is none.')
@@ -192,6 +159,41 @@ def initialize_all(
     #     results['model_name'] = model_name
     #     results['articles_table'] = articles_table
     #     results['accusations_table'] = accusations_table
+    # mode == 'validate' or 'test':
+    else:
+        trained_epoch = -1
+
+        if checkpoint_path != None:
+            if not os.path.exists(path=checkpoint_path):
+                logger.error(
+                    'The path of checkpoint is not none but it does not exixt.')
+                raise Exception(
+                    'The path of checkpoint is not none but it does not exixt.')
+
+            parameters = torch.load(f=checkpoint_path)
+            model.load_state_dict(parameters['model'])
+
+            trained_epoch = parameters['trained_epoch']
+        else:
+            logger.warn('The path of checkpoint is none.')
+
+        results['model'] = model.eval()
+        results['trained_epoch'] = trained_epoch
+
+        batch_size = initialize_batch_size(batch_size_str=batch_size_str)
+
+        dataloader = initialize_dataloader(
+            config=config
+            , task=mode
+            , mode=mode
+            , batch_size=batch_size)
+
+        results[f'{mode}_dataloader'] = dataloader
+
+        output_function = initialize_output_function(config=config)
+        results['output_function'] = output_function
+
+        results['output_time'] = config.getint('output', 'output_time')
 
     logger.info('Initialize successfully.')
 
@@ -199,7 +201,7 @@ def initialize_all(
 
 
 def check_mode(mode):
-    modes = ['train', 'eval', 'serve']
+    modes = ['train', 'validate', 'test', 'serve']
 
     if mode not in modes:
         logger.error(f'There is no mode called {mode}.')
