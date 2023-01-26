@@ -16,13 +16,14 @@ from pekonet.formatter import initialize_formatter
 logger = logging.getLogger(__name__)
 
 
+# Part checked.
 def initialize_all(
         config
         , mode
-        , device_str
+        , gpu_ids_str
         , checkpoint_path
         , batch_size_str
-        , do_test
+        , do_validation
         , *args
         , **kwargs):
     logger.info('Start to initialize.')
@@ -30,16 +31,13 @@ def initialize_all(
     check_mode(mode=mode)
     initialize_seeds()
 
-    gpus = initialize_gpus(device_str=device_str)
+    gpu_ids_int_list = initialize_gpus(gpu_ids_str=gpu_ids_str)
 
     model = initialize_model(config=config)
     model = model.cuda()
 
     try:
-        logger.info('Start to initialize multiple gpus.')
-
-        model.initialize_multiple_gpus(gpus=gpus)
-
+        model.initialize_multiple_gpus(gpu_ids_int_list=gpu_ids_int_list)
         logger.info('Initialize multiple gpus successfully.')
     except:
         logger.warning('Failed to initialize multiple gpus.')
@@ -47,9 +45,8 @@ def initialize_all(
     results = {}
 
     if mode == 'train':
-        optimizer_name = config.get('train', 'optimizer')
+        optimizer_name = config.get('train', 'optimizer_name')
         optimizer = initialize_optimizer(config=config, model=model)
-
         milestones_str_list = config.get('train', 'milestones').split(',')
         milestones = [int(milestone) for milestone in milestones_str_list]
         gamma = config.getfloat('train', 'lr_multiplier')
@@ -59,6 +56,7 @@ def initialize_all(
             , gamma=gamma)
 
         trained_epoch = -1
+        learning_rate = config.getfloat('train', 'learning_rate')
 
         if checkpoint_path != None:
             if not os.path.exists(path=checkpoint_path):
@@ -73,52 +71,46 @@ def initialize_all(
             if optimizer_name == parameters['optimizer_name']:
                 optimizer.load_state_dict(parameters['optimizer'])
             else:
-                logger.warning('Optimizer has been changed.')
-                logger.info('Use the new optimizer to train the model.')
+                logger.error('Optimizer has been changed.')
+                raise Exception('Optimizer has been changed.')
 
             exp_lr_scheduler.load_state_dict(parameters['exp_lr_scheduler'])
-
-            # Change hyperparameters of optimizer and scheduler.
-            # -----
-            # optimizer.param_groups[0]['lr'] = 1e-06
-            # 
-            # from collections import Counter
-            # exp_lr_scheduler.milestones = Counter({2: 1, 4: 1})
-            # exp_lr_scheduler.gamma = gamma
-            # exp_lr_scheduler._last_lr = [1e-06]
-            # -----
 
             trained_epoch = parameters['trained_epoch']
         else:
             logger.warn('The path of checkpoint is none.')
 
         results['model'] = model.train()
+        results['optimizer_name'] = optimizer_name
         results['optimizer'] = optimizer
         results['exp_lr_scheduler'] = exp_lr_scheduler
         results['trained_epoch'] = trained_epoch
+        results['learning_rate'] = learning_rate
 
         batch_size = initialize_batch_size(batch_size_str=batch_size_str)
 
-        train_dataloader = initialize_dataloader(
+        sum_train_dataloader = initialize_dataloader(
             config=config
-            , task='train'
-            , mode='train'
-            , batch_size=batch_size)
-        validate_dataloader = initialize_dataloader(
+            , task='sum_train'
+            , mode=mode
+            , batch_size=batch_size
+        )
+        ljp_train_dataloader = initialize_dataloader(
             config=config
-            , task='validate'
-            , mode='train'
-            , batch_size=batch_size)
-        results['train_dataloader'] = train_dataloader
-        results['validate_dataloader'] = validate_dataloader
+            , task='ljp_train'
+            , mode=mode
+            , batch_size=batch_size
+        )
+        results['sum_train_dataloader'] = sum_train_dataloader
+        results['ljp_train_dataloader'] = ljp_train_dataloader
 
-        if do_test:
-            test_dataloader = initialize_dataloader(
+        if do_validation:
+            validate_dataloader = initialize_dataloader(
                 config=config
-                , task='test'
-                , mode='train'
+                , task='validate'
+                , mode='validate'
                 , batch_size=batch_size)
-            results['test_dataloader'] = test_dataloader
+            results['validate_dataloader'] = validate_dataloader
 
         output_function = initialize_output_function(config=config)
         results['output_function'] = output_function
@@ -133,11 +125,14 @@ def initialize_all(
 
             os.makedirs(name=output_path)
 
-        results['model_name'] = config.get('model', 'model_name')
-        results['optimizer_name'] = config.get('train', 'optimizer')
-        results['total_epoch'] = config.getint('train', 'total_epoch')
+        # TODO: Check whether model_name has been used or not.
+        # results['model_name'] = config.get('model', 'model_name')
+
+        results['sum_epoch'] = config.getint('train', 'sum_epoch')
+        results['ljp_epoch'] = config.getint('train', 'ljp_epoch')
         results['output_time'] = config.getint('output', 'output_time')
         results['test_time'] = config.getint('output', 'test_time')
+    # TODO: Need to check.
     # elif mode == 'serve':
     #     if checkpoint_path == None:
     #         logger.error('The path of checkpoint is none.')
@@ -159,7 +154,7 @@ def initialize_all(
     #     results['model_name'] = model_name
     #     results['articles_table'] = articles_table
     #     results['accusations_table'] = accusations_table
-    # mode == 'validate' or 'test':
+    # If mode is 'validate' or 'test'.
     else:
         trained_epoch = -1
 
@@ -200,6 +195,7 @@ def initialize_all(
     return results
 
 
+# Checked.
 def check_mode(mode):
     modes = ['train', 'validate', 'test', 'serve']
 
@@ -207,9 +203,13 @@ def check_mode(mode):
         logger.error(f'There is no mode called {mode}.')
         raise Exception(f'There is no mode called {mode}.')
 
+    logger.info(f'The mode has been confirmed.')
 
+
+# Checked.
 def initialize_seeds():
     seed = 48763
+
     random.seed(seed)
     numpy.random.seed(seed)
     # pd.core.common.random_state(seed)
@@ -218,3 +218,5 @@ def initialize_seeds():
     torch.cuda.manual_seed_all(seed)
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
+
+    logger.info(f'Seed has been set into {seed}.')

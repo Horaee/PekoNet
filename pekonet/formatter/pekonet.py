@@ -7,20 +7,19 @@ from pekonet.formatter.utils import set_special_tokens
 
 
 class PekoNetFormatter:
-    # def __init__(self, config, mode, *args, **kwargs):
+    # Checked.
     def __init__(self, config, *args, **kwargs):
-        model_path = config.get('model', 'atsm_model_path')
+        model_path = config.get('model', 'bart_model_path')
         add_tokens_at_beginning = \
             config.getboolean('data', 'add_tokens_at_beginning')
-        max_len = config.getint('data', 'max_len')
+        data_max_len = config.getint('data', 'data_max_len')
         articles_path = config.get('data', 'articles_path')
         accusations_path = config.get('data', 'accusations_path')
 
-        # self.mode = mode
         self.tokenizer = BertTokenizer.from_pretrained(
             pretrained_model_name_or_path=model_path)
         self.add_tokens_at_beginning = add_tokens_at_beginning
-        self.max_len = max_len
+        self.data_max_len = data_max_len
 
         self.article2id = {}
 
@@ -43,7 +42,8 @@ class PekoNetFormatter:
         accusations.close()
 
 
-    def process(self, data, *args, **kwargs):
+    def process(self, data):
+        # Checked.
         if isinstance(data, list):
             texts = []
             summaries = []
@@ -59,7 +59,7 @@ class PekoNetFormatter:
                     summaries.append(summary)
                 else:
                     pad_ids = self.tokenizer.convert_tokens_to_ids(
-                        ['[PAD]' for _ in range(self.max_len)])
+                        ['[PAD]' for _ in range(self.data_max_len)])
                     summaries.append(pad_ids)
 
                 article_vector = np.zeros(
@@ -99,27 +99,24 @@ class PekoNetFormatter:
                 , 'article': torch.LongTensor(articles)
                 , 'accusation': torch.LongTensor(accusations)
             }
+        # TODO: Checked but unsure where will use this part.
         elif isinstance(data, str):
             ids = self.string2ids(string=data)
+            tensor = torch.LongTensor(ids).cuda()
 
-            # result = torch.LongTensor(ids).cuda()
-            result = torch.LongTensor(ids).cuda()
+            # The size of tensor after unsqueeze
+            # = [batch_size, seq_len].
+            tensor = torch.unsqueeze(tensor, 0)
 
-            # The size of data after unsqueeze
-            # = [batch_size, seq_len]
-            # = [1, 512].
-            result = torch.unsqueeze(result, 0)
-
-            return result
+            return tensor
 
 
-    # def string2ids(self, string, type):
+    # Checked.
     def string2ids(self, string):
         char_list = self.tokenizer.tokenize(string)
         char_list = set_special_tokens(
             add_tokens_at_beginning=self.add_tokens_at_beginning
-            # add_tokens_at_beginning=True if type == 0 else False
-            , max_len=self.max_len
+            , data_max_len=self.data_max_len
             , data=char_list)
         ids = self.tokenizer.convert_tokens_to_ids(char_list)
 

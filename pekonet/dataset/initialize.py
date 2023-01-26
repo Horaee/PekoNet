@@ -9,10 +9,10 @@ from pekonet.formatter import initialize_formatter
 logger = logging.getLogger(__name__)
 
 
+# Checked.
 def initialize_dataloader(config, task, mode, batch_size, *args, **kwargs):
-    logger.info(f'Start to initialize {task} dataloader.')
-
     dataset_name = config.get('data', f'{task}_dataset_name')
+
     datasets = {'JsonFromFiles': JsonFromFiles}
 
     if dataset_name in datasets:
@@ -20,11 +20,8 @@ def initialize_dataloader(config, task, mode, batch_size, *args, **kwargs):
         batch_size = batch_size
         shuffle = config.getboolean(mode, 'shuffle')
         num_workers = config.getint(mode, 'num_workers')
-        collate_fn = initialize_formatter(config=config, mode=mode, task=task)
-        drop_last = False
-        
-        if task == 'test':
-            drop_last = False
+        collate_fn = initialize_formatter(config=config, task=task)
+        drop_last = config.getboolean(mode, 'drop_last')
 
         dataloader = DataLoader(
             dataset=dataset

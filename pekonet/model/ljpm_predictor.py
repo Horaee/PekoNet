@@ -2,6 +2,7 @@ import torch.nn as nn
 
 
 class LJPMPredictor(nn.Module):
+    # Checked.
     def __init__(
             self
             , hidden_size
@@ -19,6 +20,7 @@ class LJPMPredictor(nn.Module):
             , out_features=accusations_number*2)
 
 
+    # Checked.
     def forward(self, tensors):
         articles = self.article_fc(input=tensors)
         accusations = self.accusation_fc(input=tensors)

@@ -1,29 +1,30 @@
 import torch.nn as nn
 
 
-class MultiLabelSoftmaxLoss(nn.Module):
-    def __init__(self, task_number):
-        super(MultiLabelSoftmaxLoss, self).__init__()
+# Checked.
+class MultiLabelsLoss(nn.Module):
+    def __init__(self, class_number):
+        super(MultiLabelsLoss, self).__init__()
         
-        self.criterion = []
+        self.criterions = []
 
-        for _ in range(task_number):
-            self.criterion.append(nn.CrossEntropyLoss())
+        for _ in range(class_number):
+            self.criterions.append(nn.CrossEntropyLoss())
 
 
-    # The size of outputs is [batch_size, task_number, 2].
-    def forward(self, preds, labels):
+    # The size of predictions is [batch_size, task_number, 2].
+    def forward(self, predictions, labels):
         loss = 0
 
-        # Size of `outputs` = [batch_size, task_number, 2].
-        for task_index in range(preds.size(1)):
-            # Size of `outputs[:, task_index, :]` = [batch_size, 2].
-            one_task_outputs = preds[:, task_index, :]
+        # Size of predictions = [batch_size, task_number, 2].
+        for task_index in range(predictions.size(1)):
+            # Size of predictions[:, task_index, :] = [batch_size, 2].
+            one_task_outputs = predictions[:, task_index, :]
 
-            # Size of `labels[:, task_index]` = [batch_size].
+            # Size of labels[:, task_index] = [batch_size].
             one_task_labels = labels[:, task_index]
 
-            loss += self.criterion[task_index](
+            loss += self.criterions[task_index](
                 one_task_outputs
                 , one_task_labels)
 

@@ -8,7 +8,7 @@ from tabulate import tabulate
 logger = logging.getLogger(__name__)
 
 
-# Initialize logger.
+# Checked.
 def initialize_logger(log_name):
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -32,9 +32,9 @@ def initialize_logger(log_name):
     return logger
 
 
-# Initialize GPUs.
-def initialize_gpus(device_str):
-    if device_str == None:
+# Checked.
+def initialize_gpus(gpu_ids_str):
+    if gpu_ids_str == None:
         logger.error('There is no any given gpu.')
         raise Exception('There is no any given gpu.')
 
@@ -42,21 +42,22 @@ def initialize_gpus(device_str):
         logger.error('CUDA is not available.')
         raise Exception('CUDA is not available.')
         
-    devices = device_str.replace(' ', '').split(',')
-    gpus = []
+    gpu_ids_str_list = gpu_ids_str.replace(' ', '').split(',')
+    gpu_ids_int_list = []
 
-    for device in devices:
-        gpus.append(int(device))
+    for gpu_id_str in gpu_ids_str_list:
+        gpu_ids_int_list.append(int(gpu_id_str))
 
-    logger.info(f'CUDA is available.')
+    logger.info('CUDA is available.')
     logger.info('Initialize GPUs successfully.')
 
-    return gpus
+    return gpu_ids_int_list
 
 
+# Checked.
 def initialize_batch_size(batch_size_str):
     if batch_size_str == None:
-        logger.warn(f'There is no batch_size.')
+        logger.warn(f'There is no given batch_size.')
         logger.info('Set the batch_size to 1 to continue.')
         batch_size_str = '1'
 
@@ -197,14 +198,15 @@ def get_time_str(total_seconds):
     return ('%2d:%02d' % (minutes, seconds))
 
 
+# Checked.
 # Generate and print log.
 def log_results(
         epoch=None
         , stage=None
         , iterations=None
         , time=None
-        , sum_loss = None
-        , cls_loss = None
+        , loss = None
+        , is_summarization=False
         , learning_rate=None
         , results=None):
 
@@ -213,9 +215,8 @@ def log_results(
         , 'stage': stage
         , 'iterations': iterations
         , 'time': time
-        , 'sum_loss': sum_loss
-        , 'cls_loss': cls_loss
-        # , 'loss': loss
+        , 'loss': loss
+        , 'is_summarization': is_summarization
         , 'learning_rate': learning_rate
     }
 

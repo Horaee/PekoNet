@@ -1,66 +1,51 @@
-import torch
 import torch.nn as nn
+import torch
 
 from transformers import BartForConditionalGeneration, BertTokenizer
 
 
 class BART(nn.Module):
+    # Checked.
     def __init__(self, config, *args, **kwargs):
         super(BART, self).__init__()
 
-        self.bart = BartForConditionalGeneration.from_pretrained(
+        self.model = BartForConditionalGeneration.from_pretrained(
             pretrained_model_name_or_path=config.get(
                 'model'
-                , 'atsm_model_path'))
+                , 'bart_model_path'))
 
         self.tokenizer = BertTokenizer.from_pretrained(
             pretrained_model_name_or_path=config.get(
                 'model'
-                , 'atsm_model_path'))
+                , 'bart_model_path'))
 
         self.pooler = BertPooler(
             hidden_size=config.getint('model', 'hidden_size'))
 
-        self.min_len = config.getint('data', 'min_len')
-        self.max_len = config.getint('data', 'max_len')
+        self.summary_min_len = config.getint('model', 'summary_min_len')
+        self.summary_max_len = config.getint('model', 'summary_max_len')
+        self.data_max_len = config.getint('data', 'data_max_len')
 
 
+    # Checked.
     def forward(self, data, mode, *args, **kwargs):
-        if mode == 'serve':
-            summary_id = self.bart.generate(
-                inputs=data
-                , min_length=self.min_len
-                , max_length=self.max_len)
-
-            # summary = self.tokenizer.batch_decode(
-            #     sequences=summary_id
-            #     , skip_special_tokens=True
-            #     , clean_up_tokenization_spaces=False)[0]
-
-            return summary_id
-        # mode == 'train' or 'eval'
-        else:
+        # The mode is 'train', 'validate' or 'test'.
+        if mode != 'serve':
             cns_data, tci_data, cns_tci_data_number = \
                 self.get_cns_and_tci_data(data)
 
             loss = None
-
             if cns_data:
-                loss = self.bart(
+                loss = self.model(
                     input_ids=cns_data['text']
                     , labels=cns_data['summary'])['loss']
 
             summary_ids = None
-
             if tci_data:
-                summary_ids = self.bart.generate(
+                summary_ids = self.model.generate(
                     inputs=tci_data['text']
-                    , min_length=10
-                    , max_length=50)
-
-                # summaries = self.tokenizer.batch_decode(
-                #     sequences=summary_ids
-                #     , skip_special_tokens=True)
+                    , min_length=self.summary_min_len
+                    , max_length=self.summary_max_len)
 
                 summary_ids = self.get_summary_ids(summary_ids=summary_ids)
 
@@ -71,7 +56,21 @@ class BART(nn.Module):
                 , 'cns_tci_data_number': cns_tci_data_number
             }
 
+        # If mode is 'serve'.
+        summary_id = self.model.generate(
+            inputs=data
+            , min_length=self.summary_min_len
+            , max_length=self.summary_max_len)
 
+        # summary = self.tokenizer.batch_decode(
+        #     sequences=summary_id
+        #     , skip_special_tokens=True
+        #     , clean_up_tokenization_spaces=False)[0]
+
+        return summary_id
+
+
+    # Checked.
     def get_cns_and_tci_data(self, data):
         cns_data, tci_data = {}, {}
         cns_data_number, tci_data_number = 0, 0
@@ -80,7 +79,7 @@ class BART(nn.Module):
             for item in data:
                 temp_data = torch.unsqueeze(input=data[item][index], dim=0)
 
-                # summary exists -> CNS
+                # Summary exists -> CNS
                 if torch.count_nonzero(data['summary'][index]) != 0:
                     if not item in cns_data:
                         cns_data[item] = temp_data
@@ -90,6 +89,7 @@ class BART(nn.Module):
                             , dim=0)
 
                     cns_data_number += 1
+                # Summary does not exist -> TCI
                 else:
                     if not item in tci_data:
                         tci_data[item] = temp_data
@@ -100,12 +100,16 @@ class BART(nn.Module):
 
                     tci_data_number += 1
 
+        # One data contains 'text', 'summary', 'relevant_articles'
+        # and 'accusations'.
+        # So the length of one data is 4.
         cns_data_number /= 4
         tci_data_number /= 4
 
         return cns_data, tci_data, (cns_data_number, tci_data_number)
 
 
+    # Checked.
     def get_summary_ids(self, summary_ids):
         summary_ids = summary_ids.tolist()
 
@@ -126,7 +130,7 @@ class BART(nn.Module):
 
             current_id_length = len(temp_summary_id)
 
-            for _ in range(self.max_len - current_id_length):
+            for _ in range(self.data_max_len - current_id_length):
                 temp_summary_id.append(0)
 
             summary_ids[index] = temp_summary_id
@@ -136,16 +140,18 @@ class BART(nn.Module):
         return summary_ids
 
 
+    # Checked.
     # Size of `summary_ids` = [batch_size, sequence_length]
     def get_clses_embedding(self, ids):
         # Size of `hidden_states` = [batch_size, sequence_length, hidden_size]
         hidden_states = \
-            self.bart(input_ids=ids)['encoder_last_hidden_state']
+            self.model(input_ids=ids)['encoder_last_hidden_state']
 
         # Size of returning value = [batch_size, hidden_size]
         return self.pooler(hidden_states)
 
 
+# Checked.
 # This pooler is the same as Hugging Face's BERT design.
 class BertPooler(nn.Module):
     def __init__(self, hidden_size):

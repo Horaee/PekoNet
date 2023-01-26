@@ -6,21 +6,18 @@ from pekonet.formatter.pekonet import PekoNetFormatter
 logger = logging.getLogger(__name__)
 
 
-def initialize_formatter(config, mode, task=None, *args, **kwargs):
-    logger.info('Start to initialize formatter.')
-
+# Checked.
+def initialize_formatter(config, task=None, *args, **kwargs):
     try:
-        formatter_name = config.get('data', f'{task}_formatter_type')
+        formatter_name = config.get('data', f'{task}_formatter_name')
     except:
-        logger.error('Failed to get the type of formatter.')
-        raise Exception('Failed to get the type of formatter.')
+        logger.error('Failed to get the name of formatter.')
+        raise Exception('Failed to get the name of formatter.')
 
     formatters = {'PekoNetFormatter': PekoNetFormatter}
 
     if formatter_name in formatters:
-        formatter = formatters[formatter_name](
-            config=config)
-            # , mode=mode)
+        formatter = formatters[formatter_name](config=config)
     else:
         logger.error(f'There is no formatter called {formatter_name}.')
         raise Exception(f'There is no formatter called {formatter_name}.')

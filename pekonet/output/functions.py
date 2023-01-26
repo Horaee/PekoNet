@@ -1,17 +1,14 @@
 from pekonet.evaluation import get_micro_macro_prf
 
 
+# Checked.
 def empty_output_function(*args, **kwargs):
     return ''
 
 
-def aa_output_function(*args, **kwargs):
-    data = kwargs['data']
-
-    results = {}
-    results['article'] = get_micro_macro_prf(
-        data=data['article'])
-    results['accusation'] = get_micro_macro_prf(
-        data=data['accusation'])
-
-    return results
+# Checked.
+def aa_output_function(cm_results):
+    return {
+        'article': get_micro_macro_prf(cm_results=cm_results['article'])
+        , 'accusation': get_micro_macro_prf(cm_results=cm_results['accusation'])
+    }

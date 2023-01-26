@@ -5,13 +5,15 @@ import configparser
 from utils import initialize_logger
 from pekonet.initialize import initialize_all
 from pekonet.train import train
+from pekonet.validate import validate
+from pekonet.test import test
 # from pekonet.serve import serve
-from pekonet.vot import vot
 
 
 information = ' '.join(sys.argv)
 
 
+# TODO: Checking.
 def main(*args, **kwargs):
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -21,12 +23,13 @@ def main(*args, **kwargs):
     )
     parser.add_argument(
         '-m', '--mode'
-        , help='train, eval or serve'
+        , help='train, validate, test or serve'
         , required=True
     )
     parser.add_argument(
-        '-g', '--gpu'
+        '-g', '--gpus'
         , help='The list of gpu IDs'
+        , required=True
     )
     parser.add_argument(
         '-cp', '--checkpoint_path'
@@ -34,11 +37,11 @@ def main(*args, **kwargs):
     )
     parser.add_argument(
         '-bs', '--batch_size'
-        , help='The batch size in train or eval mode'
+        , help='The batch size in train, validate or test mode'
     )
     parser.add_argument(
-        '-dt', '--do_test'
-        , help='Test in train mode (Ignore if you do not test)'
+        '-dv', '--do_validation'
+        , help='Validate in train mode (Ignore if you do not validate)'
         , action='store_true'
     )
 
@@ -53,17 +56,22 @@ def main(*args, **kwargs):
     parameters = initialize_all(
         config=config
         , mode=args.mode
-        , device_str=args.gpu
+        , gpu_ids_str=args.gpus
         , checkpoint_path=args.checkpoint_path
         , batch_size_str=args.batch_size
-        , do_test=args.do_test)
+        , do_validation=args.do_validation)
 
     if args.mode == 'train':
-        train(parameters=parameters, do_test=args.do_test)
-    # elif args.mode == 'serve':
-    #     serve(parameters=parameters)
+        train(parameters=parameters, do_validation=args.do_validation)
+    elif args.mode == 'validate':
+        validate(parameters=parameters)
+    elif args.mode == 'test':
+        print(f'This is the unimplemented mode: {args.mode}.')
+        test(parameters=parameters)
+    # If mode is 'serve'.
     else:
-        vot(parameters=parameters, mode=args.mode)
+        print(f'This is the unimplemented mode: {args.mode}.')
+        # serve(parameters=parameters)
 
 
 if __name__ == '__main__':
