@@ -1,6 +1,6 @@
 import logging
-import torch
 import os
+import torch
 import gc
 
 from timeit import default_timer as timer
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 
 # Checked.
-def train(parameters, do_validation, *args, **kwargs):
+def train(parameters, do_validation):
     model = parameters['model']
     optimizer = parameters['optimizer']
     exp_lr_scheduler = parameters['exp_lr_scheduler']
@@ -96,7 +96,7 @@ def train(parameters, do_validation, *args, **kwargs):
                 else:
                     loss = float(cls_loss / cls_counter)
                     is_summarization = False
-                    mima_prf_results = output_function(data=cm_results)
+                    mima_prf_results = output_function(cm_results=cm_results)
 
                 log_results(
                     epoch=current_epoch
@@ -126,7 +126,7 @@ def train(parameters, do_validation, *args, **kwargs):
         else:
             loss = float(cls_loss / cls_counter)
             is_summarization = False
-            mima_prf_results = output_function(data=cm_results)
+            mima_prf_results = output_function(cm_results=cm_results)
 
         log_results(
             epoch=current_epoch

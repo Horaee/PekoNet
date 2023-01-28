@@ -12,21 +12,22 @@ logger = logging.getLogger(__name__)
 
 
 # Checked.
-def validate(parameters, mode, *args, **kwargs):
+def validate(parameters):
     model = parameters['model']
     trained_epoch = parameters['trained_epoch']
-    dataloader = parameters[f'{mode}_dataloader']
+    dataloader = parameters['validate_dataloader']
     output_function = parameters['output_function']
     output_time = parameters['output_time']
 
-    validate_one(
-        model=model
-        , dataloader=dataloader
-        , output_time=output_time
-        , output_function=output_function
-        , current_epoch=trained_epoch
-        , task=mode
-    )
+    with torch.no_grad():
+        validate_one(
+            model=model
+            , dataloader=dataloader
+            , output_time=output_time
+            , output_function=output_function
+            , current_epoch=trained_epoch
+            , task='validate'
+        )
 
 
 # Checked.
@@ -64,7 +65,7 @@ def validate_one(
         if step % output_time == 0:
             delta_time = (timer() - start_time)
             loss = float(cls_loss / cls_counter)
-            mima_prf_results = output_function(data=cm_results)
+            mima_prf_results = output_function(cm_results=cm_results)
 
             log_results(
                 epoch=current_epoch
@@ -82,7 +83,7 @@ def validate_one(
 
     delta_time = (timer() - start_time)
     loss = float(cls_loss / cls_counter)
-    mima_prf_results = output_function(data=cm_results)
+    mima_prf_results = output_function(cm_results=cm_results)
 
     log_results(
         epoch=current_epoch

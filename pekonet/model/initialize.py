@@ -1,9 +1,7 @@
 import logging
 
-# from pytorch_pretrained_bert import BertAdam
 from torch.optim import Adam
 
-# from legal_judgment_prediction.model.bert import LJPBert
 from pekonet.model.pekonet import PekoNet
 
 

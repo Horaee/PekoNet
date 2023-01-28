@@ -1,13 +1,14 @@
 import logging
+import os
+import torch
 import random
 import numpy
-import torch
-import os
 
 from torch.optim import lr_scheduler
 
 from utils import initialize_gpus, initialize_batch_size, get_tables
-from pekonet.model.initialize import initialize_model, initialize_optimizer
+# from pekonet.model.initialize import initialize_model, initialize_optimizer
+from pekonet.model import initialize_model, initialize_optimizer
 from pekonet.dataset import initialize_dataloader
 from pekonet.output import initialize_output_function
 from pekonet.formatter import initialize_formatter
@@ -26,8 +27,6 @@ def initialize_all(
         , do_validation
         , *args
         , **kwargs):
-    logger.info('Start to initialize.')
-
     check_mode(mode=mode)
     initialize_seeds()
 
@@ -207,7 +206,7 @@ def check_mode(mode):
 
 
 # Checked.
-def initialize_seeds():
+def initialize_seeds(*args, **kwargs):
     seed = 48763
 
     random.seed(seed)

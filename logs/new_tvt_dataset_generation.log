@@ -1,0 +1,68 @@
+2023-01-28 04:56:15,203 - root - INFO - 
+
+
+
+generate.py -c configs/generate/integration/config.ini
+2023-01-28 04:56:15,203 - data_generation.initialize - INFO - Start to initialize.
+2023-01-28 04:56:15,203 - data_generation.initialize - WARNING - The path of output results/tvt_dataset/integration/new_full_data does not exist.
+2023-01-28 04:56:15,203 - data_generation.initialize - INFO - Make the directory automatically.
+2023-01-28 04:56:15,204 - data_generation.initialize - INFO - Initialize successfully.
+2023-01-28 04:56:15,204 - root - INFO - Start to generate data.
+2023-01-28 04:56:15,204 - data_generation.utils - INFO - Start to get integration data.
+2023-01-28 04:56:15,204 - data_generation.utils - INFO - Start to load data.
+2023-01-28 04:56:15,204 - data_generation.utils - INFO - Start to process valid.json.
+2023-01-28 04:56:15,384 - data_generation.utils - INFO - Process valid.json successfully.
+2023-01-28 04:56:15,384 - data_generation.utils - INFO - Start to process train.json.
+2023-01-28 04:56:16,992 - data_generation.utils - INFO - Process train.json successfully.
+2023-01-28 04:56:16,992 - data_generation.utils - INFO - Load data successfully.
+2023-01-28 04:56:24,694 - data_generation.utils - INFO - Start to copy 3A files from source to destination.
+2023-01-28 04:56:24,695 - data_generation.utils - INFO - Copy 3A files from source to destination successfully.
+2023-01-28 04:56:24,695 - data_generation.utils - INFO - Start to load data.
+2023-01-28 04:56:24,695 - data_generation.utils - INFO - Start to process valid.json.
+2023-01-28 04:56:24,826 - data_generation.utils - INFO - Process valid.json successfully.
+2023-01-28 04:56:24,827 - data_generation.utils - INFO - Start to process train.json.
+2023-01-28 04:56:25,874 - data_generation.utils - INFO - Process train.json successfully.
+2023-01-28 04:56:25,874 - data_generation.utils - INFO - Load data successfully.
+2023-01-28 04:56:58,292 - data_generation.utils - INFO - Start to write back results.
+2023-01-28 04:56:58,756 - data_generation.utils - INFO - Start to write sum_train.json.
+2023-01-28 04:57:00,330 - data_generation.utils - INFO - Start to write ljp_train.json.
+2023-01-28 04:57:00,987 - data_generation.utils - INFO - Start to write validate.json.
+2023-01-28 04:57:01,046 - data_generation.utils - INFO - Start to write test.json.
+2023-01-28 04:57:01,053 - data_generation.utils - INFO - Write test.json successfully.
+2023-01-28 04:57:01,058 - data_generation.utils - INFO - Write back results successfully.
+2023-01-28 04:57:01,058 - data_generation.utils - INFO - Get integration data successfully.
+2023-01-28 04:57:01,235 - root - INFO - Generate data successfully.
+2023-01-28 05:07:58,876 - root - INFO - 
+
+
+
+generate.py -c configs/generate/integration/config.ini
+2023-01-28 05:07:58,876 - data_generation.initialize - INFO - Start to initialize.
+2023-01-28 05:07:58,876 - data_generation.initialize - INFO - Initialize successfully.
+2023-01-28 05:07:58,876 - root - INFO - Start to generate data.
+2023-01-28 05:07:58,876 - data_generation.utils - INFO - Start to get integration data.
+2023-01-28 05:07:58,876 - data_generation.utils - INFO - Start to load data.
+2023-01-28 05:07:58,876 - data_generation.utils - INFO - Start to process valid.json.
+2023-01-28 05:07:59,059 - data_generation.utils - INFO - Process valid.json successfully.
+2023-01-28 05:07:59,059 - data_generation.utils - INFO - Start to process train.json.
+2023-01-28 05:08:00,691 - data_generation.utils - INFO - Process train.json successfully.
+2023-01-28 05:08:00,691 - data_generation.utils - INFO - Load data successfully.
+2023-01-28 05:08:08,419 - data_generation.utils - INFO - Start to copy 3A files from source to destination.
+2023-01-28 05:08:08,420 - data_generation.utils - INFO - Copy 3A files from source to destination successfully.
+2023-01-28 05:08:08,420 - data_generation.utils - INFO - Start to load data.
+2023-01-28 05:08:08,420 - data_generation.utils - INFO - Start to process valid.json.
+2023-01-28 05:08:08,552 - data_generation.utils - INFO - Process valid.json successfully.
+2023-01-28 05:08:08,553 - data_generation.utils - INFO - Start to process test.json.
+2023-01-28 05:08:08,687 - data_generation.utils - INFO - Process test.json successfully.
+2023-01-28 05:08:08,687 - data_generation.utils - INFO - Start to process train.json.
+2023-01-28 05:08:09,752 - data_generation.utils - INFO - Process train.json successfully.
+2023-01-28 05:08:09,752 - data_generation.utils - INFO - Load data successfully.
+2023-01-28 05:08:46,763 - data_generation.utils - INFO - Start to write back results.
+2023-01-28 05:08:47,255 - data_generation.utils - INFO - Start to write sum_train.json.
+2023-01-28 05:08:50,669 - data_generation.utils - INFO - Start to write ljp_train.json.
+2023-01-28 05:08:51,932 - data_generation.utils - INFO - Start to write validate.json.
+2023-01-28 05:08:52,098 - data_generation.utils - INFO - Start to write test.json.
+2023-01-28 05:08:52,118 - data_generation.utils - INFO - Write test.json successfully.
+2023-01-28 05:08:52,131 - data_generation.utils - INFO - Write back results successfully.
+2023-01-28 05:08:52,131 - data_generation.utils - INFO - Get integration data successfully.
+2023-01-28 05:08:52,483 - root - INFO - Generate data successfully.

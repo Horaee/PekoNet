@@ -1,7 +1,6 @@
 import logging
 
-from pekonet.output.functions import \
-    empty_output_function, aa_output_function
+from pekonet.output.functions import empty_output_function, aa_output_function
 
 
 logger = logging.getLogger(__name__)

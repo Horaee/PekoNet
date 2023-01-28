@@ -4,8 +4,8 @@ import torch
 from transformers import BartForConditionalGeneration, BertTokenizer
 
 
+# Checked.
 class BART(nn.Module):
-    # Checked.
     def __init__(self, config, *args, **kwargs):
         super(BART, self).__init__()
 
@@ -27,7 +27,6 @@ class BART(nn.Module):
         self.data_max_len = config.getint('data', 'data_max_len')
 
 
-    # Checked.
     def forward(self, data, mode, *args, **kwargs):
         # The mode is 'train', 'validate' or 'test'.
         if mode != 'serve':
@@ -70,8 +69,7 @@ class BART(nn.Module):
         return summary_id
 
 
-    # Checked.
-    def get_cns_and_tci_data(self, data):
+    def get_cns_and_tci_data(self, data, *args, **kwargs):
         cns_data, tci_data = {}, {}
         cns_data_number, tci_data_number = 0, 0
 
@@ -109,8 +107,7 @@ class BART(nn.Module):
         return cns_data, tci_data, (cns_data_number, tci_data_number)
 
 
-    # Checked.
-    def get_summary_ids(self, summary_ids):
+    def get_summary_ids(self, summary_ids, *args, **kwargs):
         summary_ids = summary_ids.tolist()
 
         for index in range(len(summary_ids)):
@@ -140,9 +137,8 @@ class BART(nn.Module):
         return summary_ids
 
 
-    # Checked.
-    # Size of `summary_ids` = [batch_size, sequence_length]
-    def get_clses_embedding(self, ids):
+    # Size of `ids` = [batch_size, sequence_length]
+    def get_clses_embedding(self, ids, *args, **kwargs):
         # Size of `hidden_states` = [batch_size, sequence_length, hidden_size]
         hidden_states = \
             self.model(input_ids=ids)['encoder_last_hidden_state']
@@ -154,7 +150,7 @@ class BART(nn.Module):
 # Checked.
 # This pooler is the same as Hugging Face's BERT design.
 class BertPooler(nn.Module):
-    def __init__(self, hidden_size):
+    def __init__(self, hidden_size, *args, **kwargs):
         super(BertPooler, self).__init__()
 
         self.fc = nn.Linear(hidden_size, hidden_size)
@@ -167,7 +163,7 @@ class BertPooler(nn.Module):
 
 
     # Size of `hidden_states` = [batch_size, sequence_length, hidden_size].
-    def forward(self, hidden_states):
+    def forward(self, hidden_states, *args, **kwargs):
         # `hidden_states[:, 0]` is [CLS] token.
         # Size of `hidden_states[:, 0]` = [batch_size, hidden_size].
         # Size of returning value is the same as `hidden_states[:, 0]`.

@@ -1,5 +1,5 @@
-import torch
 import numpy as np
+import torch
 
 from transformers import BertTokenizer
 
@@ -42,7 +42,7 @@ class PekoNetFormatter:
         accusations.close()
 
 
-    def process(self, data):
+    def process(self, data, *args, **kwargs):
         # Checked.
         if isinstance(data, list):
             texts = []
@@ -112,7 +112,7 @@ class PekoNetFormatter:
 
 
     # Checked.
-    def string2ids(self, string):
+    def string2ids(self, string, *args, **kwargs):
         char_list = self.tokenizer.tokenize(string)
         char_list = set_special_tokens(
             add_tokens_at_beginning=self.add_tokens_at_beginning

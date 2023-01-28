@@ -15,7 +15,7 @@ class PekoNet(nn.Module):
 
 
     # Checked.
-    def initialize_multiple_gpus(self, gpu_ids_int_list):
+    def initialize_multiple_gpus(self, gpu_ids_int_list, *args, **kwargs):
         self.bart = nn.DataParallel(
             module=self.bart
             , device_ids=gpu_ids_int_list)
@@ -24,7 +24,7 @@ class PekoNet(nn.Module):
             , device_ids=gpu_ids_int_list)
 
 
-    def forward(self, data, mode, cm_results=None):
+    def forward(self, data, mode, cm_results=None, *args, **kwargs):
         # Checked.
         if mode == 'train' or mode == 'validate':
             outputs = self.bart(data=data, mode=mode)
@@ -37,7 +37,7 @@ class PekoNet(nn.Module):
                 #     [batch_size, sequence_length].
                 # Size of `cls_embeddings` = [batch_size, hidden_size].
                 cls_embeddings = self.bart.module.get_clses_embedding(
-                    summary_ids=outputs['summary_ids'])
+                    ids=outputs['summary_ids'])
 
                 labels = {
                     'article': outputs['tci_data']['article']

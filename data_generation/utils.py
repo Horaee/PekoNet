@@ -349,7 +349,7 @@ def get_integration_data(parameters):
     logger.info('Copy 3A files from source to destination successfully.')
 
     except_files = aaa_files
-    except_files.append('test.json')
+    # except_files.append('test.json')
 
     tci_data = load_data(
         data_path=parameters['tci_data_path']
@@ -366,6 +366,10 @@ def get_integration_data(parameters):
             string=one_data['fact']
             , adjust_chars=True
             , process_fact=True)
+
+        if result['text'] == '':
+            continue
+
         result['relevant_articles'] = one_data['meta']['relevant_articles']
         result['accusation'] = one_data['meta']['accusation']
 
@@ -516,22 +520,26 @@ def write_tvt_data(
         random.shuffle(cns_results)
         random.shuffle(tci_results)
 
-        train_data, valid_data = train_test_split(
+        ljp_train_data, validate_data = train_test_split(
             tci_results
             , train_size=parameters['train_size']
             , random_state=parameters['random_seed'])
 
         # train_data = cns_results + train_data
 
-        file_name_to_data = {'train.json': train_data, 'valid.json': valid_data}
+        file_name_to_data = {
+            'sum_train.json': cns_results
+            , 'ljp_train.json': ljp_train_data
+            , 'validate.json': validate_data
+        }
 
         if parameters['generate_test_data'] is True:
-            valid_data, test_data = train_test_split(
-                valid_data
+            validate_data, test_data = train_test_split(
+                validate_data
                 , train_size=parameters['valid_size']
                 , random_state=parameters['random_seed'])
 
-            file_name_to_data['valid.json'] = valid_data
+            file_name_to_data['validate.json'] = validate_data
             file_name_to_data['test.json'] = test_data
 
         for file_name in file_name_to_data:

@@ -8,3 +8,13 @@
 2023-01-27 04:49:32,842 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
 2023-01-27 04:49:32,843 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
 2023-01-27 04:49:32,844 - pekonet.initialize - WARNING - The path of checkpoint is none.
+2023-01-27 14:26:26,260 - root - INFO - main.py -c configs/main/config.ini -m train -g 0 -bs 6
+2023-01-27 14:26:26,260 - pekonet.initialize - INFO - Start to initialize.
+2023-01-27 14:26:26,260 - pekonet.initialize - INFO - The mode has been confirmed.
+2023-01-27 14:26:26,261 - pekonet.initialize - INFO - Seed has been set into 48763.
+2023-01-27 14:26:26,273 - utils - INFO - CUDA is available.
+2023-01-27 14:26:26,273 - utils - INFO - Initialize GPUs successfully.
+2023-01-27 14:26:27,466 - pekonet.model.initialize - INFO - Initialize model successfully.
+2023-01-27 14:26:28,945 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2023-01-27 14:26:28,946 - pekonet.model.initialize - INFO - Initialize optimizer successfully.
+2023-01-27 14:26:28,946 - pekonet.initialize - WARNING - The path of checkpoint is none.

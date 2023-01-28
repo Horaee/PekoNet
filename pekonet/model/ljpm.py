@@ -31,7 +31,9 @@ class LJPM(nn.Module):
             , mode
             , cls_embeddings
             , labels
-            , cm_results=None):
+            , cm_results=None
+            , *args
+            , **kwargs):
         # Checked.
         # If mode is 'train', 'validate' or 'test'.
         if mode != 'serve':

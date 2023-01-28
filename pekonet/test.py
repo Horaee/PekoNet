@@ -11,21 +11,22 @@ from utils import log_results, get_time_str
 logger = logging.getLogger(__name__)
 
 
-def test(parameters, mode, *args, **kwargs):
+def test(parameters, mode):
     model = parameters['model']
     trained_epoch = parameters['trained_epoch']
     dataloader = parameters[f'{mode}_dataloader']
     output_function = parameters['output_function']
     output_time = parameters['output_time']
 
-    test_one(
-        model=model
-        , dataloader=dataloader
-        , output_time=output_time
-        , output_function=output_function
-        , current_epoch=trained_epoch
-        , task=mode
-    )
+    with torch.no_grad():
+        test_one(
+            model=model
+            , dataloader=dataloader
+            , output_time=output_time
+            , output_function=output_function
+            , current_epoch=trained_epoch
+            , task=mode
+        )
 
 
 def test_one(
@@ -35,9 +36,7 @@ def test_one(
         , output_function
         , current_epoch
         , task
-        , from_train=False
-        , *args
-        , **kwargs):
+        , from_train=False):
     model.eval()
 
     total_len = len(dataset)

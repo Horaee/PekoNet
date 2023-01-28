@@ -21,7 +21,7 @@ class LJPMPredictor(nn.Module):
 
 
     # Checked.
-    def forward(self, tensors):
+    def forward(self, tensors, *args, **kwargs):
         articles = self.article_fc(input=tensors)
         accusations = self.accusation_fc(input=tensors)
         

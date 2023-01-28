@@ -3,7 +3,7 @@ import torch.nn as nn
 
 # Checked.
 class MultiLabelsLoss(nn.Module):
-    def __init__(self, class_number):
+    def __init__(self, class_number, *args, **kwargs):
         super(MultiLabelsLoss, self).__init__()
         
         self.criterions = []
@@ -13,7 +13,7 @@ class MultiLabelsLoss(nn.Module):
 
 
     # The size of predictions is [batch_size, task_number, 2].
-    def forward(self, predictions, labels):
+    def forward(self, predictions, labels, *args, **kwargs):
         loss = 0
 
         # Size of predictions = [batch_size, task_number, 2].

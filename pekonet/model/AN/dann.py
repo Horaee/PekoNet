@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 
-from pekonet.model.utils import GRL
+from pekonet.model.AN.utils import GRL
 
 
 class DANN(nn.Module):
