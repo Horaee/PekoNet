@@ -62,6 +62,31 @@ class PekoNet(nn.Module):
         # If mode is 'test' or 'serve'.
         # TODO: Unfinished.
         else:
+            cls_embeddings = self.bart.module.get_clses_embedding(
+                ids=data['text'])
+
+            labels = {
+                'article': data['article']
+                , 'accusation': data['accusation']
+            }
+
+            outputs = self.ljpm(
+                mode=mode
+                , cls_embeddings=cls_embeddings
+                , labels=labels
+                , cm_result=cm_results)
+
+            # cls_embeddings.size(0) is the batch_size.
+            cls_data_number = cls_embeddings.size(0)
+            cls_loss = outputs['loss']
+            cm_results = outputs['cm_results']
+
+            return {
+                'cls_data_number': cls_data_number
+                , 'cls_loss': cls_loss
+                , 'cm_result': cm_results
+            }
+
             # tensor = self.bart(data, mode)
             # output = self.ljpm(tensor, mode)
 

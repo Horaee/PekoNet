@@ -66,7 +66,6 @@ def main(*args, **kwargs):
     elif args.mode == 'validate':
         validate(parameters=parameters)
     elif args.mode == 'test':
-        print(f'This is the unimplemented mode: {args.mode}.')
         test(parameters=parameters)
     # If mode is 'serve'.
     else:
