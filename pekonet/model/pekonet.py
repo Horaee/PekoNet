@@ -1,6 +1,7 @@
 import torch.nn as nn
 
 from pekonet.model.bart import BART
+from pekonet.model.bert import BERT
 from pekonet.model.ljpm import LJPM
 
 
@@ -11,6 +12,7 @@ class PekoNet(nn.Module):
         super(PekoNet, self).__init__()
 
         self.bart = BART(config=config)
+        self.bert = BERT(config=config)
         self.ljpm = LJPM(config=config)
 
 
@@ -36,8 +38,10 @@ class PekoNet(nn.Module):
                 # Size of `outputs['summary_ids']` = \
                 #     [batch_size, sequence_length].
                 # Size of `cls_embeddings` = [batch_size, hidden_size].
-                cls_embeddings = self.bart.module.get_clses_embedding(
-                    ids=outputs['summary_ids'])
+
+                cls_embeddings = self.bert(ids=outputs['summary_ids'])
+                # cls_embeddings = self.bart.module.get_clses_embedding(
+                #     ids=outputs['summary_ids'])
 
                 labels = {
                     'article': outputs['tci_data']['article']
@@ -62,8 +66,9 @@ class PekoNet(nn.Module):
         # If mode is 'test' or 'serve'.
         # TODO: Unfinished.
         else:
-            cls_embeddings = self.bart.module.get_clses_embedding(
-                ids=data['text'])
+            # cls_embeddings = self.bart.module.get_clses_embedding(
+            #     ids=data['text'])
+            cls_embeddings = self.bert(ids=data['text'])
 
             labels = {
                 'article': data['article']
