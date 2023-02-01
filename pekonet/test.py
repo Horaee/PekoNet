@@ -11,10 +11,10 @@ from utils import log_results, get_time_str
 logger = logging.getLogger(__name__)
 
 
-def test(parameters, mode):
+def test(parameters):
     model = parameters['model']
     trained_epoch = parameters['trained_epoch']
-    dataloader = parameters[f'{mode}_dataloader']
+    dataloader = parameters['test_dataloader']
     output_function = parameters['output_function']
     output_time = parameters['output_time']
 
@@ -25,7 +25,7 @@ def test(parameters, mode):
             , output_time=output_time
             , output_function=output_function
             , current_epoch=trained_epoch
-            , task=mode
+            , task='test'
         )
 
 
@@ -57,7 +57,7 @@ def test_one(
         else:
             cls_loss += float(results['cls_loss'])
 
-        cls_counter += results['cns_data_number']
+        cls_counter += results['cls_data_number']
         cm_results = results['cm_results']
 
         if step % output_time == 0:

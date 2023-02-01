@@ -74,7 +74,7 @@ class PekoNet(nn.Module):
                 mode=mode
                 , cls_embeddings=cls_embeddings
                 , labels=labels
-                , cm_result=cm_results)
+                , cm_results=cm_results)
 
             # cls_embeddings.size(0) is the batch_size.
             cls_data_number = cls_embeddings.size(0)
@@ -84,7 +84,7 @@ class PekoNet(nn.Module):
             return {
                 'cls_data_number': cls_data_number
                 , 'cls_loss': cls_loss
-                , 'cm_result': cm_results
+                , 'cm_results': cm_results
             }
 
             # tensor = self.bart(data, mode)
