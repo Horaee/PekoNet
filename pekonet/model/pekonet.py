@@ -29,7 +29,13 @@ class PekoNet(nn.Module):
     def forward(self, data, mode, cm_results=None, *args, **kwargs):
         # Checked.
         if mode == 'train' or mode == 'validate':
-            outputs = self.bart(data=data, mode=mode)
+            try:
+                outputs = self.bart(
+                    data
+                    , mode
+                    , freeze_model=kwargs['freeze_model'])
+            except:
+                outputs = self.bart(data=data, mode=mode)
 
             sum_loss, cls_loss = outputs['loss'], None
             cns_tci_data_number = outputs['cns_tci_data_number']

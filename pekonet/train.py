@@ -32,6 +32,8 @@ def train(parameters, do_validation):
         validate_dataloader = parameters['validate_dataloader']
 
     for current_epoch in range(trained_epoch, total_epoch):
+        freeze_model = False
+
         if current_epoch < sum_epoch:
             sum_loss, sum_counter = None, 0
             dataloader = parameters['sum_train_dataloader']
@@ -43,6 +45,8 @@ def train(parameters, do_validation):
             if current_epoch == sum_epoch:
                 for param_group in optimizer.param_groups:
                     param_group['lr'] = parameters['learning_rate']
+
+                freeze_model = True
 
         dataloader_len = len(dataloader)
         cm_results, mima_prf_results = None, None
@@ -60,7 +64,14 @@ def train(parameters, do_validation):
 
             optimizer.zero_grad()
 
-            results = model(data=data, mode='train', cm_results=cm_results)
+            if freeze_model:
+                results = model(
+                    data
+                    , 'train'
+                    , cm_results
+                    , freeze_model=freeze_model)
+            else:
+                results = model(data=data, mode='train', cm_results=cm_results)
 
             # Sum training
             if current_epoch < sum_epoch:

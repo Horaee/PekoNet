@@ -28,6 +28,13 @@ class BART(nn.Module):
 
 
     def forward(self, data, mode, *args, **kwargs):
+        try:
+            if kwargs['freeze_model'] == True:
+                for parm in self.model.parameters():
+                    parm.requires_grad = False
+        except:
+            temp = -1
+
         # The mode is 'train', 'validate' or 'test'.
         if mode != 'serve':
             cns_data, tci_data, cns_tci_data_number = \
