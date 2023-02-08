@@ -22,31 +22,39 @@ def train(parameters, do_validation):
     trained_epoch = (parameters['trained_epoch'] + 1)
     output_function = parameters['output_function']
     output_path = parameters['output_path']
-    sum_epoch = parameters['sum_epoch']
-    ljp_epoch = parameters['ljp_epoch']
-    total_epoch = sum_epoch + ljp_epoch
     output_time = parameters['output_time']
     test_time = parameters['test_time']
+    use_mix_data = parameters['use_mix_data']
+    sum_epoch = parameters['sum_epoch']
+
+    if use_mix_data:
+        total_epoch = sum_epoch + parameters['mix_epoch']
+    else:
+        total_epoch = sum_epoch + parameters['ljp_epoch']
 
     if do_validation == True:
         validate_dataloader = parameters['validate_dataloader']
 
     for current_epoch in range(trained_epoch, total_epoch):
         freeze_model = False
+        loss, counter = 0, 0
+        sum_loss, sum_counter = 0, 0
+        cls_loss, cls_counter = 0, 0
 
         if current_epoch < sum_epoch:
-            sum_loss, sum_counter = None, 0
             dataloader = parameters['sum_train_dataloader']
         else:
-            cls_loss, cls_counter = None, 0
-            dataloader = parameters['ljp_train_dataloader']
+            if use_mix_data:
+                dataloader = parameters['mix_train_dataloader']
+            else:
+                dataloader = parameters['ljp_train_dataloader']
 
             # Re-initialize learning rate for LJP training.
             if current_epoch == sum_epoch:
                 for param_group in optimizer.param_groups:
                     param_group['lr'] = parameters['learning_rate']
 
-                freeze_model = True
+                freeze_model = False
 
         dataloader_len = len(dataloader)
         cm_results, mima_prf_results = None, None
@@ -75,22 +83,27 @@ def train(parameters, do_validation):
 
             # Sum training
             if current_epoch < sum_epoch:
-                if sum_loss == None:
-                    sum_loss = float(results['sum_loss'])
-                else:
-                    sum_loss += float(results['sum_loss'])
-
+                loss += float(results['sum_loss'])
+                sum_loss += float(results['sum_loss'])
+                counter += results['cns_tci_data_number'][0]
                 sum_counter += results['cns_tci_data_number'][0]
-                results['sum_loss'].backward()
-            # LJP training
-            else:
-                if cls_loss == None:
-                    cls_loss = float(results['cls_loss'])
-                else:
-                    cls_loss += float(results['cls_loss'])
 
+                results['sum_loss'].backward()
+            # Mix training
+            else:
+                batch_loss = (results['sum_loss'] + results['cls_loss'])
+                batch_counter = (
+                    results['cns_tci_data_number'][0]
+                    + results['cns_tci_data_number'][1])
+
+                loss += float(batch_loss)
+                sum_loss += float(results['sum_loss'])
+                cls_loss += float(results['cls_loss'])
+                counter += batch_counter
+                sum_counter += results['cns_tci_data_number'][0]
                 cls_counter += results['cns_tci_data_number'][1]
-                results['cls_loss'].backward()
+
+                batch_loss.backward()
 
                 cm_results = results['cm_results']
 
@@ -98,16 +111,24 @@ def train(parameters, do_validation):
 
             if step % output_time == 0:
                 delta_time = (timer() - start_time)
+                loss /= counter
+
+                if sum_counter != 0:
+                    sum_loss /= sum_counter
+                
+                if cls_counter != 0:
+                    cls_loss /= cls_counter
 
                 # Sum training
                 if current_epoch < sum_epoch:
-                    loss = float(sum_loss / sum_counter)
                     is_summarization = True
-                # LJP training
+                # Mix training
                 else:
-                    loss = float(cls_loss / cls_counter)
                     is_summarization = False
-                    mima_prf_results = output_function(cm_results=cm_results)
+
+                    if cm_results != None:
+                        mima_prf_results = \
+                            output_function(cm_results=cm_results)
 
                 log_results(
                     epoch=current_epoch
@@ -115,7 +136,9 @@ def train(parameters, do_validation):
                     , iterations=f'{(step+1)}/{dataloader_len}'
                     , time=f'{get_time_str(delta_time)}/\
 {get_time_str(delta_time*(dataloader_len-step-1)/(step+1))}'
-                    , loss=str(loss)
+                    , loss=str(round(number=loss, ndigits=7))
+                    , sum_loss=sum_loss
+                    , cls_loss=cls_loss
                     , is_summarization=is_summarization
                     , learning_rate=learning_rate
                     , results=mima_prf_results
@@ -131,13 +154,13 @@ def train(parameters, do_validation):
 
         # Sum training
         if current_epoch < sum_epoch:
-            loss = float(sum_loss / sum_counter)
             is_summarization = True
-        # LJP training
+        # Mix training
         else:
-            loss = float(cls_loss / cls_counter)
             is_summarization = False
-            mima_prf_results = output_function(cm_results=cm_results)
+
+            if cm_results != None:
+                mima_prf_results = output_function(cm_results=cm_results)
 
         log_results(
             epoch=current_epoch
@@ -145,7 +168,9 @@ def train(parameters, do_validation):
             , iterations=f'{(step+1)}/{dataloader_len}'
             , time=f'{get_time_str(delta_time)}/\
 {get_time_str(delta_time*(dataloader_len-step-1)/(step+1))}'
-            , loss=str(loss)
+            , loss=str(round(number=loss, ndigits=7))
+            , sum_loss=sum_loss
+            , cls_loss=cls_loss
             , is_summarization=is_summarization
             , learning_rate=learning_rate
             , results=mima_prf_results

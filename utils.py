@@ -205,10 +205,22 @@ def log_results(
         , stage=None
         , iterations=None
         , time=None
-        , loss = None
+        , loss=None
+        , sum_loss=0
+        , cls_loss=0
         , is_summarization=False
         , learning_rate=None
         , results=None):
+
+    if sum_loss == 0:
+        sum_loss = 'None'
+    else:
+        sum_loss = str(round(number=sum_loss, ndigits=7))
+
+    if cls_loss == 0:
+        cls_loss = 'None'
+    else:
+        cls_loss = str(round(number=cls_loss, ndigits=7))
 
     header2item = {
         'epoch': epoch
@@ -216,6 +228,8 @@ def log_results(
         , 'iterations': iterations
         , 'time': time
         , 'loss': loss
+        , 'sum_loss': sum_loss
+        , 'cls_loss': cls_loss
         , 'is_summarization': is_summarization
         , 'learning_rate': learning_rate
     }

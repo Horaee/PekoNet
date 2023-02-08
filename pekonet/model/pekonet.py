@@ -37,7 +37,10 @@ class PekoNet(nn.Module):
             except:
                 outputs = self.bart(data=data, mode=mode)
 
-            sum_loss, cls_loss = outputs['loss'], None
+            sum_loss, cls_loss = outputs['loss'], 0
+            if sum_loss == None:
+                sum_loss = 0
+
             cns_tci_data_number = outputs['cns_tci_data_number']
 
             if outputs['summary_ids'] != None:

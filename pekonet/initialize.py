@@ -94,14 +94,27 @@ def initialize_all(
             , mode=mode
             , batch_size=batch_size
         )
-        ljp_train_dataloader = initialize_dataloader(
-            config=config
-            , task='ljp_train'
-            , mode=mode
-            , batch_size=batch_size
-        )
         results['sum_train_dataloader'] = sum_train_dataloader
-        results['ljp_train_dataloader'] = ljp_train_dataloader
+
+        results['use_mix_data'] = config.getboolean('train', 'use_mix_data')
+        if results['use_mix_data']:
+            mix_train_dataloader = initialize_dataloader(
+                config=config
+                , task='mix_train'
+                , mode=mode
+                , batch_size=batch_size
+            )
+            results['mix_train_dataloader'] = mix_train_dataloader
+            results['mix_epoch'] = config.getint('train', 'mix_epoch')
+        else:
+            ljp_train_dataloader = initialize_dataloader(
+                config=config
+                , task='ljp_train'
+                , mode=mode
+                , batch_size=batch_size
+            )
+            results['ljp_train_dataloader'] = ljp_train_dataloader
+            results['ljp_epoch'] = config.getint('train', 'ljp_epoch')
 
         if do_validation:
             validate_dataloader = initialize_dataloader(
@@ -128,7 +141,6 @@ def initialize_all(
         # results['model_name'] = config.get('model', 'model_name')
 
         results['sum_epoch'] = config.getint('train', 'sum_epoch')
-        results['ljp_epoch'] = config.getint('train', 'ljp_epoch')
         results['output_time'] = config.getint('output', 'output_time')
         results['test_time'] = config.getint('output', 'test_time')
     # TODO: Need to check.
