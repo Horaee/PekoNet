@@ -188,6 +188,9 @@ def initialize_all(
 
         batch_size = initialize_batch_size(batch_size_str=batch_size_str)
 
+        if mode == 'test':
+            logger.info(f'The test file is {config.get("data", "test_file_path")}.')
+
         dataloader = initialize_dataloader(
             config=config
             , task=mode
