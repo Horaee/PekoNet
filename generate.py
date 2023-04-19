@@ -9,7 +9,8 @@ from data_generation.utils import \
     , get_bart_summary \
     , get_lead_3_summary \
     , get_ats_model_data \
-    , get_integration_data
+    , get_integration_data \
+    , change_format
 
 
 information = ' '.join(sys.argv)
@@ -58,6 +59,8 @@ def main(*args, **kwargs):
         get_ats_model_data(parameters)
     elif parameters['task'] == 'integration':
         get_integration_data(parameters)
+    elif parameters['task'] == 'change_format':
+        change_format(parameters)
 
     logger.info('Generate data successfully.')
 

@@ -380,6 +380,69 @@ def get_integration_data(parameters):
     logger.info('Get integration data successfully.')
 
 
+def change_format(parameters):
+    logger.info('Start to change format.')
+
+    tci_results = []
+    templete = {
+        'text': ''
+        , 'summary': ''
+        , 'relevant_articles': []
+        , 'accusation': ''
+    }
+
+    logger.info('Start to copy 3A files from source to destination.')
+
+    aaa_files = ['articles.txt', 'article_sources.txt', 'accusations.txt']
+    for file in aaa_files:
+        src = os.path.join(parameters['origin_path'], file)
+        dst = os.path.join(parameters['output_path'], file)
+        shutil.copyfile(src=src, dst=dst)
+
+    logger.info('Copy 3A files from source to destination successfully.')
+
+    except_files = aaa_files
+    except_files.append('train.json')
+    except_files.append('valid.json')
+
+    tci_data = load_data(
+        data_path=parameters['origin_path']
+        , except_files=except_files)
+
+    for one_data in tci_data:
+        try:
+            one_data = json.loads(one_data)
+        except:
+            print(one_data)
+
+        result = copy.deepcopy(templete)
+        result['text'] = one_data['fact']
+        result['relevant_articles'] = one_data['meta']['relevant_articles']
+        result['accusation'] = one_data['meta']['accusation']
+
+        tci_results.append(json.dumps(result, ensure_ascii=False) + '\n')
+
+    file_name_to_data = {
+        'test.json': tci_results
+    }
+
+    for file_name in file_name_to_data:
+        logger.info(f'Start to write {file_name}.')
+
+        with open(
+                file=os.path.join(parameters['output_path'], file_name)
+                , mode='w'
+                , encoding='UTF-8') as json_file:
+            for data in file_name_to_data[file_name]:
+                json_file.write(f'{data}')
+
+            json_file.close()
+
+    logger.info(f'Write {file_name} successfully.')
+
+    logger.info('Change data format successfully.')
+
+
 # Load all data from all files in given path.
 def load_data(data_path, except_files=[]):
     logger.info('Start to load data.')

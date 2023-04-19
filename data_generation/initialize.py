@@ -18,7 +18,8 @@ def initialize_all(config, device_str, checkpoint_path):
         'tasks': [
             'legal_judgment_prediction'
             , 'abstractive_text_summarization'
-            , 'integration']
+            , 'integration'
+            , 'change_format']
         , 'summarizations': ['none', 'bart', 'lead_3']
         , 'model_names': ['LJSBart']
         , 'types': ['one_label', 'CNewSum_v2']
@@ -94,6 +95,9 @@ def initialize_all(config, device_str, checkpoint_path):
             results['output_time'] = config.getint('output', 'output_time')
         elif results['summarization'] == 'lead_3':
             results['output_time'] = config.getint('output', 'output_time')
+    elif results['task'] == 'change_format':
+        results['origin_path'] = config.get('common', 'origin_path')
+        return results
 
     if results['task'] != 'integration':
         results['type'] = config.get('common', 'type')
