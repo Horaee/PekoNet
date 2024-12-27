@@ -1,1 +1,0 @@
-from legal_judgment_prediction.serve.serve import serve
