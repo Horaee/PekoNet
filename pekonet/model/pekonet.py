@@ -75,62 +75,11 @@ class PekoNet(nn.Module):
         # If mode is 'test' or 'serve'.
         # TODO: Unfinished.
         else:
-            # cls_embeddings = self.bart.module.get_clses_embedding(
-            #     ids=data['text'])
-            cls_embeddings = self.bert(ids=data['text'])
+            cls_embeddings = self.bert(ids=data)
 
-            labels = {
-                'article': data['article']
-                , 'accusation': data['accusation']
-            }
+            outputs = self.ljpm(mode=mode,
+                                cls_embeddings=cls_embeddings,
+                                labels=None,
+                                cm_results=None)
 
-            outputs = self.ljpm(
-                mode=mode
-                , cls_embeddings=cls_embeddings
-                , labels=labels
-                , cm_results=cm_results)
-
-            # cls_embeddings.size(0) is the batch_size.
-            cls_data_number = cls_embeddings.size(0)
-            cls_loss = outputs['loss']
-            cm_results = outputs['cm_results']
-
-            return {
-                'cls_data_number': cls_data_number
-                , 'cls_loss': cls_loss
-                , 'cm_results': cm_results
-            }
-
-            # tensor = self.bart(data, mode)
-            # output = self.ljpm(tensor, mode)
-
-            # return output
-            return 48763;
-
-        # mode == 'evaluate'.
-        # Size of `outputs['summary_ids']` = \
-        #     [batch_size, sequence_length].
-        # Size of `cls_embeddings` = [batch_size, hidden_size].
-        # ---
-        # cls_embeddings = self.bart.module.get_clses_embedding(
-        #     ids=data['text'])
-
-        # labels = {
-        #     'article': data['article']
-        #     , 'accusation': data['accusation']
-        # }
-
-        # outputs = self.ljpm(
-        #     mode=mode
-        #     , cls_embeddings=cls_embeddings
-        #     , labels=labels
-        #     , cm_result=cm_results)
-
-        # cls_loss = outputs['loss']
-        # cm_results = outputs['cm_results']
-
-        # return {
-        #     'cls_loss': cls_loss
-        #     , 'cm_result': cm_results
-        # }
-        # ---
+            return outputs

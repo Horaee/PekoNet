@@ -109,9 +109,32 @@ class PekoNetFormatter:
             tensor = torch.unsqueeze(tensor, 0)
 
             return tensor
+        elif isinstance(data, dict):
+            if 'article' in data.keys():
+                article = data['article']
+                article_vector = np.zeros(shape=len(self.article2id),
+                                          dtype=np.int64)
 
+                if self.article2id.get(article):
+                    article_vector[self.article2id[article]] = 1
+                else:
+                    article_vector[self.article2id['others']] = 1
 
-    # Checked.
+                result = torch.LongTensor([article_vector.tolist()])
+            elif 'accusation' in data.keys():
+                accusation = data['accusation']
+                accusation_vector = np.zeros(shape=len(self.accusation2id),
+                                             dtype=np.int64)
+
+                if self.accusation2id.get(accusation):
+                    accusation_vector[self.accusation2id[accusation]] = 1
+                else:
+                    accusation_vector[self.accusation2id['others']] = 1
+
+                result = torch.LongTensor([accusation_vector.tolist()])
+
+            return result.cuda()
+
     def string2ids(self, string, *args, **kwargs):
         char_list = self.tokenizer.tokenize(string)
         char_list = set_special_tokens(

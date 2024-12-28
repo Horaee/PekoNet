@@ -1,0 +1,84 @@
+2024-01-07 20:22:26,221 - root - INFO - main.py -c configs/main/config.ini -m serve -g 0 -cp results/checkpoints/twoEncoderArch_fullData_5S5M/checkpoint_9.pkl
+2024-01-07 20:22:26,221 - pekonet.initialize - INFO - The mode has been confirmed.
+2024-01-07 20:22:26,222 - pekonet.initialize - INFO - Seed has been set into 48763.
+2024-01-07 20:22:26,767 - utils - INFO - CUDA is available.
+2024-01-07 20:22:26,768 - utils - INFO - Initialize GPUs successfully.
+2024-01-07 20:22:28,487 - pekonet.model.initialize - INFO - Initialize model successfully.
+2024-01-07 20:22:29,202 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2024-01-07 20:22:30,438 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2024-01-07 20:22:30,444 - pekonet.initialize - INFO - Initialize successfully.
+2024-01-07 20:22:30,445 - pekonet.serve.serve - INFO - Start to serve.
+2024-01-07 20:26:47,877 - pekonet.serve.serve - INFO - The input fact: shutdown
+2024-01-07 20:26:47,877 - pekonet.serve.serve - INFO - Stop to serve.
+2024-01-07 20:28:35,084 - root - INFO - main.py -c configs/main/config.ini -m serve -g 0 -cp results/checkpoints/twoEncoderArch_fullData_5S5M/checkpoint_9.pkl
+2024-01-07 20:28:35,084 - pekonet.initialize - INFO - The mode has been confirmed.
+2024-01-07 20:28:35,085 - pekonet.initialize - INFO - Seed has been set into 48763.
+2024-01-07 20:28:35,652 - utils - INFO - CUDA is available.
+2024-01-07 20:28:35,652 - utils - INFO - Initialize GPUs successfully.
+2024-01-07 20:28:37,367 - pekonet.model.initialize - INFO - Initialize model successfully.
+2024-01-07 20:28:38,076 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2024-01-07 20:28:39,300 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2024-01-07 20:28:39,306 - pekonet.initialize - INFO - Initialize successfully.
+2024-01-07 20:28:39,307 - pekonet.serve.serve - INFO - Start to serve.
+2024-01-07 20:29:34,030 - pekonet.serve.serve - INFO - The input fact: 新北市1名國三生在校內遭同學以彈簧刀割喉
+2024-01-07 20:29:34,645 - pekonet.serve.serve - INFO - The prediction results: 可能觸犯的法條: 無
+可能觸犯的罪名: 無
+
+2024-01-07 20:29:40,619 - pekonet.serve.serve - INFO - The input fact: shutdown
+2024-01-07 20:29:40,620 - pekonet.serve.serve - INFO - Stop to serve.
+2024-01-07 20:30:39,836 - root - INFO - main.py -c configs/main/config.ini -m serve -g 0 -cp results/checkpoints/twoEncoderArch_fullData_5S5M/checkpoint_9.pkl
+2024-01-07 20:30:39,836 - pekonet.initialize - INFO - The mode has been confirmed.
+2024-01-07 20:30:39,836 - pekonet.initialize - INFO - Seed has been set into 48763.
+2024-01-07 20:30:40,374 - utils - INFO - CUDA is available.
+2024-01-07 20:30:40,374 - utils - INFO - Initialize GPUs successfully.
+2024-01-07 20:30:42,085 - pekonet.model.initialize - INFO - Initialize model successfully.
+2024-01-07 20:30:42,800 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2024-01-07 20:30:44,019 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2024-01-07 20:30:44,025 - pekonet.initialize - INFO - Initialize successfully.
+2024-01-07 20:30:44,026 - pekonet.serve.serve - INFO - Start to serve.
+2024-01-07 20:30:48,164 - pekonet.serve.serve - INFO - The input fact: 一名15歲郭姓男同學25日中午與另一名楊姓男同學吵架，沒想到在爭吵過程中郭男竟突然情緒失控、拿起彈簧刀揮舞攻擊，造成楊男脖子噴血、當場沒了呼吸心跳。
+2024-01-07 20:30:48,775 - pekonet.serve.serve - INFO - The prediction results: 可能觸犯的法條: 刑法第277条
+可能觸犯的罪名: 無
+
+2024-01-07 20:31:43,506 - pekonet.serve.serve - INFO - The input fact: 郭姓男同學拿出彈簧刀朝另一名楊姓男同學割頸
+2024-01-07 20:31:43,527 - pekonet.serve.serve - INFO - The prediction results: 可能觸犯的法條: 刑法第277条
+可能觸犯的罪名: 伤害
+
+2024-01-07 20:31:52,991 - pekonet.serve.serve - INFO - The input fact: 桃園男子李威德於2016間多次偷拍與前女友的性交畫面
+2024-01-07 20:31:53,003 - pekonet.serve.serve - INFO - The prediction results: 可能觸犯的法條: 刑法第315条之1
+可能觸犯的罪名: 妨害秘密
+
+2024-01-07 20:32:14,687 - pekonet.serve.serve - INFO - The input fact: 他當晚與朋友聚餐吃薑母鴨，以為自己只有喝少量的酒，所以冒險開車，因為遇到警察覺得心虛才逃逸。
+2024-01-07 20:32:14,714 - pekonet.serve.serve - INFO - The prediction results: 可能觸犯的法條: 無
+可能觸犯的罪名: 無
+
+2024-01-07 20:38:10,646 - pekonet.serve.serve - INFO - The input fact: 台北市郭姓男大生日前在復興北路一間KTV歡唱飲酒，清晨騎著共享機車回家
+2024-01-07 20:38:10,668 - pekonet.serve.serve - INFO - The prediction results: 可能觸犯的法條: 刑法第185条之3
+可能觸犯的罪名: 不能安全驾驶
+
+2024-01-07 20:44:10,582 - pekonet.serve.serve - INFO - The input fact: shutdown
+2024-01-07 20:44:10,582 - pekonet.serve.serve - INFO - Stop to serve.
+2024-01-07 20:44:49,405 - root - INFO - main.py -c configs/main/config.ini -m serve -g 0 -cp results/checkpoints/twoEncoderArch_fullData_5S5M/checkpoint_9.pkl
+2024-01-07 20:44:49,406 - pekonet.initialize - INFO - The mode has been confirmed.
+2024-01-07 20:44:49,406 - pekonet.initialize - INFO - Seed has been set into 48763.
+2024-01-07 20:44:49,985 - utils - INFO - CUDA is available.
+2024-01-07 20:44:49,985 - utils - INFO - Initialize GPUs successfully.
+2024-01-07 20:44:51,694 - pekonet.model.initialize - INFO - Initialize model successfully.
+2024-01-07 20:44:52,413 - pekonet.initialize - INFO - Initialize multiple gpus successfully.
+2024-01-07 20:44:53,640 - pekonet.formatter.initialize - INFO - Initialize formatter successfully.
+2024-01-07 20:44:53,646 - pekonet.initialize - INFO - Initialize successfully.
+2024-01-07 20:44:53,647 - pekonet.serve.serve - INFO - Start to serve.
+2024-01-07 20:45:57,159 - pekonet.serve.serve - INFO - The input fact: 郭姓男同學拿出彈簧刀朝另一名楊姓男同學割頸
+2024-01-07 20:45:57,769 - pekonet.serve.serve - INFO - The prediction results: 可能觸犯的法條: 刑法第277条
+可能觸犯的罪名: 伤害
+
+2024-01-07 20:46:54,801 - pekonet.serve.serve - INFO - The input fact: 桃園男子李威德於2016間多次偷拍與前女友的性交畫面
+2024-01-07 20:46:54,823 - pekonet.serve.serve - INFO - The prediction results: 可能觸犯的法條: 刑法第315条之1
+可能觸犯的罪名: 妨害秘密
+
+2024-01-07 20:48:04,504 - pekonet.serve.serve - INFO - The input fact: 台北市郭姓男大生日前在復興北路一間KTV歡唱飲酒，清晨騎著共享機車回家
+2024-01-07 20:48:04,526 - pekonet.serve.serve - INFO - The prediction results: 可能觸犯的法條: 刑法第185条之3
+可能觸犯的罪名: 不能安全驾驶
+
+2024-01-07 21:03:40,709 - pekonet.serve.serve - INFO - The input fact: shutdown
+2024-01-07 21:03:40,709 - pekonet.serve.serve - INFO - Stop to serve.

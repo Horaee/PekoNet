@@ -62,8 +62,6 @@ class LJPM(nn.Module):
             return {'loss': loss, 'cm_results': cm_results}
 
         # If mode is 'serve'.
-        # fact_ids = torch.unsqueeze(input=fact_ids, dim=0)
-        # fact_embedding = self.bert(input=fact_ids)
-        # feature = self.fc(tensor=fact_embedding)
+        feature = self.fcs(tensors=cls_embeddings)
 
-        # return feature
+        return feature

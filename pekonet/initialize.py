@@ -143,28 +143,27 @@ def initialize_all(
         results['sum_epoch'] = config.getint('train', 'sum_epoch')
         results['output_time'] = config.getint('output', 'output_time')
         results['test_time'] = config.getint('output', 'test_time')
-    # TODO: Need to check.
-    # elif mode == 'serve':
-    #     if checkpoint_path == None:
-    #         logger.error('The path of checkpoint is none.')
-    #         raise Exception('The path of checkpoint is none.')
+    elif mode == 'serve':
+        if checkpoint_path == None:
+            logger.error('The path of checkpoint is none.')
+            raise Exception('The path of checkpoint is none.')
 
-    #     parameters = torch.load(f=checkpoint_path)
-    #     model.load_state_dict(parameters['model'])
+        parameters = torch.load(f=checkpoint_path)
+        model.load_state_dict(parameters['model'])
 
-    #     formatter = initialize_formatter(config=config)
+        formatter = initialize_formatter(config=config, task='serve')
 
-    #     model_name = config.get('model', 'model_name')
+        model_name = config.get('model', 'model_name')
 
-    #     if model_name == 'PekoNet':
-    #         articles_table, accusations_table = \
-    #             get_tables(config=config, formatter=formatter)
+        if model_name == 'PekoNet':
+            articles_table, accusations_table = \
+                get_tables(config=config, formatter=formatter)
 
-    #     results['model'] = model.eval()
-    #     results['formatter'] = formatter
-    #     results['model_name'] = model_name
-    #     results['articles_table'] = articles_table
-    #     results['accusations_table'] = accusations_table
+        results['model'] = model.eval()
+        results['formatter'] = formatter
+        results['model_name'] = model_name
+        results['articles_table'] = articles_table
+        results['accusations_table'] = accusations_table
     # If mode is 'validate' or 'test'.
     else:
         trained_epoch = -1

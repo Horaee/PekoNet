@@ -7,8 +7,7 @@ from pekonet.initialize import initialize_all
 from pekonet.train import train
 from pekonet.validate import validate
 from pekonet.test import test
-# from pekonet.serve import serve
-
+from pekonet.serve import serve
 
 information = ' '.join(sys.argv)
 
@@ -69,8 +68,7 @@ def main(*args, **kwargs):
         test(parameters=parameters)
     # If mode is 'serve'.
     else:
-        print(f'This is the unimplemented mode: {args.mode}.')
-        # serve(parameters=parameters)
+        serve(parameters=parameters)
 
 
 if __name__ == '__main__':
