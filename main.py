@@ -12,7 +12,6 @@ from pekonet.serve import serve
 information = ' '.join(sys.argv)
 
 
-# TODO: Checking.
 def main(*args, **kwargs):
     parser = argparse.ArgumentParser()
     parser.add_argument(

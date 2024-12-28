@@ -7,7 +7,6 @@ import numpy
 from torch.optim import lr_scheduler
 
 from utils import initialize_gpus, initialize_batch_size, get_tables
-# from pekonet.model.initialize import initialize_model, initialize_optimizer
 from pekonet.model import initialize_model, initialize_optimizer
 from pekonet.dataset import initialize_dataloader
 from pekonet.output import initialize_output_function
@@ -17,7 +16,6 @@ from pekonet.formatter import initialize_formatter
 logger = logging.getLogger(__name__)
 
 
-# Part checked.
 def initialize_all(
         config
         , mode
@@ -137,9 +135,6 @@ def initialize_all(
 
             os.makedirs(name=output_path)
 
-        # TODO: Check whether model_name has been used or not.
-        # results['model_name'] = config.get('model', 'model_name')
-
         results['sum_epoch'] = config.getint('train', 'sum_epoch')
         results['output_time'] = config.getint('output', 'output_time')
         results['test_time'] = config.getint('output', 'test_time')
@@ -208,7 +203,6 @@ def initialize_all(
     return results
 
 
-# Checked.
 def check_mode(mode):
     modes = ['train', 'validate', 'test', 'serve']
 
@@ -219,13 +213,11 @@ def check_mode(mode):
     logger.info(f'The mode has been confirmed.')
 
 
-# Checked.
 def initialize_seeds(*args, **kwargs):
     seed = 48763
 
     random.seed(seed)
     numpy.random.seed(seed)
-    # pd.core.common.random_state(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)

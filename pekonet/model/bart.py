@@ -4,7 +4,6 @@ import torch
 from transformers import BartForConditionalGeneration, BertTokenizer
 
 
-# Checked.
 class BART(nn.Module):
     def __init__(self, config, *args, **kwargs):
         super(BART, self).__init__()
@@ -154,7 +153,6 @@ class BART(nn.Module):
         return self.pooler(hidden_states)
 
 
-# Checked.
 # This pooler is the same as Hugging Face's BERT design.
 class BertPooler(nn.Module):
     def __init__(self, hidden_size, *args, **kwargs):

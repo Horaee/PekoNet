@@ -3,7 +3,6 @@ import json
 from torch.utils.data import Dataset
 
 
-# Checked.
 class JsonFromFiles(Dataset):
     def __init__(self, config, task, encoding='UTF-8', *args, **kwargs):
         self.file = config.get('data', f'{task}_file_path')

@@ -1,4 +1,3 @@
-# Checked.
 def set_special_tokens(add_tokens_at_beginning, data_max_len, data):
     if add_tokens_at_beginning == True:
         data.insert(0, '[CLS]')

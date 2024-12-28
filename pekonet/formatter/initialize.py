@@ -6,7 +6,6 @@ from pekonet.formatter.pekonet import PekoNetFormatter
 logger = logging.getLogger(__name__)
 
 
-# Checked.
 def initialize_formatter(config, task=None, *args, **kwargs):
     try:
         formatter_name = config.get('data', f'{task}_formatter_name')

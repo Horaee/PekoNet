@@ -8,7 +8,6 @@ from tabulate import tabulate
 logger = logging.getLogger(__name__)
 
 
-# Checked.
 def initialize_logger(log_name, *args, **kwargs):
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -32,7 +31,6 @@ def initialize_logger(log_name, *args, **kwargs):
     return logger
 
 
-# Checked.
 def initialize_gpus(gpu_ids_str, *args, **kwargs):
     if gpu_ids_str == None:
         logger.error('There is no any given gpu.')
@@ -54,7 +52,6 @@ def initialize_gpus(gpu_ids_str, *args, **kwargs):
     return gpu_ids_int_list
 
 
-# Checked.
 def initialize_batch_size(batch_size_str, *args, **kwargs):
     if batch_size_str == None:
         logger.warn(f'There is no given batch_size.')
@@ -198,7 +195,6 @@ def get_time_str(total_seconds):
     return ('%2d:%02d' % (minutes, seconds))
 
 
-# Checked.
 # Generate and print log.
 def log_results(
         epoch=None

@@ -1,7 +1,6 @@
 import torch.nn as nn
 
 
-# Checked.
 class MultiLabelsLoss(nn.Module):
     def __init__(self, class_number, *args, **kwargs):
         super(MultiLabelsLoss, self).__init__()

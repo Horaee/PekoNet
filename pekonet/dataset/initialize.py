@@ -9,7 +9,6 @@ from pekonet.formatter import initialize_formatter
 logger = logging.getLogger(__name__)
 
 
-# Checked.
 def initialize_dataloader(config, task, mode, batch_size, *args, **kwargs):
     dataset_name = config.get('data', f'{task}_dataset_name')
 

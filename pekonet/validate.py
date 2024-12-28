@@ -11,7 +11,6 @@ from utils import log_results, get_time_str
 logger = logging.getLogger(__name__)
 
 
-# Checked.
 def validate(parameters):
     model = parameters['model']
     trained_epoch = parameters['trained_epoch']
@@ -30,7 +29,6 @@ def validate(parameters):
         )
 
 
-# Checked.
 def validate_one(
         model
         , dataloader

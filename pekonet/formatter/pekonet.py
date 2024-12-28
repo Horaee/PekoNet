@@ -7,7 +7,7 @@ from pekonet.formatter.utils import set_special_tokens
 
 
 class PekoNetFormatter:
-    # Checked.
+
     def __init__(self, config, *args, **kwargs):
         model_path = config.get('model', 'bart_model_path')
         add_tokens_at_beginning = \
@@ -43,7 +43,6 @@ class PekoNetFormatter:
 
 
     def process(self, data, *args, **kwargs):
-        # Checked.
         if isinstance(data, list):
             texts = []
             summaries = []
@@ -99,7 +98,6 @@ class PekoNetFormatter:
                 , 'article': torch.LongTensor(articles)
                 , 'accusation': torch.LongTensor(accusations)
             }
-        # TODO: Checked but unsure where will use this part.
         elif isinstance(data, str):
             ids = self.string2ids(string=data)
             tensor = torch.LongTensor(ids).cuda()

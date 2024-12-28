@@ -6,7 +6,7 @@ from pekonet.evaluation import ConfusionMatrix
 
 
 class LJPM(nn.Module):
-    # Checked.
+
     def __init__(self, config, *args, **kwargs):
         super(LJPM, self).__init__()
 
@@ -34,7 +34,6 @@ class LJPM(nn.Module):
             , cm_results=None
             , *args
             , **kwargs):
-        # Checked.
         # If mode is 'train', 'validate' or 'test'.
         if mode != 'serve':
             aa_results = self.fcs(tensors=cls_embeddings)

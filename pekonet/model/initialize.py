@@ -8,7 +8,6 @@ from pekonet.model.pekonet import PekoNet
 logger = logging.getLogger(__name__)
 
 
-# Checked.
 def initialize_model(config, *args, **kwargs):
     model_name = config.get('model', 'model_name')
 
@@ -27,7 +26,6 @@ def initialize_model(config, *args, **kwargs):
     return model
 
 
-# Checked.
 def initialize_optimizer(config, model, *args, **kwargs):
     optimizer_name = config.get('train', 'optimizer_name')
     learning_rate = config.getfloat('train', 'learning_rate')

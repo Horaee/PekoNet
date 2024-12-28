@@ -1,7 +1,6 @@
 import torch.nn as nn
 
 
-# Checked.
 def get_prf(cm_result):
     if cm_result['TP'] == 0:
         if cm_result['FP'] == 0 and cm_result['FN'] == 0:
@@ -21,7 +20,6 @@ def get_prf(cm_result):
     return precision, recall, f1
 
 
-# Checked.
 def get_micro_macro_prf(cm_results):
     precisions = []
     recalls = []
@@ -66,7 +64,6 @@ def get_micro_macro_prf(cm_results):
     }
 
 
-# Checked.
 class ConfusionMatrix(nn.Module):
     def __init__(self, *args, **kwargs):
         super(ConfusionMatrix, self).__init__()

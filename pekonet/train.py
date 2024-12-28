@@ -13,7 +13,6 @@ from pekonet.validate import validate_one
 logger = logging.getLogger(__name__)
 
 
-# Checked.
 def train(parameters, do_validation):
     model = parameters['model']
     optimizer = parameters['optimizer']
@@ -205,7 +204,6 @@ def train(parameters, do_validation):
     logger.info('Train model successfully.')
 
 
-# Checked.
 def save_checkpoint(
         model
         , optimizer_name
